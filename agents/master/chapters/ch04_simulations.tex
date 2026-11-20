@@ -1,0 +1,160 @@
+\chapter{סימולציות מתמטיות, מודלים חישוביים וניתוח תשואה להשקעה (5 שנים)}
+\label{ch:simulations}
+
+פרק זה מציג את התשתית הכמותית והחישובית המבססת את ההיתכנות המבצעית והכלכלית של מערכת \textenglish{CivicShield AI}. בניגוד להערכות איכותניות כלליות, בחינת המערכת בוצעה באמצעות חמישה מודלים מתמטיים משלימים: (1) מערכת משוואות דיפרנציאליות רגילות (\textenglish{SIRI ODEs}) לדינמיקת התפשטות דיסאינפורמציה וחיסון מוקדם; (2) מודל \textenglish{Hegselmann-Krause} לדינמיקת דעות וקיטוב חברתי; (3) מנוע היתוך בייסיאני רב-מודאלי (\textenglish{Multi-Modal Bayesian Fusion}) להערכת הסתברות איום; (4) תורת התורים (\textenglish{M/M/c Erlang-C}) לניתוח עומסים במרכז הבקרה האנושי (\textenglish{HITL SOC}); ו-(5) מודל פיננסי רב-שנתי (\textenglish{TCO / NPV / ROI}) לאופק של חמש שנים.
+
+כל הסימולציות הופקו באופן דטרמיניסטי ושחזורי באמצעות סקריפט החישוב \texttt{scripts/generate\_figures.py}, והנתונים המוצגים בפרק זה משקפים את תוצאות הריצה המלאות בתנאי משבר לאומי.
+
+% ============================================================================
+\section{מודל \textenglish{SIRI ODE} להתפשטות דיסאינפורמציה והתערבות מוקדמת}
+\label{sec:siri_model}
+
+התפשטות קמפיינים מתואמים של השפעה זרה ודיסאינפורמציה ברשתות חברתיות מצייתת לדינמיקה אפידמיולוגית לא-ליניארית. כדי למדל גם תופעות של חשיפה חוזרת (\textenglish{Re-infection}) וגם חיסון קוגניטיבי מוקדם (\textenglish{Pre-bunking}), פותח מודל \textenglish{SIRI} בעל ארבע מחלקות אוכלוסייה מנורמלות ($S + I + R + M = 1$):
+\begin{itemize}
+    \item $S(t)$ -- \textbf{רגישים (\textenglish{Susceptible}):} אזרחים שטרם נחשפו לנרטיב הכוזב וטרם חוסנו מפניו.
+    \item $I(t)$ -- \textbf{נדבקים/מפיצים (\textenglish{Infected}):} אזרחים שאימצו את הנרטיב הכוזב ומשתפים אותו באופן פעיל.
+    \item $R(t)$ -- \textbf{מחלימים (\textenglish{Recovered}):} אזרחים שנחשפו להפרכה בדיעבד, אך נותרו פגיעים לחשיפה חוזרת בשיעור $\mu_{re}$.
+    \item $M(t)$ -- \textbf{מחוסנים (\textenglish{Immunized / Pre-bunked}):} אזרחים שקיבלו הקשר מאומת מבעוד מועד באמצעות מנגנוני ההתרעה של \textenglish{CivicShield AI}.
+\end{itemize}
+
+\subsection{ניסוח מתמטי של מערכת המשוואות}
+מערכת המשוואות הדיפרנציאליות הרגילות המתארת את הדינמיקה על פני חלון משבר של 72 שעות היא:
+\begin{align}
+\frac{dS}{dt} &= -\beta S(t) I(t) - \delta S(t) \label{eq:siri_s} \\
+\frac{dI}{dt} &= \beta S(t) I(t) + \mu_{re} R(t) I(t) - \gamma I(t) \label{eq:siri_i} \\
+\frac{dR}{dt} &= \gamma I(t) - \mu_{re} R(t) I(t) \label{eq:siri_r} \\
+\frac{dM}{dt} &= \delta S(t) \label{eq:siri_m}
+\end{align}
+כאשר $\beta$ הוא קצב ההדבקה האפקטיבי, $\gamma$ הוא קצב ההפרכה וההחלמה, $\delta$ הוא קצב החיסון המוקדם (\textenglish{Pre-bunking}), ו-$\mu_{re}$ הוא קצב ההדבקה החוזרת. מספר ההתרבות הבסיסי מוגדר כ-$R_0 = \beta / \gamma$.
+
+\begin{table}[htbp]
+\centering
+\caption{פרמטרים ותוצאות סימולציית \textenglish{SIRI ODE} (חלון משבר של 72 שעות, $I(0)=0.8\%$)}
+\label{tab:siri_params}
+\begin{tabular}{lccc}
+\toprule
+\textbf{פרמטר / מדד ביצוע} & \textbf{תרחיש בסיס (ללא מערכת)} & \textbf{עם \textenglish{CivicShield AI}} & \textbf{שינוי יחסי} \\
+\midrule
+קצב הדבקה $\beta$ ($\text{hr}^{-1}$) & $0.420$ & $0.210$ & $-50.0\%$ \\
+קצב הפרכה $\gamma$ ($\text{hr}^{-1}$) & $0.120$ & $0.260$ & $+116.7\%$ \\
+קצב חיסון מוקדם $\delta$ ($\text{hr}^{-1}$) & $0.002$ & $0.025$ & $\times 12.5$ \\
+קצב הדבקה חוזרת $\mu_{re}$ ($\text{hr}^{-1}$) & $0.080$ & $0.015$ & $-81.3\%$ \\
+מספר התרבות בסיסי ($R_0 / R_{\mathrm{eff}}$) & $3.50$ & $0.81$ & מתחת לסף המגפה ($<1$) \\
+\midrule
+\textbf{שיא אוכלוסייה נדבקת $\max I(t)$} & \textbf{$38.5\%$} & \textbf{$0.8\%$} & \textbf{הפחתה של $97.9\%$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig4_1_siri_ode.pdf}
+\caption{השוואת התפשטות דיסאינפורמציה במודל \textenglish{SIRI ODE} לאורך 72 שעות: תרחיש בסיס ללא התערבות (שמאל) לעומת הפעלת \textenglish{CivicShield AI} (ימין). המערכת מורידה את $R_{\mathrm{eff}}$ מתחת ל-1 ומונעת התפרצות ויראלית.}
+\label{fig:siri_ode}
+\end{figure}
+
+כפי שניתן לראות באיור~\ref{fig:siri_ode} ובטבלה~\ref{tab:siri_params}, בהיעדר התערבות מוקדמת קמפיין בעל $R_0 = 3.50$ מגיע לשיא חשיפה של $38.5\%$ מהאוכלוסייה בתוך כ-24 שעות. הפעלת \textenglish{CivicShield AI} מקטינה את $\beta$ במחצית (באמצעות זיהוי מוקדם של רשתות בוטים) ומאיצה את קצב החיסון המוקדם $\delta$, כך שהאיום נבלם עוד בשלב האינקובציה.
+
+% ============================================================================
+\section{דינמיקת דעות וקיטוב חברתי: מודל \textenglish{Hegselmann-Krause}}
+\label{sec:hk_model}
+
+מעבר להיקף החשיפה הכמותי, קמפיינים של השפעה זרה מכוונים לערעור הלכידות החברתית וליצירת "תיבות תהודה" (\textenglish{Echo Chambers}). כדי לבחון את השפעת המערכת על קיטוב דעות, הופעל מודל \textenglish{Hegselmann-Krause} (HK) מבוסס אמון חסום (\textenglish{Bounded Confidence}) על אוכלוסייה של $N=160$ סוכנים בעלי התפלגות דעות דו-קוטבית התחלתית $x_i(0) \in [0, 1]$.
+
+\subsection{כלל העדכון הדיסקרטי}
+בכל צעד זמן $t$, כל סוכן $i$ מעדכן את עמדתו לפי ממוצע הדעות של שכניו הנמצאים בתוך רדיוס האמון $\varepsilon$:
+\begin{equation}
+x_i(t+1) = (1 - \alpha) \cdot \frac{1}{|\mathcal{N}_i(t)|} \sum_{j \in \mathcal{N}_i(t)} x_j(t) + \alpha \cdot x_{\mathrm{fact}}
+\label{eq:hk_update}
+\end{equation}
+כאשר $\mathcal{N}_i(t) = \{ j \in \{1,\dots,N\} : |x_i(t) - x_j(t)| \leq \varepsilon \}$, הפרמטר $x_{\mathrm{fact}} = 0.50$ מייצג את העוגן העובדתי המאומת, ו-$\alpha$ מייצג את משקל ההנגשה של ההקשר המאומת (בבסיס $\alpha=0$, ועם \textenglish{CivicShield AI} מתקיים $\alpha=0.08$ לצד הרחבת חלון האמון האפקטיבי ל-$\varepsilon_{\mathrm{eff}}=0.26$).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig4_2_hk_opinion.pdf}
+\caption{סימולציית \textenglish{Hegselmann-Krause} ($N=160$ סוכנים, 30 צעדי אינטראקציה). משמאל: התקבעות קיטוב חריף לשני קטבים מנותקים ($\sigma=0.273$). מימין: התכנסות לקונצנזוס עובדתי תחת התערבות \textenglish{CivicShield AI} ($\sigma<0.001$).}
+\label{fig:hk_opinion}
+\end{figure}
+
+תוצאות הסימולציה באיור~\ref{fig:hk_opinion} מדגימות כי ללא התערבות, סטיית התקן של הדעות מתקבעת על $\sigma = 0.273$ (פיצול מבני קבוע). לעומת זאת, הזרקת הקשר עובדתי מאומת וגישור אלגוריתמי מצמצמים את סטיית התקן ל-$\sigma < 0.001$ (ביטול כמעט מלא של הקיטוב) בתוך פחות מ-25 צעדי אינטראקציה.
+
+% ============================================================================
+\section{מנוע היתוך בייסיאני רב-מודאלי (\textenglish{Bayesian Sensor Fusion})}
+\label{sec:bayesian_fusion}
+
+אחד האתגרים המרכזיים במערכות ניטור לאומיות הוא מניעת התרעות שווא (\textenglish{False Positives}) העלולות לפגוע בחופש הביטוי או להציף את מרכז הבקרה. לשם כך, \textenglish{CivicShield AI} אינה מסתמכת על סיווג טקסטואלי בודד, אלא מפעילה מנוע היתוך בייסיאני המשלב ארבע מודאליות בלתי-תלויות מותנית: (1) ניתוח סמנטי \textenglish{NLP}; (2) אנומליות בגרף ההפצה; (3) פורנזיקת מדיה (\textenglish{Deepfake Detection}); ו-(4) מוניטין ואמינות מקור.
+
+\subsection{עדכון הסתברות פוסטריורית ביחס נראות}
+בהינתן הסתברות א-פריורית $P(H_1) = 0.05$ לכך שאירוע ויראלי הוא קמפיין דיסאינפורמציה מתואם, הסיכויים הפוסטריוריים (\textenglish{Posterior Odds}) לאחר צפייה בוקטור הראיות $\mathbf{E} = (E_1, E_2, E_3, E_4)$ מחושבים לפי:
+\begin{equation}
+\frac{P(H_1 \mid \mathbf{E})}{P(H_0 \mid \mathbf{E})} = \frac{P(H_1)}{P(H_0)} \prod_{m=1}^{4} \mathrm{LR}_m, \qquad \mathrm{LR}_m = \frac{P(E_m \mid H_1)}{P(E_m \mid H_0)}
+\label{eq:bayes_fusion}
+\end{equation}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig4_3_bayesian_fusion.pdf}
+\caption{התכנסות הסתברות פוסטריורית במנוע ההיתוך הבייסיאני (שמאל) ועקומת \textenglish{ROC} המשווה מודאליות בודדות להיתוך מלא (ימין, $\text{AUC}=0.964$).}
+\label{fig:bayesian_fusion}
+\end{figure}
+
+כפי שמוצג באיור~\ref{fig:bayesian_fusion}, עבור אירוע דיסאינפורמציה מתואם, ההסתברות הפוסטריורית מטפסת מ-$5\%$ ל-$91.9\%$ (מעל סף ההסלמה של $85\%$), בעוד שעבור אירוע חדשותי ויראלי לגיטימי ההסתברות צונחת ל-$0.2\%$ בלבד. השילוב הרב-מודאלי משפר את מדד ה-\textenglish{AUC} מ-$0.792$ (טקסט בלבד) ל-$0.964$.
+
+% ============================================================================
+\section{ניתוח עומסים במרכז הבקרה: תורת התורים \textenglish{M/M/c (Erlang-C)}}
+\label{sec:mmc_queueing}
+
+כדי לעמוד בדרישות הממשל והפיקוח האנושי (\textenglish{Human-in-the-Loop}), כל התרעה בדרגת חומרה גבוהה מחייבת אישור אנליסט במרכז הבקרה (\textenglish{SOC}). במהלך משבר ביטחוני או בחירות, קצב הגעת ההתרעות הגולמי $\lambda$ מזנק עד ל-85--115 אירועים בשעה. מידול המרכז כתור \textenglish{M/M/c} עם $c$ אנליסטים וקצב שירות $\mu = 6$ אירועים לשעה לאנליסט (10 דקות בממוצע) מאפשר לחשב את זמן ההמתנה הממוצע בתור $W_q$:
+\begin{equation}
+W_q = \frac{C(c, a)}{c\mu - \lambda}, \qquad C(c, a) = \frac{\frac{a^c}{c!(1-\rho)}}{\sum_{k=0}^{c-1}\frac{a^k}{k!} + \frac{a^c}{c!(1-\rho)}}, \qquad a = \frac{\lambda}{\mu}, \quad \rho = \frac{\lambda}{c\mu}
+\label{eq:erlang_c}
+\end{equation}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig4_4_mmc_queueing.pdf}
+\caption{זמן המתנה ממוצע $W_q$ לפי נוסחת \textenglish{Erlang-C} (שמאל) ושיעור ניצולת אנליסטים בעומס שיא $\lambda=85/\text{hr}$ (ימין). סינון אוטומטי של $78\%$ באמצעות \textenglish{CivicShield AI} מאפשר עמידה ב-\textenglish{SLA} של מתחת ל-5 דקות עם 6 אנליסטים בלבד.}
+\label{fig:mmc_queueing}
+\end{figure}
+
+איור~\ref{fig:mmc_queueing} מוכיח כי מרכז בקרה ידני בעל $c=12$ אנליסטים קורס לחוסר יציבות ($\rho > 100\%$) כבר ב-$\lambda = 72$ התרעות לשעה. מנגד, מנגנון הטריאז' האוטומטי של \textenglish{CivicShield AI} מסנן $78\%$ מהרעש והתרעות השווא, מקטין את קצב ההגעה האפקטיבי ל-$\lambda_{\mathrm{eff}} = 0.22\lambda$, ומאפשר לצוות מצומצם של $c=6$ אנליסטים בלבד לעבוד בניצולת מאוזנת של $51.9\%$ ותחת \textenglish{SLA} של פחות מ-5 דקות גם בשיא המשבר.
+
+% ============================================================================
+\section{מודל כלכלי וניתוח תשואה להשקעה (ROI) לאופק של 5 שנים}
+\label{sec:roi_5yr}
+
+ההצדקה התקציבית של \textenglish{CivicShield AI} נבחנה במודל עלות-תועלת ממשלתי לאופק של 5 שנים, תחת שיעור היוון חברתי של $r = 6\%$ בהתאם להנחיות אגף התקציבים. העלויות כוללות הקמה ראשונית (\textenglish{CapEx}: תשתית \textenglish{GPU} מאובטחת, אינטגרציה ואבטחת מידע) ועלויות תפעול שוטפות (\textenglish{OpEx}: תחזוקת מודלים, כוח אדם ורישוי). התועלות המכומתות כוללות חיסכון ישיר בכוח אדם במרכזי בקרה (\textenglish{SOC}) ומניעת נזקים כלכליים ותפעוליים של משברי דיסאינפורמציה (השבתות שירותים, בהלה ציבורית ועלויות תגובת חירום).
+
+\begin{table}[htbp]
+\centering
+\caption{תחזית תזרים מזומנים, \textenglish{TCO} וערך נוכחי נקי (\textenglish{NPV}) לחמש שנים (מיליוני ש"ח)}
+\label{tab:roi_5yr}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{סעיף (מיליוני ש"ח)} & \textbf{שנה 1} & \textbf{שנה 2} & \textbf{שנה 3} & \textbf{שנה 4} & \textbf{שנה 5} & \textbf{סה"כ 5 שנים} \\
+\midrule
+השקעה הונית (\textenglish{CapEx}) & $6.8$ & $1.2$ & $0.8$ & $0.8$ & $0.6$ & $10.2$ \\
+הוצאות תפעול (\textenglish{OpEx}) & $2.4$ & $3.1$ & $3.3$ & $3.5$ & $3.7$ & $16.0$ \\
+\textbf{סה"כ עלות (\textenglish{TCO})} & \textbf{$9.2$} & \textbf{$4.3$} & \textbf{$4.1$} & \textbf{$4.3$} & \textbf{$4.3$} & \textbf{$26.2$} \\
+\midrule
+תועלות מכומתות ונזק שנמנע & $5.5$ & $13.8$ & $17.5$ & $20.2$ & $22.8$ & $79.8$ \\
+תזרים נטו שנתי & $-3.7$ & $+9.5$ & $+13.4$ & $+15.9$ & $+18.5$ & $+53.6$ \\
+\textbf{ערך נוכחי נקי מצטבר (\textenglish{NPV}, $6\%$)} & \textbf{$-3.5$} & \textbf{$+5.0$} & \textbf{$+16.2$} & \textbf{$+28.8$} & \textbf{$+42.6$} & \textbf{$+42.6$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig4_5_roi_5yr.pdf}
+\caption{ניתוח פיננסי ל-5 שנים (מיליוני ש"ח): השוואת עלות כוללת מול תועלות שנתיות (שמאל) ומסלול הערך הנוכחי הנקי המצטבר (\textenglish{NPV}, ימין). נקודת האיזון מושגת בתחילת שנה 2, עם \textenglish{ROI} כולל של $205\%$.}
+\label{fig:roi_5yr}
+\end{figure}
+
+כפי שעולה מטבלה~\ref{tab:roi_5yr} ומאיור~\ref{fig:roi_5yr}, ההשקעה הכוללת המצטברת על פני 5 שנים עומדת על $26.2$ מיליון ש"ח, מול תועלות מכומתות של $79.8$ מיליון ש"ח. נקודת האיזון (\textenglish{Break-even}) מושגת בתוך כ-15 חודשים ממועד ההקמה, הערך הנוכחי הנקי (\textenglish{NPV}) עומד על $+42.6$ מיליון ש"ח, ושיעור התשואה הכולל להשקעה (\textenglish{5-Year ROI}) מגיע ל-$204.6\%$.
+
+% ============================================================================
+\section{סיכום ממצאי הסימולציה ומוכנות לביקורת צוות אדום (\textenglish{Red Team})}
+\label{sec:sim_summary}
+
+חמשת המודלים המתמטיים שהוצגו בפרק זה מספקים תיקוף כמותי מקצה לקצה לארכיטקטורת \textenglish{CivicShield AI}: בלימת התפשטות מתחת לסף המגפה ($R_{\mathrm{eff}} = 0.81$), צמצום קיטוב דעות של מעל $99.6\%$ ($\sigma < 0.001$), דיוק זיהוי בייסיאני של $\text{AUC}=0.964$, עמידה ב-\textenglish{SLA} מבצעי תוך חיסכון של מעל $50\%$ בכוח אדם ב-\textenglish{SOC}, ותשואה כלכלית מובהקת ($\text{NPV} = 42.6$ מיליון ש"ח). פרק זה וכל הגרפים הוקטוריים המשולבים בו מוכנים כעת לבחינת \textenglish{Red Team} לצורך בדיקת רגישות לפרמטרים קיצוניים, תקיפות אדברסריות והנחות יסוד.

@@ -1,0 +1,104 @@
+% ==============================================================================
+% main.tex - CivicShield AI Preliminary Report (Modular Master Document)
+% Compile with: lualatex main.tex
+% ==============================================================================
+\documentclass[11pt,a4paper,twoside,openany]{civicshield}
+
+\begin{document}
+
+% ==============================================================================
+% FRONT MATTER (~5 Pages)
+% ==============================================================================
+\frontmatter
+
+% --- Page 1: Cover Page -------------------------------------------------------
+\makecivicshieldcover
+  {מערכת \en{CivicShield AI}}
+  {דוח אפיון ראשוני, ארכיטקטורה רב-סוכנים ובקרת סיכונים למכרז ממשלתי}
+  {CS-AI-PRELIM-2026-01 / GOV-TENDER-404}
+  {גרסה 1.0 -- נובמבר 2026}
+
+% --- Page 2: Document Control & Metadata Sheet --------------------------------
+\clearpage
+\section*{בקרת מסמך ומטא-דאטה}
+\addcontentsline{toc}{chapter}{בקרת מסמך ומטא-דאטה}
+
+מסמך זה מהווה את הדוח ההנדסי הראשוני עבור פלטפורמת \en{CivicShield AI} המיועדת לפריסה בסביבת ענן ממשלתי ריבוני (\en{Sovereign Cloud}). המסמך מנוסח ברמת פירוט של מכרז ממשלתי ומהווה בסיס לסקירת צוות אדום (\en{Red-Team Review}) ולאישור ועדת הארכיטקטורה העליונה.
+
+\vspace{6pt}
+\begin{tabularx}{\textwidth}{@{} l l l X @{}}
+\toprule
+\rowcolor{CSNavy}
+\color{white}\textbf{גרסה} & \color{white}\textbf{תאריך} & \color{white}\textbf{מחבר / צוות} & \color{white}\textbf{תיאור השינוי} \\
+\midrule
+0.1 & 2026-11-10 & צוות תיאוריה ואפיון & גיבוש מתווה דרישות רגולטוריות וסקירת ספרות \\
+0.5 & 2026-11-16 & ארכיטקט ראשי & תכנון ארכיטקטורת 5 השכבות ורכזת הסוכנים \\
+1.0 & 2026-11-20 & צוות משולב \en{CivicShield} & איחוד פרקים, הגדרת \en{FR/NFR} והעברה לביקורת \en{Red-Team} \\
+\bottomrule
+\end{tabularx}
+
+\vspace{12pt}
+\begin{contractbox}[הצהרת תאימות וריבונות נתונים]
+כלל רכיבי התוכנה, המודלים והנתונים המתוארים במסמך זה כפופים להנחיות מערך הסייבר הלאומי (\en{INCD}), תקנות הגנת הפרטיות (אבטחת מידע), התשע"ז--2017, ותקן \en{ISO/IEC 27001}. לא תתאפשר הוצאת מידע מזהה אישית (\en{PII}) מחוץ לגבולות השיפוט של מדינת ישראל.
+\end{contractbox}
+
+% --- Page 3: Executive Summary ------------------------------------------------
+\clearpage
+\chapter*{תקציר מנהלים}
+\addcontentsline{toc}{chapter}{תקציר מנהלים}
+
+מערכת \en{CivicShield AI} נועדה לספק תשתית בינה מלאכותית אמינה, שקופה ומבוקרת עבור גופים ממשלתיים ורשויות מקומיות. המערכת משלבת מנוע תזמור רב-סוכנים (\en{Multi-Agent Orchestration Hub}) עם מנגנוני הגנה קשיחים (\en{Zero-Trust Guardrails}), אימות מבוסס מקורות (\en{Grounded RAG}) וביקורת מלאה בזמן אמת.
+
+\begin{insightbox}[עיקרי החידוש הארכיטקטוני]
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{הפרדת אחריות בחמש שכבות:} בידוד מוחלט בין איסוף נתונים, זיכרון ארגוני, תזמור סוכנים, אבטחת מידע והגשה למשתמש.
+  \item \textbf{לולאת בקרה מובנית (\en{Critic-in-the-Loop}):} כל פלט סוכן עובר אימות עצמאי מול מדיניות משפטית ומקורות רשמיים בטרם הגשתו לאזרח או לפקיד.
+  \item \textbf{עמידות וריבונות:} תאימות מלאה ל-\en{Kubernetes} על תשתית ענן ממשלתי (\en{Nimbus}) או פריסה מקומית (\en{On-Premise Air-Gapped}) ללא תלות בספק מודלים יחיד.
+\end{itemize}
+\end{insightbox}
+
+דוח זה מפרט את מבוא המערכת ומפת הדרכים התלת-שלבית להטמעה (פרק 1), הרקע התאורטי (פרק 2), הארכיטקטורה המערכתית והמפרט ההנדסי (פרק 3), תוצאות הסימולציה והעומסים (פרק 4), וממצאי צוות אדום (פרק 5).
+
+% --- Page 4: Table of Contents, Figures & Tables ------------------------------
+\clearpage
+\tableofcontents
+\clearpage
+\listoffigures
+\listoftables
+
+% --- Page 5: Glossary & Acronyms ----------------------------------------------
+\clearpage
+\chapter*{מילון מונחים וראשי תיבות}
+\addcontentsline{toc}{chapter}{מילון מונחים וראשי תיבות}
+
+\begin{tabularx}{\textwidth}{@{} l l X @{}}
+\toprule
+\rowcolor{CSNavy}
+\color{white}\textbf{קיצור} & \color{white}\textbf{מונח מלא} & \color{white}\textbf{משמעות במערכת \en{CivicShield AI}} \\
+\midrule
+\en{ABAC} & \en{Attribute-Based Access Control} & בקרת גישה מבוססת מאפיינים (תפקיד, משרד, סיווג, זמן) \\
+\en{DLQ} & \en{Dead-Letter Queue} & תור הודעות כושלות לניתוח והתאוששות ללא אובדן מידע \\
+\en{FR / NFR} & \en{Functional / Non-Functional Req.} & דרישות פונקציונליות ולא-פונקציונליות מחייבות למכרז \\
+\en{HITL} & \en{Human-in-the-Loop} & אישור או התערבות גורם אנושי מוסמך במקרי קצה \\
+\en{INCD} & \en{Israel National Cyber Directorate} & מערך הסייבר הלאומי -- מקור דרישות האבטחה הממשלתיות \\
+\en{PII} & \en{Personally Identifiable Information} & מידע מזהה אישית (ת"ז, טלפון, כתובת, רשומה רפואית) \\
+\en{RAG} & \en{Retrieval-Augmented Generation} & יצירת תשובות מעוגנות במסמכי מקור מאומתים בלבד \\
+\en{RPO / RTO} & \en{Recovery Point / Time Objective} & יעדי אובדן נתונים מרבי וזמן התאוששות מאסון \\
+\en{SLA} & \en{Service Level Agreement} & הסכם רמת שירות מחייב לזמינות, השהיה ודיוק \\
+\en{Zero-Trust} & \en{Zero-Trust Architecture} & מודל אבטחה ללא אמון מובנה: אימות והרשאה בכל קריאה \\
+\bottomrule
+\end{tabularx}
+
+% ==============================================================================
+% MAIN MATTER (~35 Pages across modular chapters)
+% ==============================================================================
+\mainmatter
+
+% Modular chapter imports (uncomment as each team completes its chapter):
+% \input{chapters/ch01_introduction}
+% \input{chapters/ch02_theory}
+\input{chapters/ch03_architecture}
+% \input{chapters/ch04_simulation}
+% \input{chapters/ch05_redteam}
+
+\end{document}

@@ -1,0 +1,1 @@
+Confirmed (RedTeam CONS-03 resolved): Updated `chapters/ch04_simulations.tex` (`sec:sim_summary`, line 160) to replace `94.1%` with `>99.6%` (`\sigma < 0.001`), ensuring full numerical consistency with lines 75, 79, and the Hegselmann-Krause simulation output (`Baseline=0.273`, `CivicShield=0.000`).

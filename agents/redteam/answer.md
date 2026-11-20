@@ -1,0 +1,1 @@
+Confirmed: Replaced all 3 inline math `\textenglish{...}` calls (`$< \textenglish{2\%}$`, `$\le \textenglish{30}$`, `$< \textenglish{3\%}$`) with pure math mode (`$< 2\%$`, `$\le 30$`, `$< 3\%$`) in `Table tab:safeguards_matrix` in both `master/chapters/ch05_safeguards_audit.tex` and `redteam/chapters/ch05_safeguards_audit.tex`. Ready for LuaLaTeX recompilation.

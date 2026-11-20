@@ -1,0 +1,72 @@
+\babel@toc {hebrew}{}\relax 
+\contentsline {chapter}{בקרת מסמך ומטא-דאטה}{ii}{Doc-Start}%
+\contentsline {chapter}{תקציר מנהלים}{iii}{chapter*.1}%
+\contentsline {chapter}{מילון מונחים וראשי תיבות}{ix}{chapter*.5}%
+\contentsline {chapter}{\numberline {1}נוף האיומים הלאומי והחזון האסטרטגי}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}מבוא: עידן התודעה הסינתטית והאתגר הדמוקרטי}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}מיפוי נוף האיומים הלאומי במרחב המידע}{1}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}טקסונומיה השוואתית של איומי מידע}{2}{subsection.1.2.1}%
+\contentsline {section}{\numberline {1.3}כשלי המצב הקיים ופער היכולות הלאומי}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}החזון האסטרטגי של \foreignlanguage {english}{CivicShield AI}}{3}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}עקרונות הליבה האסטרטגיים}{3}{subsection.1.4.1}%
+\contentsline {section}{\numberline {1.5}מפת דרכים תלת-שלבית ויעדים מדידים}{3}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}מדדי הצלחה מרכזיים (\foreignlanguage {english}{KPIs})}{4}{subsection.1.5.1}%
+\contentsline {section}{\numberline {1.6}סיכום פרק}{4}{section.1.6}%
+\contentsline {chapter}{\numberline {2}תשתית תאורטית ומשפטית: תקשורת פוליטית, חוסן דמוקרטי ומשפט חוקתי}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}מבוא: בין הגנה על המרחב הציבורי לשימור החירות הדמוקרטית}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}תקשורת פוליטית בעידן הפלטפורמות והבינה המלאכותית}{5}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}התמורה במבנה המרחב הציבורי (\foreignlanguage {english}{The Digital Public Sphere})}{5}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}מניפולציה קוגניטיבית ולוחמת מידע}{5}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}מדע המדינה וחוסן דמוקרטי}{6}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}חוסן דמוקרטי ואמון מוסדי}{6}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}תאוריית החיסון הפסיכולוגי (\foreignlanguage {english}{Inoculation Theory}) ו-\foreignlanguage {english}{Prebunking}}{6}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}המסגרת המשפטית-חוקתית בישראל}{6}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}חופש הביטוי כזכות חוקתית ו``דוקטרינת הוודאות הקרובה''}{7}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}דיני תעמולת בחירות והתערבות זרה}{7}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}הגנת הפרטיות ומאגרי מידע}{7}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}סמכויות הפנייה לפלטפורמות (פסיקת בג''ץ בעניין יחידת הסייבר)}{8}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}משפט משווה: רגולציה בינלאומית של בינה מלאכותית ומניפולציות מידע}{8}{section.2.5}%
+\contentsline {section}{\numberline {2.6}מודל הממשל והפיקוח הדמוקרטי (\foreignlanguage {english}{Democratic Governance})}{9}{section.2.6}%
+\contentsline {section}{\numberline {2.7}סיכום פרק}{9}{section.2.7}%
+\contentsline {chapter}{\numberline {3}ארכיטקטורת המערכת ומפרט הנדסי}{10}{chapter.3}%
+\contentsline {section}{\numberline {3.1}ארכיטקטורת חמש השכבות (\foreignlanguage {english}{5-Layer Architecture})}{10}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}תיאור השכבות}{10}{subsection.3.1.1}%
+\babel@toc {english}{}\relax 
+\babel@toc {hebrew}{}\relax 
+\contentsline {section}{\numberline {3.2}מפרט רכזת הסוכנים הרב-מערכתית (\foreignlanguage {english}{Multi-Agent Hub Spec})}{11}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}טקסונומיית הסוכנים ותחומי אחריות}{12}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}טופולוגיית הרכזת וזרימת הבקרה}{12}{subsection.3.2.2}%
+\babel@toc {english}{}\relax 
+\babel@toc {hebrew}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {hebrew}{}\relax 
+\contentsline {section}{\numberline {3.3}דרישות פונקציונליות (\foreignlanguage {english}{Functional Requirements -- FR})}{13}{section.3.3}%
+\contentsline {section}{\numberline {3.4}דרישות לא-פונקציונליות (\foreignlanguage {english}{Non-Functional Requirements -- NFR})}{14}{section.3.4}%
+\babel@toc {english}{}\relax 
+\babel@toc {hebrew}{}\relax 
+\contentsline {section}{\numberline {3.5}ניהול סיכונים ארכיטקטוניים ומוכנות לסקירת צוות אדום}{15}{section.3.5}%
+\contentsline {chapter}{\numberline {4}סימולציות מתמטיות, מודלים חישוביים וניתוח תשואה להשקעה (5 שנים)}{16}{chapter.4}%
+\contentsline {section}{\numberline {4.1}מודל \foreignlanguage {english}{SIRI ODE} להתפשטות דיסאינפורמציה והתערבות מוקדמת}{16}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}ניסוח מתמטי של מערכת המשוואות}{17}{subsection.4.1.1}%
+\contentsline {section}{\numberline {4.2}דינמיקת דעות וקיטוב חברתי: מודל \foreignlanguage {english}{Hegselmann-Krause}}{18}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}כלל העדכון הדיסקרטי}{18}{subsection.4.2.1}%
+\contentsline {section}{\numberline {4.3}מנוע היתוך בייסיאני רב-מודאלי (\foreignlanguage {english}{Bayesian Sensor Fusion})}{18}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}עדכון הסתברות פוסטריורית ביחס נראות}{19}{subsection.4.3.1}%
+\contentsline {section}{\numberline {4.4}ניתוח עומסים במרכז הבקרה: תורת התורים \foreignlanguage {english}{M/M/c (Erlang-C)}}{19}{section.4.4}%
+\contentsline {section}{\numberline {4.5}מודל כלכלי וניתוח תשואה להשקעה (ROI) לאופק של 5 שנים}{20}{section.4.5}%
+\contentsline {section}{\numberline {4.6}סיכום ממצאי הסימולציה ומוכנות לביקורת צוות אדום (\foreignlanguage {english}{Red Team})}{20}{section.4.6}%
+\contentsline {chapter}{\numberline {5}ביקורת ערובות חוקתיות, מניעת צנזורה וממשל דמוקרטי}{22}{chapter.5}%
+\contentsline {section}{\numberline {5.1}מבוא ומסגרת הביקורת החוקתית}{22}{section.5.1}%
+\contentsline {section}{\numberline {5.2}ביקורת מניעת צנזורה והגנה על שיח פוליטי לגיטימי}{22}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}עקרון ההפרדה המבנית: התנהגות מתואמת מול תוכן רעיוני}{22}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}אי-וריאנט אפס צנזורה ואפס הסרה אוטומטית}{23}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}מיפוי שגיאות חיוביות כוזבות (\foreignlanguage {english}{False Positives}) בשיח אזרחי}{23}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}ניטרליות פוליטית וביקורת הטיה השקפתית (\foreignlanguage {english}{Viewpoint Neutrality})}{23}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}עקרונות הפעלה חוקתיים ומגבלות סמכות}{23}{section.5.3}%
+\contentsline {section}{\numberline {5.4}אחריותיות דמוקרטית, פיקוח פרלמנטרי ומנגנוני ממשל}{24}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}שכבה א': בקרה פנימית וצוות אדום עצמאי (\foreignlanguage {english}{Internal Red-Team \& Ethics Board})}{24}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}שכבה ב': ועדת פיקוח ציבורית בלתי-תלויה}{24}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}שכבה ג': פיקוח פרלמנטרי וביקורת מבקר המדינה}{24}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}שכבה ד': שקיפות ציבורית ומנגנון ערעור ותיקון (\foreignlanguage {english}{Transparency \& Redress})}{25}{subsection.5.4.4}%
+\contentsline {section}{\numberline {5.5}מתודולוגיית צוות אדום (\foreignlanguage {english}{Red-Team}) ובדיקות עמידות}{25}{section.5.5}%
+\contentsline {section}{\numberline {5.6}סיכום ממצאי הביקורת והתחייבויות למכרז}{25}{section.5.6}%

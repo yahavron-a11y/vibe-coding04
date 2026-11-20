@@ -1,0 +1,322 @@
+% ==============================================================================
+% chapters/ch03_architecture.tex - Chapter 3: System Architecture & Spec (~9 pp)
+% ==============================================================================
+\chapter{ארכיטקטורת המערכת ומפרט הנדסי}
+\label{ch:architecture}
+
+פרק זה מציג את הארכיטקטורה ההנדסית המלאה של מערכת \en{CivicShield AI}. התכנון מבוסס על עקרונות של הפרדת רשויות (\en{Separation of Concerns}), עמידות בכשלים (\en{Fault Tolerance}), אבטחה מובנית (\en{Security by Design}) ושקיפות מלאה הנדרשת במערכות בינה מלאכותית במגזר הציבורי. הפרק כולל את פירוט ארכיטקטורת חמש השכבות, מפרט רכזת הסוכנים (\en{Multi-Agent Hub}), טבלאות דרישות פונקציונליות (\en{FR}) ולא-פונקציונליות (\en{NFR}), וניתוח סיכונים ארכיטקטוניים.
+
+% ------------------------------------------------------------------------------
+\section{ארכיטקטורת חמש השכבות (\en{5-Layer Architecture})}
+\label{sec:five-layer}
+
+המערכת בנויה מחמש שכבות אופקיות מופרדות לוגית ורשתית, המלוות בשני עמודי תווך אנכיים חוצי-שכבות: \textbf{ממשל, אבטחה ופרטיות} (\en{Zero-Trust Governance}) ו-\textbf{ניטור, ביקורת ותצפיתיות} (\en{Observability \& Audit}). כל תקשורת בין שכבות מתבצעת באמצעות ממשקים מוגדרים היטב (\en{gRPC / mTLS}) בלבד, ללא גישה ישירה למסדי נתונים בין שכבות שאינן סמוכות.
+
+\subsection{תיאור השכבות}
+
+\begin{enumerate}[leftmargin=1.8em]
+  \item \textbf{שכבה 1 -- שכבת איסוף ואינטגרציה (\en{Ingestion \& Sovereign Connectors}):}
+  אחראית על קליטת מידע רציפה (\en{CDC / Streaming}) ובאצוות (\en{Batch}) ממאגרים ממשלתיים, מערכות \en{CRM}, תקנות חוק, פרוטוקולים ומסמכי \en{PDF/DOCX}. השכבה מבצעת ניקוי, פירוק ליחידות סמנטיות (\en{Chunking}), תיוג סיווג ביטחוני ומיסוך ראשוני של \en{PII} בטרם כניסת המידע למערכת.
+
+  באופן מפורש, שכבה 1 קולטת במקביל שני ערוצי נתונים משלימים: (א) זרמי \en{OSINT} פומביים ריבוניים (\en{Sovereign Public-OSINT Streams}) המיועדים לזיהוי מוקדם של התנהגות לא-אותנטית מתואמת (\en{CIB}), השפעה זרה מניפולטיבית (\en{FIMI}) ותכני \en{Deepfake}; ו-(ב) מאגרי ייחוס ממשלתיים מאומתים (\en{Verified Government Reference Corpora}) המשמשים לעיגון מבוסס-ראיות של תגובות מנע (\en{Grounded Prebunking}) ולאכיפת ציות משפטי.
+
+  \item \textbf{שכבה 2 -- שכבת נתונים, ידע וזיכרון ארגוני (\en{Knowledge, Vector \& Audit Ledger}):}
+  משלבת שלושה מנועי אחסון משלימים: (א) מאגר וקטורי היברידי (\en{Dense + BM25}) לשליפה מדויקת בעברית ובאנגלית; (ב) גרף ידע ארגוני (\en{Knowledge Graph}) למיפוי קשרי חוקים, סמכויות ונהלים; (ג) יומן ביקורת בלתי ניתן לשינוי (\en{Append-Only Cryptographic Audit Ledger}) הרושם כל שאילתה, מקור והחלטת סוכן.
+
+  \item \textbf{שכבה 3 -- שכבת תזמור רב-סוכנים (\en{Multi-Agent Orchestration Hub}):}
+  ליבת קבלת ההחלטות של \en{CivicShield AI}. מנהלת את מחזור החיים של הסוכנים המתמחים, מבצעת ניתוב דטרמיניסטי או סמנטי של משימות, אוכפת תקציבי השהיה וטוקנים, ומפעילה לולאות אימות הדדי בין סוכן יצרן לסוכן מבקר (\en{Critic Agent}).
+
+  \item \textbf{שכבה 4 -- שכבת אבטחה, ציות ובקרת איכות (\en{Guardrails \& Policy Engine}):}
+  פועלת כחומת אש קוגניטיבית דו-כיוונית: בכניסה היא חוסמת התקפות \en{Prompt Injection} ודליפת מידע רגיש; ביציאה היא מוודאת עיגון מלא במקורות (\en{Citation Grounding}), מניעת הזיות, עמידה ברגולציה והפניה לאישור אנושי (\en{HITL}) כאשר רמת הביטחון נמוכה מהסף המוגדר.
+
+  \item \textbf{שכבה 5 -- שכבת ממשק, \en{API} והגשה (\en{Gov-Portal \& Integration Gateway}):}
+  מספקת פורטל עבודה לעובדי מדינה, ממשקי \en{REST/GraphQL} לשילוב בפורטלים קיימים, מערכת התרעות למרכזי שליטה (\en{SIEM/SOC}), ולוח בקרה ניהולי להצגת מדדי \en{SLA}, דיוק וציות.
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\begin{ltrblock}
+\begin{tikzpicture}[
+  font=\sffamily\footnotesize,
+  layer/.style={
+    rectangle, draw=CSNavy, thick, rounded corners=2pt,
+    minimum width=10.2cm, minimum height=1.25cm,
+    align=center, drop shadow
+  },
+  pillar/.style={
+    rectangle, draw=CSGold, thick, rounded corners=2pt,
+    fill=CSContractBg, minimum width=1.9cm, minimum height=7.65cm,
+    align=center, text width=1.7cm
+  },
+  arr/.style={-{Stealth[length=2.5mm]}, thick, CSNavy}
+]
+  % 5 Horizontal Layers
+  \node[layer, fill=CSNavy!12] (L5) at (0, 6.4)
+    {\textbf{Layer 5: Gov-Portal UI, REST/gRPC Gateway \& SIEM}\\
+     Citizen/Officer Portal $\cdot$ OAuth2/OIDC $\cdot$ Rate Limiting $\cdot$ Executive Dashboards};
+
+  \node[layer, fill=CSRiskBg, draw=CSRiskRed] (L4) at (0, 4.8)
+    {\textbf{Layer 4: Zero-Trust Guardrails \& Policy Engine}\\
+     Prompt-Injection Firewall $\cdot$ PII Redaction $\cdot$ Grounding Verifier $\cdot$ HITL Gate};
+
+  \node[layer, fill=CSInsightBg, draw=CSInsightTeal] (L3) at (0, 3.2)
+    {\textbf{Layer 3: Multi-Agent Orchestration Hub}\\
+     Router $\cdot$ Policy Agent $\cdot$ RAG Agent $\cdot$ Risk Scorer $\cdot$ Critic Agent $\cdot$ State Machine};
+
+  \node[layer, fill=CSIce, draw=CSSlate] (L2) at (0, 1.6)
+    {\textbf{Layer 2: Knowledge Graph, Vector Store \& Audit Ledger}\\
+     Hybrid Vector DB (HE/EN) $\cdot$ Legal Knowledge Graph $\cdot$ Immutable WORM Audit Log};
+
+  \node[layer, fill=CSNavy!8, draw=CSSteel] (L1) at (0, 0.0)
+    {\textbf{Layer 1: Ingestion \& Sovereign Data Connectors}\\
+     Gov ERP/CRM $\cdot$ Legal Gazettes $\cdot$ OCR/Chunking Pipeline $\cdot$ Classification Tagger};
+
+  % Vertical Cross-Cutting Pillars
+  \node[pillar] (PL) at (-6.35, 3.2)
+    {\textbf{\color{CSNavy}Zero-Trust Security}\\[6pt]
+     mTLS 1.3\\[3pt]
+     ABAC/RBAC\\[3pt]
+     HSM/KMS\\[3pt]
+     INCD Policy\\[3pt]
+     Air-Gap Ready};
+
+  \node[pillar] (PR) at (6.35, 3.2)
+    {\textbf{\color{CSNavy}Observability \& Ops}\\[6pt]
+     OpenTelemetry\\[3pt]
+     Audit Trail\\[3pt]
+     Drift Alerts\\[3pt]
+     SLA Monitor\\[3pt]
+     FinOps Quota};
+
+  % Inter-layer bidirectional arrows
+  \foreach \a/\b in {L1/L2, L2/L3, L3/L4, L4/L5} {
+    \draw[arr] ([xshift=-1.5cm]\a.north) -- ([xshift=-1.5cm]\b.south);
+    \draw[arr] ([xshift=1.5cm]\b.south) -- ([xshift=1.5cm]\a.north);
+  }
+\end{tikzpicture}
+\end{ltrblock}
+\caption{ארכיטקטורת חמש השכבות של מערכת \en{CivicShield AI} ועמודי התווך חוצי-השכבות}
+\label{fig:five-layer}
+\end{figure}
+
+\begin{insightbox}[עיקרון הניידות הריבונית (\en{Sovereign Portability})]
+הפרדת שכבה 3 (תזמור) משכבה 2 (נתונים) באמצעות מתאמים סטנדרטיים מאפשרת החלפת מודל שפה (\en{LLM Swap}) או מעבר בין ענן ממשלתי (\en{Nimbus}) למרכז נתונים מאובטח (\en{On-Premise}) ללא שינוי בלוגיקה העסקית או במדיניות הציות.
+\end{insightbox}
+
+% ------------------------------------------------------------------------------
+\section{מפרט רכזת הסוכנים הרב-מערכתית (\en{Multi-Agent Hub Spec})}
+\label{sec:agent-hub}
+
+רכזת הסוכנים (\en{Multi-Agent Hub}) מממשת ארכיטקטורת \en{Hub-and-Spoke} מונחית-אירועים (\en{Event-Driven}) המבוססת על תור הודעות אמין (\en{NATS JetStream / Kafka}) ומכונת מצבים דטרמיניסטית (\en{Deterministic Finite State Machine}). אף סוכן אינו רשאי לפנות ישירות לסוכן אחר ללא מעבר דרך הרכזת, וזאת כדי להבטיח אכיפת הרשאות, תיעוד מלא ומניעת לולאות אינסופיות.
+
+\subsection{טקסונומיית הסוכנים ותחומי אחריות}
+
+\begin{tabularx}{\textwidth}{@{} l l X @{}}
+\toprule
+\rowcolor{CSNavy}
+\color{white}\textbf{מזהה סוכן} & \color{white}\textbf{תפקיד מערכתי} & \color{white}\textbf{אחריות ומגבלות גישה} \\
+\midrule
+\code{hub.router} & מנתב ומנהל זרימה & מפרק בקשות לתתי-משימות, מקצה תקציב זמן/טוקנים ומנהל \en{State}. \\
+\code{agent.rag} & סוכן שליפה וידע & גישת קריאה בלבד לשכבה 2; מחזיר קטעי מקור עם \en{DocID} וציון רלוונטיות. \\
+\code{agent.policy} & סוכן מדיניות וחוק & בודק תאימות מול גרף החוקים והנהלים; מזהה סתירות רגולטוריות. \\
+\code{agent.risk} & סוכן הערכת סיכונים & מחשב ציון סיכון משוקלל ($R \in [0,1]$) ומפעיל הסלמה ל-\en{HITL} מעל סף. \\
+\code{agent.critic} & סוכן ביקורת ואימות & מאמת כל טענה מול מקורות \code{agent.rag}; פוסל טענות לא מעוגנות. \\
+\code{agent.synth} & סוכן ניסוח והגשה & מפיק תשובה מובנית בעברית תקנית עם הפניות מלאות ומטא-דאטה. \\
+\bottomrule
+\end{tabularx}
+
+\subsection{טופולוגיית הרכזת וזרימת הבקרה}
+
+\begin{figure}[htbp]
+\centering
+\begin{ltrblock}
+\begin{tikzpicture}[
+  font=\sffamily\footnotesize,
+  hub/.style={
+    rectangle, draw=CSNavy, very thick, rounded corners=4pt,
+    fill=CSNavy, text=white, minimum width=4.2cm, minimum height=1.5cm,
+    align=center, drop shadow
+  },
+  agent/.style={
+    rectangle, draw=CSSlate, thick, rounded corners=2pt,
+    fill=CSIce, minimum width=3.1cm, minimum height=1.0cm,
+    align=center
+  },
+  critic/.style={
+    rectangle, draw=CSRiskRed, thick, rounded corners=2pt,
+    fill=CSRiskBg, minimum width=3.3cm, minimum height=1.0cm,
+    align=center
+  },
+  bus/.style={-{Stealth[length=2.2mm]}, thick, CSSlate}
+]
+  % Central Hub
+  \node[hub] (HUB) at (0, 0) {\textbf{Multi-Agent Hub}\\State Machine $\cdot$ Policy Gate\\DLQ \& Circuit Breaker};
+
+  % Spokes
+  \node[agent] (RAG) at (-4.8, 2.1) {\textbf{RAG Agent}\\Hybrid Search (L2)};
+  \node[agent] (POL) at (0, 2.5) {\textbf{Policy Agent}\\Legal Graph Check};
+  \node[agent] (RSK) at (4.8, 2.1) {\textbf{Risk Agent}\\Anomaly \& Score};
+
+  \node[agent] (SYN) at (-4.5, -2.2) {\textbf{Synthesizer Agent}\\Hebrew Output + Citations};
+  \node[critic] (CRT) at (4.5, -2.2) {\textbf{Critic Agent (Red-Check)}\\Grounding \& Hallucination Gate};
+
+  % Connections
+  \draw[bus, <->] (HUB.north west) -- (RAG.south east);
+  \draw[bus, <->] (HUB.north) -- (POL.south);
+  \draw[bus, <->] (HUB.north east) -- (RSK.south west);
+  \draw[bus, <->] (HUB.south west) -- (SYN.north east);
+  \draw[bus, <->] (HUB.south east) -- (CRT.north west);
+
+  % Verification loop note
+  \draw[bus, dashed, CSRiskRed] (SYN.east) -- node[below, text=CSRiskRed]{\scriptsize Mandatory Critic Pass} (CRT.west);
+\end{tikzpicture}
+\end{ltrblock}
+\caption{טופולוגיית \en{Hub-and-Spoke} של רכזת הסוכנים ולולאת האימות ההכרחית}
+\label{fig:agent-hub}
+\end{figure}
+
+\begin{contractbox}[חוזה מעטפת הודעה ו-\en{SLA} בין סוכנים (\en{Agent-to-Hub Contract})]
+כל הודעה העוברת ברכזת חייבת להיות חתומה קריפטוגרפית (\en{Ed25519}) ולהכיל את השדות המחייבים הבאים:
+\begin{ltrcode}
+{
+  "msg_id": "uuid-v7",
+  "trace_id": "otel-trace-128bit",
+  "idempotency_key": "sha256(session_id + step_seq)",
+  "sender": "agent.rag",
+  "recipient": "hub.router",
+  "classification": "RESTRICTED_GOV",
+  "ttl_ms": 600,
+  "citations": ["DOC-IL-2026-881#p4"],
+  "confidence": 0.94,
+  "signature": "base64(ed25519_sig)"
+}
+\end{ltrcode}
+\textbf{חריגת \en{SLA}:} אם סוכן אינו מגיב בתוך \code{ttl\_ms}, הרכזת מפעילה \en{Circuit Breaker}, מעבירה את המשימה ל-\en{Fallback} דטרמיניסטי או ל-\en{HITL}, ורושמת אירוע ב-\en{DLQ}.
+\end{contractbox}
+
+% ------------------------------------------------------------------------------
+\section{דרישות פונקציונליות (\en{Functional Requirements -- FR})}
+\label{sec:fr}
+
+טבלה \ref{tab:fr} מפרטת את הדרישות הפונקציונליות המחייבות למכרז. כל דרישה משויכת לרמת עדיפות (\en{Must / Should}) ולשיטת אימות רשמית בשלב מבחני הקבלה (\en{ATP}).
+
+\begin{longtable}{@{} l p{3.1cm} p{6.8cm} l l @{}}
+\caption{מטריצת דרישות פונקציונליות מחייבות (\en{FR-01} עד \en{FR-10})}
+\label{tab:fr} \\
+\toprule
+\rowcolor{CSNavy}
+\color{white}\textbf{מזהה} & \color{white}\textbf{תחום} & \color{white}\textbf{תיאור הדרישה הפונקציונלית} & \color{white}\textbf{עדיפות} & \color{white}\textbf{אימות} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{CSNavy}
+\color{white}\textbf{מזהה} & \color{white}\textbf{תחום} & \color{white}\textbf{תיאור הדרישה הפונקציונלית} & \color{white}\textbf{עדיפות} & \color{white}\textbf{אימות} \\
+\midrule
+\endhead
+\code{FR-01} & קליטת מסמכים & קליטה אוטומטית של \en{PDF}, \en{DOCX}, \en{HTML} ו-\en{JSON} עם \en{OCR} בעברית, ערבית ואנגלית. & \en{Must} & בדיקה \\
+\code{FR-02} & חיפוש היברידי & שליפה סמנטית ומילונית משולבת (\en{Vector + BM25}) עם סינון לפי הרשאות \en{ABAC}. & \en{Must} & בדיקה \\
+\code{FR-03} & תזמור סוכנים & ניתוב דינמי בין לפחות 6 סוכנים מתמחים באמצעות מכונת מצבים דטרמיניסטית. & \en{Must} & הדגמה \\
+\code{FR-04} & עיגון ומראי מקום & כל טענה עובדתית בפלט תלווה בקישור ישיר למסמך המקור ולמספר עמוד/סעיף. & \en{Must} & בדיקה \\
+\code{FR-05} & בקרת \en{Critic} & אימות עצמאי של הפלט מול מקורות ומדיניות בטרם הצגה למשתמש; חסימת הזיות. & \en{Must} & בדיקה \\
+\code{FR-06} & הסלמה אנושית & העברה אוטומטית לתור \en{HITL} כאשר ציון הביטחון $< 0.85$ או זוהה סיכון משפטי. & \en{Must} & הדגמה \\
+\code{FR-07} & מיסוך \en{PII} & זיהוי והסוואה אוטומטית של מספרי ת"ז, טלפונים וכתובות בלוגים ובפרומפטים. & \en{Must} & אבטחה \\
+\code{FR-08} & יומן ביקורת & תיעוד קריפטוגרפי (\en{WORM}) של כל שאילתה, מקורות, תוצאות סוכנים ואישור אנושי. & \en{Must} & ביקורת \\
+\code{FR-09} & עדכון מדיניות & טעינה חמה (\en{Hot-Reload}) של כללי ציות וחוקים חדשים ללא השבתת המערכת. & \en{Should} & הדגמה \\
+\code{FR-10} & ממשק \en{SIEM} & הזרמת אירועי אבטחה וחריגות בזמן אמת בפורמט \en{CEF/Syslog} למרכז ה-\en{SOC}. & \en{Must} & אינטגרציה \\
+\bottomrule
+\end{longtable}
+
+% ------------------------------------------------------------------------------
+\section{דרישות לא-פונקציונליות (\en{Non-Functional Requirements -- NFR})}
+\label{sec:nfr}
+
+טבלה \ref{tab:nfr} מגדירה את מדדי האיכות, הביצועים, הזמינות והאבטחה המחייבים. איור \ref{fig:latency-budget} ממחיש את חלוקת תקציב ההשהיה (\en{Latency Budget}) מקצה לקצה.
+
+\begin{longtable}{@{} l p{2.8cm} p{7.1cm} l @{}}
+\caption{מטריצת דרישות לא-פונקציונליות (\en{NFR-01} עד \en{NFR-10})}
+\label{tab:nfr} \\
+\toprule
+\rowcolor{CSNavy}
+\color{white}\textbf{מזהה} & \color{white}\textbf{קטגוריה} & \color{white}\textbf{מדד מחייב (\en{Target Metric})} & \color{white}\textbf{תקן / בסיס} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{CSNavy}
+\color{white}\textbf{מזהה} & \color{white}\textbf{קטגוריה} & \color{white}\textbf{מדד מחייב (\en{Target Metric})} & \color{white}\textbf{תקן / בסיס} \\
+\midrule
+\endhead
+\code{NFR-01} & השהיה (\en{Latency}) & זמן תגובה \en{P50} $\le 850\text{ms}$, \en{P95} $\le 1800\text{ms}$, \en{P99} $\le 2800\text{ms}$. & \en{Gov-SLA} \\
+\code{NFR-02} & תפוקה (\en{Throughput}) & תמיכה ב-250 שאילתות בשנייה (\en{QPS}) בשגרה ועד 1,000 \en{QPS} בחירום. & מבחן עומס \\
+\code{NFR-03} & זמינות (\en{Availability}) & זמינות של $99.95\%$ בתצורת \en{Active-Active} על פני שני אזורי זמינות. & \en{Tier-3+} \\
+\code{NFR-04} & התאוששות מאסון & \en{RPO} $\le 60$ שניות, \en{RTO} $\le 15$ דקות. & \en{DRP} \\
+\code{NFR-05} & דיוק והזיות & שיעור טענות לא מעוגנות $< 0.5\%$ במדגם ביקורת חודשי. & \en{AI-QA} \\
+\code{NFR-06} & ריבונות מידע & $100\%$ מהנתונים והאינדקסים מאוחסנים פיזית בגבולות מדינת ישראל. & חוק הפרטיות \\
+\code{NFR-07} & הצפנה & \en{TLS 1.3} בתעבורה, \en{AES-256-GCM} במנוחה עם ניהול מפתחות \en{HSM}. & \en{INCD} \\
+\code{NFR-08} & בידוד דיירים & הפרדה לוגית והצפנית מלאה בין משרדי ממשלה (\en{Multi-Tenant Isolation}). & \en{ISO 27001} \\
+\code{NFR-09} & תצפיתיות & כיסוי $100\%$ של \en{Distributed Tracing} בתקן \en{OpenTelemetry}. & \en{CNCF} \\
+\code{NFR-10} & נגישות & עמידה מלאה בתקן ישראלי ת"י 5568 (\en{WCAG 2.1 AA}) לממשקי המשתמש. & חוק שוויון \\
+\bottomrule
+\end{longtable}
+
+\begin{figure}[htbp]
+\centering
+\begin{ltrblock}
+\begin{tikzpicture}[
+  font=\sffamily\scriptsize,
+  stage/.style={
+    rectangle, draw=CSNavy, thick, minimum height=1.05cm,
+    align=center, rounded corners=1.5pt
+  },
+  arr/.style={-{Stealth[length=2mm]}, thick, CSSlate}
+]
+  \node[stage, fill=CSIce, minimum width=2.0cm] (S1) at (0,0)
+    {\textbf{Gateway \& WAF}\\80 ms};
+  \node[stage, fill=CSRiskBg, minimum width=2.1cm] (S2) at (2.45,0)
+    {\textbf{L4 Input Guard}\\120 ms};
+  \node[stage, fill=CSInsightBg, minimum width=2.3cm] (S3) at (5.05,0)
+    {\textbf{L2 Hybrid RAG}\\250 ms};
+  \node[stage, fill=CSNavy!12, minimum width=2.5cm] (S4) at (7.85,0)
+    {\textbf{L3 Agents + Synth}\\950 ms};
+  \node[stage, fill=CSContractBg, minimum width=2.3cm] (S5) at (10.65,0)
+    {\textbf{L4 Critic \& Sign}\\400 ms};
+
+  \draw[arr] (S1) -- (S2);
+  \draw[arr] (S2) -- (S3);
+  \draw[arr] (S3) -- (S4);
+  \draw[arr] (S4) -- (S5);
+
+  % Total Budget Bracket
+  \draw[decorate, decoration={brace, amplitude=6pt, mirror}, thick, CSGold]
+    (S1.south west) -- (S5.south east)
+    node[midway, below=8pt, text=CSNavy, font=\sffamily\footnotesize\bfseries]
+    {Total End-to-End P95 Latency Budget $\le$ 1,800 ms};
+\end{tikzpicture}
+\end{ltrblock}
+\caption{תקציב השהיה מקצה לקצה (\en{P95 Latency Budget}) לאורך צינור העיבוד}
+\label{fig:latency-budget}
+\end{figure}
+
+% ------------------------------------------------------------------------------
+\section{ניהול סיכונים ארכיטקטוניים ומוכנות לסקירת צוות אדום}
+\label{sec:arch-risks}
+
+במסגרת תכנון המערכת זוהו שלושה סיכונים ארכיטקטוניים מרכזיים, אשר עבורם הוטמעו בקרות מבניות כבר בשלב התכנון:
+
+\begin{riskbox}[סיכון 1: הזרקת הנחיות (\en{Indirect Prompt Injection}) וחטיפת סוכן]
+מסמך חיצוני שנקלט בשכבה 1 עלול להכיל הנחיות זדוניות המנסות להטות את \code{agent.synth} לחשוף מידע או לעקוף מדיניות.
+\textbf{בקרת נגד:} הפרדה מבנית בין ערוץ ההנחיות (\en{System Policy}) לערוץ הנתונים (\en{Untrusted Context}), סריקת קלט בשכבה 4, ואימות בלתי תלוי של \code{agent.critic} שאינו חשוף לטקסט הגולמי של המשתמש.
+\end{riskbox}
+
+\begin{riskbox}[סיכון 2: מפל הזיות (\en{Hallucination Cascade}) בין סוכנים]
+שגיאה מוקדמת של \code{agent.rag} או \code{agent.policy} עלולה להתעצם לאורך שרשרת הסוכנים.
+\textbf{בקרת נגד:} חובת צירוף מזהי מקור (\code{citations}) בכל הודעת ביניים, חסימת טענות ללא עיגון, והסלמה אוטומטית ל-\en{HITL} בכל סתירה בין \code{agent.policy} ל-\code{agent.critic}.
+\end{riskbox}
+
+\begin{riskbox}[סיכון 3: נעילת ספק (\en{Vendor Lock-In}) וסיכון שרשרת אספקה]
+תלות במודל שפה קנייני יחיד מסכנת את המשכיות השירות הממשלתי.
+\textbf{בקרת נגד:} שכבת הפשטה אחידה (\en{Model Gateway}) התומכת הן במודלים פתוחים מאוחסנים מקומית (\en{Self-Hosted Weights}) והן בממשקים מאושרים בענן הריבוני.
+\end{riskbox}
+
+\begin{insightbox}[סטטוס מוכנות לסקירת צוות אדום (\en{Red-Team Readiness})]
+ארכיטקטורת חמש השכבות, מפרט רכזת הסוכנים, חוזה ה-\en{SLA}, וטבלאות ה-\en{FR/NFR} הושלמו ומוכנים לבחינת חדירות, תרחישי קיצון והתקפות יריבות על ידי צוות \en{redteam} (פרק 5).
+\end{insightbox}
