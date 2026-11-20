@@ -1,0 +1,61 @@
+{
+  "project_name": "CivicShield AI — מגן התודעה הלאומי",
+  "course": "University of Haifa — Applied AI & Vibe Coding (Dr. Yoram Segal)",
+  "lecture_pattern": "L04: Multi-Agent Orchestration (Master, Hub, Inbox, TODO Board, ReAct)",
+  "version": "1.00",
+  "report_target": "CivicShield_AI_Preliminary_Report.pdf",
+  "target_pages": {
+    "ideal": 40,
+    "min_accepted": 37,
+    "max_accepted": 45
+  },
+  "communication_hub": {
+    "protocol": "Typed JSON Envelope (Strict Pydantic Validation)",
+    "feedback_loop": "RedTeam Rejection Loop -> Master Dispatch -> ReAct Revision"
+  },
+  "master": {
+    "name": "master",
+    "folder": "agents/master",
+    "role": "Project Decomposition, Shared TODO Board Governance & Final LaTeX Assembly",
+    "owned_files": ["PRD.md", "PLAN.md", "TODO.md", "main.tex", "README.md"]
+  },
+  "agents": [
+    {
+      "id": "theory",
+      "name": "theory",
+      "folder": "agents/theory",
+      "role": "Political Communication, Political Science, Constitutional Law & Bibliography",
+      "owned_files": ["chapters/ch02_theory_comm_poli.tex", "chapters/ch06_ethics_law_regulation.tex"]
+    },
+    {
+      "id": "architect",
+      "name": "architect",
+      "folder": "agents/architect",
+      "role": "5-Layer Architecture, Multi-Agent Hub Spec, FR/NFRs, LaTeX Class & TikZ Diagrams",
+      "owned_files": [
+        "civicshield.cls",
+        "chapters/ch01_executive_rfp.tex",
+        "chapters/ch03_requirements_usecases.tex",
+        "chapters/ch04_architecture_agents.tex"
+      ]
+    },
+    {
+      "id": "simulator",
+      "name": "simulator",
+      "folder": "agents/simulator",
+      "role": "SIRI ODEs, Hegselmann-Krause Opinions, Bayesian Fusion, M/M/c Queueing & 5Y ROI",
+      "owned_files": [
+        "scripts/generate_figures.py",
+        "chapters/ch05_math_models_simulations.tex",
+        "chapters/ch07_risks_roadmap_budget.tex"
+      ]
+    },
+    {
+      "id": "redteam",
+      "name": "redteam",
+      "folder": "agents/redteam",
+      "role": "Constitutional Safeguards Audit, Anti-Censorship Review & LuaLaTeX BiDi QA",
+      "owned_files": ["scripts/verify_report.py", "chapters/ch08_multiagent_methodology.tex"]
+    }
+  ]
+}
