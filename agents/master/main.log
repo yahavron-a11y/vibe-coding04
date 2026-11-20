@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.25.7 (MiKTeX 26.5) (format=lualatex 2026.11.19)  20 NOV 2026 12:08
+This is LuaHBTeX, Version 1.25.7 (MiKTeX 26.5) (format=lualatex 2026.11.19)  20 NOV 2026 12:38
  restricted system commands enabled.
 **main.tex
 (./main.tex
@@ -40,8 +40,8 @@ Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
 Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
 Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
 Inserting `tracingstacklevels' in `input_level_string'. (./civicshield.cls
-Document Class: civicshield 2026/11/20 v1.0 CivicShield AI State-Engineering Re
-port Class
+Document Class: civicshield 2026/11/20 v2.0 CivicShield AI Executive State-Engi
+neering Report Class
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/base/book.cls
 Document Class: book 2026-06-04 v1.4n Standard LaTeX document class
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/base/bk11.clo
@@ -1091,7 +1091,30 @@ ty
 Package: lastpagemodern 2025-08-14 v2.1h Refers to last page's name (HMM; JPG)
 \c@lastpagecount=\count373
 ) 
-)) (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/hyperref.sty
+)) (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen328
+\captionmargin=\dimen329
+\caption@leftmargin=\dimen330
+\caption@rightmargin=\dimen331
+\caption@width=\dimen332
+\caption@indent=\dimen333
+\caption@parindent=\dimen334
+\caption@hangindent=\dimen335
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count374
+\c@continuedfloat=\count375
+Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+
+(C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+))
+(C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2026-11-03 v7.01t Hypertext links for LaTeX
 
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/kvsetkeys/kvsetkeys.sty
@@ -1127,22 +1150,22 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count374
+\c@section@level=\count376
 )
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
-\@linkdim=\dimen328
-\Hy@linkcounter=\count375
-\Hy@pagecounter=\count376
+\@linkdim=\dimen336
+\Hy@linkcounter=\count377
+\Hy@pagecounter=\count378
  (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2026-11-03 v7.01t Hyperref: PDFDocEncoding definition (HO)
 )
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count377
+\Hy@SavedSpaceFactor=\count379
 
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/puenc.def
 File: puenc.def 2026-11-03 v7.01t Hyperref: PDF Unicode definition (HO)
@@ -1156,14 +1179,14 @@ Package hyperref Info: Plain pages OFF on input line 4214.
 Package hyperref Info: Backreferencing OFF on input line 4219.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4466.
-\c@Hy@tempcnt=\count378
+\c@Hy@tempcnt=\count380
 
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4805.
-\XeTeXLinkMargin=\dimen329
+\XeTeXLinkMargin=\dimen337
 
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -1173,9 +1196,9 @@ ty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count379
-\Field@Width=\dimen330
-\Fld@charsize=\dimen331
+\Fld@menulength=\count381
+\Field@Width=\dimen338
+\Fld@charsize=\dimen339
 Package hyperref Info: Hyper figures OFF on input line 6091.
 Package hyperref Info: Link nesting OFF on input line 6096.
 Package hyperref Info: Hyper index ON on input line 6099.
@@ -1183,16 +1206,16 @@ Package hyperref Info: backreferencing OFF on input line 6106.
 Package hyperref Info: Link coloring ON on input line 6109.
 Package hyperref Info: Link coloring with OCG OFF on input line 6116.
 Package hyperref Info: PDF/A mode OFF on input line 6121.
-\Hy@abspage=\count380
-\c@Item=\count381
-\c@Hfootnote=\count382
+\Hy@abspage=\count382
+\c@Item=\count383
+\c@Hfootnote=\count384
 )
 Package hyperref Info: Driver (autodetected): hluatex.
 
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/hluatex.def
 File: hluatex.def 2026-11-03 v7.01t Hyperref driver for luaTeX
-\Fld@listcount=\count383
-\c@bookmark@seq@number=\count384
+\Fld@listcount=\count385
+\c@bookmark@seq@number=\count386
 
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilec
 heck.sty
@@ -1210,7 +1233,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/l3kernel/l3backend-luatex
 .def
 File: l3backend-luatex.def 2026-09-09 L3 backend support: PDF output (LuaTeX)
-\l__color_backend_stack_int=\count385
+\l__color_backend_stack_int=\count387
 Inserting `l3color' in `luaotfload.parse_color'.) (./main.aux
 
 Package babel Info: The following font families will use the default
@@ -1535,18 +1558,18 @@ Inserting `Babel.ensure_math_dir' in `post_mlist_to_hlist_filter'.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
 * h-part:(L,W,R)=(68.2866pt, 472.31577pt, 56.9055pt)
-* v-part:(T,H,B)=(73.97716pt, 702.78308pt, 68.2866pt)
+* v-part:(T,H,B)=(73.97716pt, 699.9378pt, 71.13188pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
 * \textwidth=472.31577pt
-* \textheight=702.78308pt
+* \textheight=699.9378pt
 * \oddsidemargin=-3.98338pt
 * \evensidemargin=-15.36449pt
 * \topmargin=-60.88887pt
 * \headheight=42.67912pt
 * \headsep=19.91692pt
 * \topskip=11.0pt
-* \footskip=31.29802pt
+* \footskip=34.1433pt
 * \marginparwidth=106.0pt
 * \marginparsep=7.0pt
 * \columnsep=10.0pt
@@ -1563,16 +1586,16 @@ Inserting `Babel.ensure_math_dir' in `post_mlist_to_hlist_filter'.
 
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count386
-\scratchdimen=\dimen332
+\scratchcounter=\count388
+\scratchdimen=\dimen340
 \scratchbox=\box113
-\nofMPsegments=\count387
-\nofMParguments=\count388
+\nofMPsegments=\count389
+\nofMParguments=\count390
 \everyMPshowfont=\toks47
-\MPscratchCnt=\count389
-\MPscratchDim=\dimen333
-\MPnumerator=\count390
-\makeMPintoPDFobject=\count391
+\MPscratchCnt=\count391
+\MPscratchDim=\dimen341
+\MPnumerator=\count392
+\makeMPintoPDFobject=\count393
 \everyMPtoPDFconversion=\toks48
 )
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-bas
@@ -1584,7 +1607,10 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/00miktex/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count392
+\c@lstlisting=\count394
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: End \AtBeginDocument code.
 Package hyperref Info: Link coloring ON on input line 7.
  (./main.out) (./main.out)
 \@outlinefile=\write4
@@ -1598,13 +1624,25 @@ LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <10.95> not available
 LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <12> not available
 (Font)              Font shape `TU/Arial(1)/b/n' tried instead on input line 19
 .
-LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <30> not available
+LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <32> not available
 (Font)              Font shape `TU/Arial(1)/b/n' tried instead on input line 19
 .
-LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <30> not available
+LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <32> not available
 (Font)              Font shape `TU/Arial(2)/b/n' tried instead on input line 19
 .
- [1
+LaTeX Font Info:    Trying to load font information for U+msa on input line 19.
+
+
+(C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
+
+
+(C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+[1
 
 
 
@@ -1612,14 +1650,13 @@ LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <30> not available
 LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <14.4> not available
 (Font)              Font shape `TU/Arial(1)/b/n' tried instead on input line 23
 .
-
-(C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsa.fd)
-(C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsb.fd)
+LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <10> not available
+(Font)              Font shape `TU/Arial(1)/b/n' tried instead on input line 41
+.
 LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <9> not available
 (Font)              Font shape `TU/Arial(1)/b/n' tried instead on input line 46
 .
-
-[2
+ [2
 
 ]
 LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <17.28> not available
@@ -1633,14 +1670,19 @@ vailable
  [3
 
 
-] (./main.toc [4
+]
+(./main.toc [4
 
 
-] [5])
+]
+Underfull \vbox (badness 1087) has occurred while \output is active []
+
+ [5])
 \tf@toc=\write5
 
 \openout5 = main.toc
- [6] (./main.lof
+
+[6] (./main.lof
 Overfull \hbox (1.87016pt too wide) in paragraph at lines 17--17
  [][] [][][]\TU/Arial(0)/m/n/10.95 השוואת התפשטות דיסאינפ
 ורמציה במודל \TU/TimesNewRoman(0)/m/n/10.95 SIRI ODE \TU/Arial(0)/m/
@@ -1681,6 +1723,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 90--90
 
 ] (./chapters/ch01_vision.tex
 \bbl@ensure@hebrew {פרק} 1.
+LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <28> not available
+(Font)              Font shape `TU/Arial(1)/b/n' tried instead on input line 1.
+
 [1
 
 ]
@@ -1801,8 +1846,7 @@ Overfull \hbox (3.64409pt too wide) in paragraph at lines 76--76
  []\TU/Arial(2)/m/n/9 ABAC/RBAC 
  []
 
-LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <10.95> not available
-
+LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <10> not available
 (Font)              Font shape `TU/Arial(2)/b/n' tried instead on input line 10
 0.
 
@@ -1860,7 +1904,7 @@ urierNew(0)/m/n/10.95 scripts/generate_figures.py\TU/Arial(0)/m/n/10.95 ,
  []
 
 
-Underfull \vbox (badness 4378) has occurred while \output is active []
+Underfull \vbox (badness 1975) has occurred while \output is active []
 
  [16
 
@@ -1869,25 +1913,25 @@ Overfull \hbox (25.32312pt too wide) in paragraph at lines 34--47
  [][] 
  []
 
-<figures/fig4_1_siri_ode.pdf, id=654, 822.94197pt x 327.4261pt>
+<figures/fig4_1_siri_ode.pdf, id=660, 822.94197pt x 327.4261pt>
 File: figures/fig4_1_siri_ode.pdf Graphic file (type pdf)
 <use figures/fig4_1_siri_ode.pdf>
 Package luatex.def Info: figures/fig4_1_siri_ode.pdf  used on input line 51.
 (luatex.def)             Requested size: 448.69853pt x 178.52112pt.
 [17<./figures/fig4_1_siri_ode.pdf>]
-<figures/fig4_2_hk_opinion.pdf, id=786, 829.20543pt x 327.73796pt>
+<figures/fig4_2_hk_opinion.pdf, id=793, 829.20543pt x 327.73796pt>
 File: figures/fig4_2_hk_opinion.pdf Graphic file (type pdf)
 <use figures/fig4_2_hk_opinion.pdf>
 Package luatex.def Info: figures/fig4_2_hk_opinion.pdf  used on input line 74.
 (luatex.def)             Requested size: 448.69853pt x 177.34592pt.
  [18<./figures/fig4_2_hk_opinion.pdf>]
-<figures/fig4_3_bayesian_fusion.pdf, id=915, 822.94197pt x 327.4261pt>
+<figures/fig4_3_bayesian_fusion.pdf, id=922, 822.94197pt x 327.4261pt>
 File: figures/fig4_3_bayesian_fusion.pdf Graphic file (type pdf)
 <use figures/fig4_3_bayesian_fusion.pdf>
 Package luatex.def Info: figures/fig4_3_bayesian_fusion.pdf  used on input line
  96.
 (luatex.def)             Requested size: 448.69853pt x 178.52112pt.
-<figures/fig4_4_mmc_queueing.pdf, id=917, 823.61075pt x 327.25864pt>
+<figures/fig4_4_mmc_queueing.pdf, id=924, 823.61075pt x 327.25864pt>
 File: figures/fig4_4_mmc_queueing.pdf Graphic file (type pdf)
 <use figures/fig4_4_mmc_queueing.pdf>
 Package luatex.def Info: figures/fig4_4_mmc_queueing.pdf  used on input line 11
@@ -1895,7 +1939,7 @@ Package luatex.def Info: figures/fig4_4_mmc_queueing.pdf  used on input line 11
 (luatex.def)             Requested size: 448.69853pt x 178.29pt.
 
 [19<./figures/fig4_3_bayesian_fusion.pdf>]
-<figures/fig4_5_roi_5yr.pdf, id=1048, 820.5444pt x 327.41924pt>
+<figures/fig4_5_roi_5yr.pdf, id=1055, 820.5444pt x 327.41924pt>
 File: figures/fig4_5_roi_5yr.pdf Graphic file (type pdf)
 <use figures/fig4_5_roi_5yr.pdf>
 Package luatex.def Info: figures/fig4_5_roi_5yr.pdf  used on input line 149.
@@ -2039,16 +2083,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 61--61
 []|\TU/Arial(0)/m/n/10.95 הגינות מנהלית
  []
 
-[23] [24]) [25] (./main.bbl
+[23]
+Underfull \vbox (badness 2469) has occurred while \output is active []
+
+ [24]
+[25]) [26] (./main.bbl
 Underfull \hbox (badness 1642) in paragraph at lines 42--47
 \TU/Arial(0)/m/n/10.95 Katerina Sedova.  Generative language models and automate
 d influence operations:
  []
 
-[26
+[27
 
 
-]) [27] 
+]) [28] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
@@ -2060,36 +2108,38 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 37039 strings out of 475522
+ 38609 strings out of 475522
  125002,1648299 words of node,token memory allocated
- 10590 words of node memory still in use:
-   31 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 3572 attribute, 64 glue_
-spec, 1196 attribute_list, 2 write, 24 pdf_literal, 5 pdf_action, 24 pdf_colorst
+ 11390 words of node memory still in use:
+   31 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 3872 attribute, 64 glue_
+spec, 1296 attribute_list, 2 write, 24 pdf_literal, 5 pdf_action, 24 pdf_colorst
 ack nodes
-   avail lists: 2:17682,3:1457,4:282,5:952,6:104,7:6688,8:82,9:929,10:61,11:185
- 58906 multiletter control sequences out of 65536+600000
- 137 fonts using 70718527 bytes
- 117i,13n,114p,1111b,1382s stack positions out of 10000i,1000n,20000p,200000b,200000s
+   avail lists: 2:18812,3:1760,4:286,5:916,6:101,7:6882,8:82,9:989,10:61,11:191
+ 60460 multiletter control sequences out of 65536+600000
+ 160 fonts using 79151847 bytes
+ 117i,16n,114p,1111b,1702s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/WINDOWS/Fonts/arialni.ttf><c:/users/ron/appdata/local/programs/miktex/fonts/
-opentype/public/lm/lmromandemi10-regular.otf><C:/WINDOWS/Fonts/cour.ttf><C:/WIND
-OWS/Fonts/cour.ttf><c:/users/ron/appdata/local/programs/miktex/fonts/opentype/pu
-blic/lm/lmroman10-regular.otf><c:/users/ron/appdata/local/programs/miktex/fonts/
-opentype/public/lm/lmroman8-regular.otf><C:/WINDOWS/Fonts/timesbd.ttf><C:/WINDOW
-S/Fonts/times.ttf><C:/WINDOWS/Fonts/arial.ttf><C:/WINDOWS/Fonts/arial.ttf><C:/WI
-NDOWS/Fonts/arialbd.ttf><C:/WINDOWS/Fonts/arialbd.ttf><C:/Users/ron/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/ron/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/ron/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users
-/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/
-Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb
-><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8
-.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmsy8.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmsy9.pfb>
-Output written on main.pdf (37 pages, 874740 bytes).
+opentype/public/lm/lmromandemi10-regular.otf><c:/users/ron/appdata/local/program
+s/miktex/fonts/opentype/public/lm/lmroman7-regular.otf><C:/WINDOWS/Fonts/cour.tt
+f><C:/WINDOWS/Fonts/cour.ttf><c:/users/ron/appdata/local/programs/miktex/fonts/o
+pentype/public/lm/lmroman10-regular.otf><c:/users/ron/appdata/local/programs/mik
+tex/fonts/opentype/public/lm/lmroman8-regular.otf><C:/WINDOWS/Fonts/timesbd.ttf>
+<C:/WINDOWS/Fonts/times.ttf><C:/WINDOWS/Fonts/arial.ttf><C:/WINDOWS/Fonts/arial.
+ttf><C:/WINDOWS/Fonts/arialbd.ttf><C:/WINDOWS/Fonts/arialbd.ttf><C:/Users/ron/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/
+ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/
+Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi
+7.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmmi8.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmr8.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmsy8.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy9.pfb>
+Output written on main.pdf (38 pages, 910800 bytes).
 
-PDF statistics: 1488 PDF objects out of 1728 (max. 8388607)
- 181 named destinations out of 1000 (max. 1048576)
- 760 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1512 PDF objects out of 1728 (max. 8388607)
+ 182 named destinations out of 1000 (max. 1048576)
+ 790 words of extra memory for PDF output out of 10000 (max. 100000000)
 

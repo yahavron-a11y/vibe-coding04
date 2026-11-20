@@ -1,4 +1,20 @@
-# ReAct Revision Confirmed (RedTeam CONS-01 & SCOPE-01)
+# Visual Design Upgrade Completed — `civicshield.cls` (v2.0)
 
-1. **`main.tex` (CONS-01):** Removed the nonexistent Chapter 6 reference in the Executive Summary (line 60) and the commented `ch06_roadmap` import; updated the summary to accurately reference Chapters 1–5, explicitly noting that the 3-phase implementation roadmap is in Chapter 1.
-2. **`chapters/ch03_architecture.tex` (SCOPE-01):** Added a concise paragraph in Section 3.1 under Layer 1 explicitly stating that Layer 1 ingests both sovereign public-OSINT streams (for CIB/FIMI/Deepfake detection) and verified government reference corpora (for grounded Prebunking and legal compliance).
+Upgraded `C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\vibe-coding04\agents\master\civicshield.cls` to an executive government-tender book design while preserving 100% LuaLaTeX Windows compatibility:
+
+1. **Rich TikZ Cover Page (`\makecivicshieldcover`)**:
+   - Layered deep-navy to slate gradient banner (`CSNavyDeep` -> `CSNavy` -> `CSSlate`) with subtle geometric grid and diagonal gold accent lines.
+   - Custom pure-TikZ vector **Shield + Neural-Grid emblem** positioned on the left of the banner (leaving the RTL Hebrew title block clean on the right).
+   - Double gold divider strip and sleek metadata card with `CSGold` top accent bar and soft drop shadow.
+2. **Elevated Chapter Openers**:
+   - Gradient `CSNavyDeep` -> `CSSlate` chapter banner with oversized chapter numeral (`28pt`), subtle TikZ geometric overlay, gold bottom rule, and shadowed `CSIce` title plate.
+   - Pill-styled section number badges (`\tcbox`) with gold section rules.
+3. **Upgraded Callout Boxes (`insightbox`, `riskbox`, `contractbox`)**:
+   - Crisp rounded pill titles (`arc=9pt`), soft shadows, 4pt right accent rules, and modern internal spacing.
+4. **Styled Captions & Refined Running Headers/Footers**:
+   - Loaded `caption` package with bold `CSNavy` sans-serif labels and `CSSteel` caption text.
+   - Added `\CSPagePill` pill-styled page numbers in `mainstyle` and `plain` footers.
+5. **Compatibility Preserved**:
+   - Kept Windows font fallbacks (`Times New Roman` / `Arial` / `Courier New`).
+   - Kept `\en`, `\textenglish`, `\LR`, `\texthebrew`, `\code`, `ltrblock`, and `ltrcode`.
+   - Kept global `\rowcolors` disabled to prevent `colortbl`/TikZ stack overflow.
