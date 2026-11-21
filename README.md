@@ -16,6 +16,51 @@
 
 ---
 
+## 🚀 מערכת הריבוי-סוכנים ששימשה לבניית הפרויקט (`agy-multi-agent-mesh`)
+
+פרויקט זה לא נבנה בשיחה אחת מול סוכן יחיד, אלא הופק באמצעות **מערכת מרובת-סוכנים חיה (Multi-Agent Mesh)** המריצה מספר חלונות אינטראקטיביים של **Antigravity CLI (`agy`)** במקביל באמצעות תשתית **[`agy-multi-agent-mesh`](https://github.com/rmisegal/agy-multi-agent-mesh)** (`agymesh`).
+
+בארכיטקטורה זו, כל סוכן רץ בסשן `agy` נפרד בתיקיית עבודה מבודדת משלו, וכל הסוכנים מתקשרים ביניהם דרך **רכזת תקשורת מקומית (Hub)** עם תיבות דואר נפרדות (`join` / `wait` / `reply` / `dispatch`) ולוח משימות משותף (*Shared TODO Board*). הסוכן המרכזי (**`master`**) מקבל את היעד, מפרק אותו לתתי-משימות ומנתב אותן במקביל ל-4 סוכנים מומחים (**`theory`**, **`architect`**, **`simulator`**, **`redteam`**), אשר עובדים במקביל ומחזירים תוצרים לאינטגרציה ולבקרת איכות.
+
+![מערכת הריבוי-סוכנים של Antigravity CLI פועלת במקביל עם master וארבעת הסוכנים המומחים](./assets/multi-agent-mesh.jpg)
+
+> *צילום מסך מתוך הרצת המערכת החיה: במרכז חלון ה-**`master`** הממתין להזנת יעד ("I am master, ready for a goal"), ומסביבו ארבעת חלונות הסוכנים המומחים (`architect`, `simulator`, `redteam`, `theory`) לאחר שטענו את קובץ `AGY.md`, הצטרפו לרשת ונכנסו ללולאת האזנה למשימות.*
+
+### ⚙️ הפעלת Antigravity במצב Multi-Agent
+
+כדי להקים ולהריץ את מערך הסוכנים של פרויקט זה ב-Antigravity, מריצים את שתי הפקודות הבאות מתוך תיקיית הפרויקט `C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh`:
+
+```powershell
+cd "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh"
+
+# 1. אתחול תיקיות הסוכנים ויצירת קובצי AGY.md מתוך קובץ ההגדרה team.json
+uv run agymesh --team "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\vibe-coding04\team.json" init
+
+# 2. הפעלת רכזת התקשורת (Hub) ופתיחת חלונות Antigravity CLI לכל הסוכנים כולל ה-master
+uv run agymesh --team "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\vibe-coding04\team.json" up --with-master
+```
+
+* **פקודת `init`:** קוראת את קובץ [`team.json`](./team.json), יוצרת באופן אוטומטי את תיקיות הסוכנים תחת `agents/` (במידה ואינן קיימות) ומחוללת בתוך כל תיקייה קובץ הוראות ייעודי **`AGY.md`** המגדיר לכל סוכן את תפקידו, סמכויותיו ופקודות ההצטרפות וההאזנה לרשת.
+* **פקודת `up --with-master`:** מפעילה את רכזת התקשורת (`Hub`) ופותחת אוטומטית חלון **Antigravity CLI (`agy`)** נפרד לכל אחד מארבעת הסוכנים המומחים וכן לחלון ה-**`master`** (בזכות הדגל `--with-master`). כל סוכן עובד קורא את ה-`AGY.md` שלו, מצטרף לרשת (`join`) ונכנס ללולאת האזנה (`wait`), בעוד חלון ה-`master` מוכן לקבל את המשימה הראשית ולנהל את הצוות.
+
+### 🧩 תפקיד קובץ [`team.json`](./team.json) ביצירת תיקיות הסוכנים
+
+הקובץ **[`team.json`](./team.json)** משמש כ"תוכנית האב" (Declarative Blueprint) של צוות הסוכנים — הוא זה שמנחה את `agymesh init` אילו תיקיות ליצור, אילו סוכנים להקים ומה תחומי האחריות ובעלות הקבצים (*File Ownership*) של כל סוכן:
+
+* **הגדרת המתאם (`master`):** קובע את תיקיית `agents/master`, את תפקיד פירוק המשימות, ניהול לוח ה-TODO והרכבת ה-LaTeX הסופית, ואת הקבצים שבבעלותו (`PRD.md`, `PLAN.md`, `TODO.md`, `main.tex`, `README.md`).
+* **מערך הסוכנים (`agents`):** כל רשומה במערך מגדירה סוכן עצמאי (`id`, `name`, `folder`, `role`, `owned_files`). בעת הרצת `agymesh init`, המערכת יוצרת אוטומטית את התיקייה המוגדרת בשדה `folder` (באופן יחסי למיקום `team.json`) וכותבת לתוכה את קובץ `AGY.md` המתאים.
+* **פרוטוקול תקשורת ולולאת משוב (`communication_hub`):** מגדיר תקשורת מובנית (`Typed JSON Envelope`) ולולאת ביקורת לעומתית (`RedTeam Rejection Loop -> Master Dispatch -> ReAct Revision`) למניעת התנגשויות בין סוכנים ולאבטחת איכות.
+
+| סוכן ב-`team.json` | תיקייה שנוצרת ע"י `init` | תפקיד מרכזי בצוות |
+| :--- | :--- | :--- |
+| **`master`** | [`agents/master`](./agents/master/) | מתאם ראשי — פירוק יעדים, ניהול `PRD`/`PLAN`/`TODO`, ניתוב משימות והרכבת הדוח הסופי |
+| **`theory`** | [`agents/theory`](./agents/theory/) | תקשורת פוליטית, מדעי המדינה, משפט חוקתי וניהול ביבליוגרפיה |
+| **`architect`** | [`agents/architect`](./agents/architect/) | ארכיטקטורה 5-שכבתית, מפרט רכזת הסוכנים, דרישות FR/NFR, מחלקת LaTeX ואיורי TikZ |
+| **`simulator`** | [`agents/simulator`](./agents/simulator/) | מודלים מתמטיים וסימולציות Python (`SIRI ODE`, `Hegselmann-Krause`, Bayes, `M/M/c`, ROI) |
+| **`redteam`** | [`agents/redteam`](./agents/redteam/) | צוות אדום — ביקורת הגנות חוקתיות, מניעת צנזורה ובדיקות אימות LuaLaTeX BiDi |
+
+---
+
 ## 📌 תקציר הפרויקט (Executive Summary)
 
 מערכות בחירות מודרניות ניצבות בפני מתקפות השפעה זרות מתואמות (**FIMI — Foreign Information Manipulation and Interference**), פעילות בלתי אותנטית מתואמת (**CIB — Coordinated Inauthentic Behavior**), נחילי בוטים אוטונומיים, זיופי מדיה (**Deepfakes**) ושימוש ב"עוצמה חדה" (**Sharp Power**) החודרת אל המרחב הציבורי במהירות החורגת מיכולת התגובה של בדיקת עובדות בדיעבד (*Reactive Fact-Checking*).
@@ -122,6 +167,8 @@ vibe-coding04/
 ├── TODO.md                                          # ☑️ לוח משימות ומעקב ביצוע
 ├── team.json                                        # 🔗 מטא-דאטה של ועדת הסוכנים ובעלות קבצים
 ├── README.md                                        # 📖 מסמך תיעוד זה
+├── assets/
+│   └── multi-agent-mesh.jpg                         # 🖼️ צילום מסך של 5 חלונות Antigravity CLI פועלים במקביל
 └── agents/                                          # 🤖 סביבות העבודה של 5 הסוכנים (Lecture 4)
     ├── master/                                      # 🧠 סביבת האינטגרציה וההרכבה הסופית
     │   ├── CivicShield_AI_Preliminary_Report.pdf    # 📄 הדוח המכין הסופי (37 עמודים, 874,740 bytes)
