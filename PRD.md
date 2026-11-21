@@ -1,28 +1,53 @@
-# CivicShield AI — Preliminary Report Master Plan (`PLAN.md`)
+# מסמך דרישות מוצר (PRD) – CivicShield AI (מגן התודעה הלאומי)
+## Product Requirements Document: National Multi-Agent Information Integrity & Democratic Resilience System (Assignment 2 Preliminary Report)
 
-**Target Deliverable:** `CivicShield_AI_Preliminary_Report.pdf`
-**Format:** Professional LuaLaTeX Book (Hebrew RTL + English LTR BiDi, original `civicshield.cls` styling, TikZ diagrams only, Python-generated vector figures)
-**Target Length:** 40 pages (acceptable range: 37–45 pages)
+---
 
-## Chapter Allocation & Page Targets
+### 1. מבוא וחזון המוצר (Introduction & Vision)
+פרויקט **CivicShield AI ("מגן התודעה הלאומי")** מהווה דוח מכין (Preliminary Design & Feasibility Report) מקיף בהיקף יעד של כ-40 עמודים (טווח מקובל: 37–45 עמודים; תוצר סופי: 37 עמודים), המוגש כמענה למכרז ממשלתי ברמת תכנון לאומית בסביבת ענן ממשלתי ריבוני (**Sovereign Cloud / Nimbus**).
+הפרויקט מגשר בין **מדעי המדינה**, **חקר התקשורת הפוליטית**, **המשפט החוקתי (הישראלי והאירופי)** ו**הנדסת מערכות רב-סוכניות מבוססות בינה מלאכותית (Multi-Agent AI Systems)**.
 
-| Section | Owner | Target Pages | Key Deliverables |
-| :--- | :--- | :---: | :--- |
-| **Front Matter** (Cover, Executive Summary, TOC, LOF/LOT) | `architect` / `master` | 5 | `main.tex`, `civicshield.cls`, executive summary |
-| **Ch. 1: National Threat Landscape & Strategic Vision** | `theory` | 6 | `chapters/ch01_vision.tex` |
-| **Ch. 2: Political Science, Communication & Constitutional Law** | `theory` | 8 | `chapters/ch02_theory_law.tex`, `references.bib` |
-| **Ch. 3: 5-Layer Architecture, Multi-Agent Hub & FR/NFRs** | `architect` | 9 | `chapters/ch03_architecture.tex`, TikZ diagrams |
-| **Ch. 4: Mathematical Modeling, Simulations & 5-Year ROI** | `simulator` | 8 | `chapters/ch04_simulations.tex`, `scripts/generate_figures.py`, generated figures |
-| **Ch. 5: Constitutional Safeguards, Anti-Censorship & QA Audit** | `redteam` | 4 | `chapters/ch05_safeguards_audit.tex`, BiDi & RedTeam QA report |
-| **Total** | **All** | **40** | `CivicShield_AI_Preliminary_Report.pdf` |
+החזון של CivicShield AI הוא להגן על טוהר ההליך הדמוקרטי, אמון הציבור במוסדות המדינה והספרה הציבורית מפני מבצעי השפעה זרים (**FIMI — Foreign Information Manipulation and Interference**), פעילות בלתי אותנטית מתואמת (**CIB — Coordinated Inauthentic Behavior**), נחילי בוטים אוטונומיים, מסגור תקשורתי מקטב וזיופי עומק (**Deepfakes**) בזמן אמת — תוך שמירה קפדנית על חופש הביטוי החוקתי, עקרון *Behavior Not Speech*, פיקוח אנושי (*Human-in-the-Loop*), ופרטיות מובנית (*Privacy by Design*).
 
-## Dependencies & Execution Phases
-1. **Phase 1 (Parallel Drafting):** `architect` builds `civicshield.cls`, `main.tex`, and Ch. 3 (with TikZ); `theory` drafts Ch. 1–2 and `references.bib`; `simulator` writes/runs `scripts/generate_figures.py` and drafts Ch. 4; `redteam` drafts Ch. 5 and prepares the Constitutional/Anti-Censorship/BiDi QA checklist.
-2. **Phase 2 (RedTeam -> ReAct Dual Audit Loop):**
-   - **Content & Constitutionality:** RFP compliance, constitutional safeguards, anti-censorship mechanisms, cross-chapter numerical consistency, and academic quality.
-   - **Technical & Visual QA:** Run `py scripts/verify_report.py`, check `lualatex` compilation, verify page count (37–45, target 40), detect BiDi errors and Overfull hbox overflows, and render PDF pages for page-by-page visual inspection.
-   - **Rejection Loop:** If defects are found, `redteam` reports to `master`, who routes a ReAct Revision task to the responsible peer until full approval.
-3. **Phase 3 (Final Assembly & Documentation):**
-   - Compile `main.tex` with `lualatex` (including bibliography and TOC) to produce `CivicShield_AI_Preliminary_Report.pdf`.
-   - Update `README.md` at each milestone and before any `git push` (project overview, component roles, build & run instructions).
-   - Deliver final summary report: final page count, figures/diagrams status, `verify_report.py` results, and RedTeam Loop rounds log.
+בניגוד לגישות מסורתיות של בדיקת עובדות בדיעבד (*Reactive Fact-Checking*), CivicShield AI מציגה פרדיגמה פרואקטיבית של **חיסון תודעתי (*Cognitive Prebunking*)** בשילוב מנוע תזמור רב-סוכנים (`Multi-Agent Orchestration Hub`), מנגנוני `Zero-Trust Guardrails`, אימות מבוסס מקורות (`Grounded RAG`), ולולאת בקרה מובנית (`Critic-in-the-Loop`).
+
+---
+
+### 2. יעדי הפרויקט (Core Objectives)
+1. **אינטגרציה אקדמית בין תקשורת, מדעי המדינה ומשפט חוקתי:** עיגון הארכיטקטורה הטכנולוגית בתיאוריות מבוססות כגון קביעת סדר היום (*Agenda Setting*), מסגור (*Framing*), ספירלת השתיקה (*Spiral of Silence*), תיבות תהודה (*Echo Chambers*), תיאוריית החיסון (*Inoculation Theory*), דמוקרטיה מתגוננת (*Defensive Democracy*), ורגולציה ישראלית ואירופית (`INCD`, תקנות הגנת הפרטיות התשע"ז–2017, `DSA`).
+2. **עמידה מלאה בדרישות מטלה 2 (דוח מכין):**
+   - **היקף המסמך:** 37–45 עמודים (יעד אופטימלי: 40 עמודים) מעוצבים בסגנון ספר/דוח הנדסי-אקדמי.
+   - **ארכיטקטורת LaTeX מודולרית (בתיקיית `agents/master/`):** מחלקת מסמך ייעודית ומקורית (`agents/master/civicshield.cls`), קובץ ראשי (`agents/master/main.tex`), מאגר ביבליוגרפיה (`agents/master/references.bib`), והפרדה לקובץ `.tex` נפרד עבור כל אחד מ-5 פרקי הדוח בתיקיית `agents/master/chapters/`.
+   - **גרפים מתמטיים מבוססי Python:** 5 גרפים מדעיים מקוריים הנוצרים דטרמיניסטית על ידי `agents/master/scripts/generate_figures.py` באמצעות `numpy` ו-`matplotlib`, מוטמעים וקטורית כ-PDF בדוח וכ-PNG ב-`README.md` (`agents/master/figures/fig4_1..fig4_5`).
+   - **איורים וקטוריים בקוד TikZ בלבד:** אפס תמונות חיצוניות מהאינטרנט; כל תרשימי הארכיטקטורה, הזרימה ורכזת הסוכנים כתובים בקוד TikZ מקורי בתוך קובצי ה-LaTeX.
+   - **עיצוב וויזואליזציה מקוריים:** פלטת צבעים ממלכתית-הנדסית (`CSNavy`, `CSTeal`, `CSGold`, `CSAlert`), כותרות פרקים ועמודים מותאמות, ותיבות תוכן ממוסגרות (`tcolorbox`).
+3. **תזמור צוות סוכנים (Multi-Agent Orchestration — Lecture 4):** יישום מתודולוגיית ועדת מומחים של 5 סוכנים (`master`, `theory`, `architect`, `simulator`, `redteam`) עם תיקיות עבודה נפרדות תחת `agents/`, פרוטוקול `team.json`, ו-**Dual RedTeam → ReAct Audit Loop** לבדיקת חוקתיות, אנטי-צנזורה, עקביות מספרית ואיכות BiDi.
+4. **התאמה מלאה לסביבת עברית ו-BiDi:** קימפול ב-`lualatex` + `bibtex` עם תמיכה תקנית מלאה בעברית מימין לשמאל (RTL) ובידוד מונחים ומשוואות בלועזית (LTR/BiDi).
+
+---
+
+### 3. דרישות המוצר והמפרט הפונקציונלי (System & Report Specifications)
+#### א. דרישות המערכת המתוכננת (CivicShield AI)
+- **ניטור וזיהוי (FR):** קליטת זרמי מידע ציבוריים בזמן אמת, זיהוי התנהגות מתואמת בלתי אותנטית (`CIB`) ומבצעי `FIMI`, ואיחוד ראיות רב-מודאלי לאיתור מניפולציות ו-`Deepfakes`.
+- **מודלים מתמטיים וחיזוי:** הרצת מודל הדבקה תודעתית (`SIRI ODE`), דינמיקת דעות וקיטוב (`Hegselmann-Krause`), איחוד ראיות בייסיאני (`Bayesian Fusion`), תכנון קיבולת תורים (`M/M/c Erlang-C`), ומודל כלכלי חמש-שנתי (`5-Year ROI`).
+- **חוקתיות, אבטחה ואנטי-צנזורה:** אכיפת *Behavior Not Speech* (אפס צנזורה אוטומטית), פיקוח אנושי ושיפוטי (`Human-in-the-Loop` / `Critic-in-the-Loop`), בקרת גישה `ABAC`, ותאימות מלאה לריבונות נתונים ללא הוצאת `PII` מגבולות ישראל.
+- **דרישות לא-פונקציונליות (NFR):** עמידה בהשהיות זמן אמת תחת עומסי שיא, זמינות גבוהה בענן ממשלתי (`Nimbus` / `On-Premise Air-Gapped`), ושקיפות מלאה לביקורת.
+
+#### ב. מבנה פרקי הדוח המכין ובעלות הסוכנים (Front Matter + 5 פרקים)
+| חלק / פרק | קובץ (תחת `agents/master/`) | בעלים | יעד עמודים | אלמנטים מרכזיים |
+| :--- | :--- | :---: | :---: | :--- |
+| **Front Matter** | `main.tex`, `civicshield.cls` | `architect` / `master` | ~5 | דף שער, בקרת מסמך, תקציר מנהלים, תוכן עניינים ומילון מונחים |
+| **פרק 1** | `chapters/ch01_vision.tex` | `theory` | ~6 | תמונת האיומים הלאומית, חזון אסטרטגי ומפת דרכים תלת-שלבית |
+| **פרק 2** | `chapters/ch02_theory_law.tex`, `references.bib` | `theory` | ~8 | תקשורת פוליטית, מדעי המדינה ומשפט חוקתי (ישראל ו-EU) |
+| **פרק 3** | `chapters/ch03_architecture.tex` | `architect` | ~9 | ארכיטקטורה 5-שכבתית, `Multi-Agent Hub`, מטריצות `FR/NFR` ואיורי TikZ |
+| **פרק 4** | `chapters/ch04_simulations.tex` | `simulator` | ~8 | מידול מתמטי, 5 גרפי Python (`fig4_1`–`fig4_5`) וניתוח `5-Year ROI` |
+| **פרק 5** | `chapters/ch05_safeguards_audit.tex` | `redteam` | ~4 | הגנות חוקתיות, אנטי-צנזורה, ביקורת `RedTeam -> ReAct` ו-QA |
+
+---
+
+### 4. מדדי קבלה ואימות (Acceptance Criteria)
+1. קובץ ה-PDF הסופי (`agents/master/CivicShield_AI_Preliminary_Report.pdf`) מתקמפל ללא שגיאות ב-`lualatex` + `bibtex` (`LATEX_ERRORS_COUNT: 0`, `RMFAMILY_MATH_ERRORS_COUNT: 0`, `UNDEF_REFS: 0`, `UNDEF_CITES: 0`).
+2. אורך המסמך עומד בטווח **37–45 עמודים** (תוצר מאומת: **37 עמודים**, `874,740 bytes`).
+3. כל 5 הגרפים מיוצרים על ידי `agents/master/scripts/generate_figures.py` ללא שגיאות ונכללים בדוח וב-`README.md`.
+4. כל האיורים ההנדסיים מבוססי TikZ בלבד ועוברים אימות אוטומטי באמצעות `py agents/master/scripts/verify_report.py`.
+5. קיום תיעוד פרויקט מלא בשורש המאגר כולל `README.md`, `PRD.md`, `PLAN.md`, `TODO.md`, `team.json` ותיקיות הסוכנים תחת `agents/`.
