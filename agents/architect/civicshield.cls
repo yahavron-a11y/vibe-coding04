@@ -10,6 +10,17 @@
 \ProcessOptions\relax
 \LoadClass[11pt,a4paper,twoside,openany]{book}
 
+% --- Report Page Numbering (Arabic throughout, no Roman frontmatter) ----------
+\renewcommand{\frontmatter}{%
+  \clearpage
+  \@mainmatterfalse
+  \pagenumbering{arabic}%
+}
+\renewcommand{\mainmatter}{%
+  \clearpage
+  \@mainmattertrue
+}
+
 % --- Core LuaLaTeX & BiDi Packages --------------------------------------------
 \RequirePackage{iftex}
 \RequireLuaTeX

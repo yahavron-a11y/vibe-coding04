@@ -10,6 +10,17 @@
 \ProcessOptions\relax
 \LoadClass[11pt,a4paper,twoside,openany]{book}
 
+% --- Report Page Numbering (Arabic throughout, no Roman frontmatter) ----------
+\renewcommand{\frontmatter}{%
+  \clearpage
+  \@mainmatterfalse
+  \pagenumbering{arabic}%
+}
+\renewcommand{\mainmatter}{%
+  \clearpage
+  \@mainmattertrue
+}
+
 % --- Core LuaLaTeX & BiDi Packages --------------------------------------------
 \RequirePackage{iftex}
 \RequireLuaTeX
@@ -365,6 +376,7 @@
 \newcommand{\makecivicshieldcover}[4]{%
   % #1 = Title, #2 = Subtitle, #3 = Tender/Doc ID, #4 = Date & Version
   \begin{titlepage}
+    \hypersetup{pageanchor=false}
     \thispagestyle{empty}
     \begin{tikzpicture}[remember picture,overlay]
       % Layered Navy/Slate Gradient Banner
@@ -477,4 +489,6 @@
       הופק באמצעות ארכיטקטורת התיעוד ההנדסי של \en{CivicShield AI} --- כל הזכויות שמורות למדינת ישראל / צוות ההנדסה.
     \end{flushright}
   \end{titlepage}
+  \hypersetup{pageanchor=true}
+  \setcounter{page}{1}
 }

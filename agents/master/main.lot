@@ -1,9 +1,9 @@
 \babel@toc {hebrew}{}\relax 
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {1.1}{\ignorespaces טקסונומיה של איומי מידע לאומיים ודרישות תגובה}}{2}{table.caption.6}%
-\contentsline {table}{\numberline {1.2}{\ignorespaces מדדי הצלחה מרכזיים (\foreignlanguage {english}{KPIs}) למיזם \foreignlanguage {english}{CivicShield AI}}}{4}{table.caption.7}%
+\contentsline {table}{\numberline {1.1}{\ignorespaces טקסונומיה של איומי מידע לאומיים ודרישות תגובה}}{10}{table.caption.6}%
+\contentsline {table}{\numberline {1.2}{\ignorespaces מדדי הצלחה מרכזיים (\foreignlanguage {english}{KPIs}) למיזם \foreignlanguage {english}{CivicShield AI}}}{12}{table.caption.7}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces מטריצת תאימות משפטית-טכנולוגית של \foreignlanguage {english}{CivicShield AI}}}{8}{table.caption.8}%
+\contentsline {table}{\numberline {2.1}{\ignorespaces מטריצת תאימות משפטית-טכנולוגית של \foreignlanguage {english}{CivicShield AI}}}{16}{table.caption.8}%
 \addvspace {10\p@ }
 \babel@toc {english}{}\relax 
 \babel@toc {hebrew}{}\relax 
@@ -11,12 +11,12 @@
 \babel@toc {hebrew}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {hebrew}{}\relax 
-\contentsline {table}{\numberline {3.1}{\ignorespaces מטריצת דרישות פונקציונליות מחייבות (\foreignlanguage {english}{FR-01} עד \foreignlanguage {english}{FR-10})}}{13}{table.3.1}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces מטריצת דרישות לא-פונקציונליות (\foreignlanguage {english}{NFR-01} עד \foreignlanguage {english}{NFR-10})}}{14}{table.3.2}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces מטריצת דרישות פונקציונליות מחייבות (\foreignlanguage {english}{FR-01} עד \foreignlanguage {english}{FR-10})}}{21}{table.3.1}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces מטריצת דרישות לא-פונקציונליות (\foreignlanguage {english}{NFR-01} עד \foreignlanguage {english}{NFR-10})}}{22}{table.3.2}%
 \babel@toc {english}{}\relax 
 \babel@toc {hebrew}{}\relax 
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces פרמטרים ותוצאות סימולציית \foreignlanguage {english}{SIRI ODE} (חלון משבר של 72 שעות, $I(0)=0.8\%$)}}{17}{table.caption.12}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces תחזית תזרים מזומנים, \foreignlanguage {english}{TCO} וערך נוכחי נקי (\foreignlanguage {english}{NPV}) לחמש שנים (מיליוני ש"ח)}}{20}{table.caption.17}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces פרמטרים ותוצאות סימולציית \foreignlanguage {english}{SIRI ODE} (חלון משבר של 72 שעות, $I(0)=0.8\%$)}}{25}{table.caption.12}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces תחזית תזרים מזומנים, \foreignlanguage {english}{TCO} וערך נוכחי נקי (\foreignlanguage {english}{NPV}) לחמש שנים (מיליוני ש"ח)}}{28}{table.caption.17}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces מטריצת ערובות חוקתיות, מגבלות סמכות ומדדי אימות למערכת \foreignlanguage {english}{CivicShield AI}}}{24}{table.caption.19}%
+\contentsline {table}{\numberline {5.1}{\ignorespaces מטריצת ערובות חוקתיות, מגבלות סמכות ומדדי אימות למערכת \foreignlanguage {english}{CivicShield AI}}}{32}{table.caption.19}%
