@@ -31,13 +31,13 @@
 כדי להקים ולהריץ את מערך הסוכנים של פרויקט זה ב-Antigravity, מריצים את שתי הפקודות הבאות מתוך תיקיית הפרויקט `C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh`:
 
 ```powershell
-cd "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh"
+cd "{PATH TO MULTI AGENT TOOL}\agy-multi-agent-mesh"
 
 # 1. אתחול תיקיות הסוכנים ויצירת קובצי AGY.md מתוך קובץ ההגדרה team.json
-uv run agymesh --team "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\vibe-coding04\team.json" init
+uv run agymesh --team "{PATH TO JSON}\vibe-coding04\team.json" init
 
 # 2. הפעלת רכזת התקשורת (Hub) ופתיחת חלונות Antigravity CLI לכל הסוכנים כולל ה-master
-uv run agymesh --team "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\vibe-coding04\team.json" up --with-master
+uv run agymesh --team "{PATH TO JSON}\vibe-coding04\team.json" up --with-master
 ```
 
 * **פקודת `init`:** קוראת את קובץ [`team.json`](./team.json), יוצרת באופן אוטומטי את תיקיות הסוכנים תחת `agents/` (במידה ואינן קיימות) ומחוללת בתוך כל תיקייה קובץ הוראות ייעודי **`AGY.md`** המגדיר לכל סוכן את תפקידו, סמכויותיו ופקודות ההצטרפות וההאזנה לרשת.
