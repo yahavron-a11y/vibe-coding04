@@ -1,0 +1,71 @@
+from __future__ import annotations
+from dataclasses import dataclass
+import math
+from typing import Sequence
+import numpy as np
+from numpy.typing import NDArray
+
+FloatArray = NDArray[np.float64]
+
+@dataclass(frozen=True, slots=True)
+class SIRIParams:
+    beta: float; gamma: float; delta: float; mu_re: float
+    def __post_init__(self) -> None:
+        if any(v < 0.0 for v in (self.beta, self.gamma, self.delta, self.mu_re)):
+            raise ValueError("SIRI rates must be non-negative.")
+        if self.gamma <= 0.0:
+            raise ValueError("Recovery rate gamma must be > 0.")
+
+def rk4_siri(y0: FloatArray, t: FloatArray, p: SIRIParams) -> FloatArray:
+    """RK4 integrator with simplex clamping & conservation invariant check."""
+    if y0.shape != (4,) or not math.isclose(float(y0.sum()), 1.0, abs_tol=1e-9):
+        raise ValueError("y0 must be a 4-vector on the unit simplex.")
+    Y: FloatArray = np.empty((t.size, 4), dtype=np.float64)
+    Y[0] = y0
+    def rhs(y: FloatArray) -> FloatArray:
+        S, I, R, _ = y
+        inf, reinf, rec, imm = p.beta*S*I, p.mu_re*R*I, p.gamma*I, p.delta*S
+        return np.array([-inf-imm, inf+reinf-rec, rec-reinf, imm], dtype=np.float64)
+    for k in range(t.size - 1):
+        dt, yk = float(t[k + 1] - t[k]), Y[k]
+        k1 = rhs(yk); k2 = rhs(yk + 0.5*dt*k1)
+        k3 = rhs(yk + 0.5*dt*k2); k4 = rhs(yk + dt*k3)
+        yn = np.clip(yk + (dt/6.0)*(k1 + 2*k2 + 2*k3 + k4), 0.0, 1.0)
+        Y[k + 1] = yn / float(yn.sum())
+    return Y
+
+def simulate_hk(x0: FloatArray, eps: float, steps: int = 30, alpha: float = 0.0) -> FloatArray:
+    """Vectorized O(N^2) Hegselmann-Krause opinion dynamics."""
+    if not (0.0 < eps <= 1.0) or not (0.0 <= alpha <= 1.0):
+        raise ValueError("eps must be in (0, 1] and alpha in [0, 1].")
+    hist: FloatArray = np.empty((steps + 1, x0.size), dtype=np.float64)
+    x = x0.astype(np.float64, copy=True); hist[0] = x
+    for t in range(steps):
+        mask = (np.abs(x[:, None] - x[None, :]) <= eps).astype(np.float64)
+        x = (1.0 - alpha) * ((mask @ x) / mask.sum(axis=1)) + alpha * 0.50
+        hist[t + 1] = x
+    return hist
+
+def bayesian_posteriors(prior: float, lrs: Sequence[float]) -> FloatArray:
+    """Overflow-safe sequential Bayesian updating in log-odds space."""
+    if not (0.0 < prior < 1.0):
+        raise ValueError("prior must be strictly inside (0, 1).")
+    arr = np.asarray(lrs, dtype=np.float64)
+    if arr.size == 0 or np.any(arr <= 0.0):
+        raise ValueError("Likelihood ratios must be strictly positive.")
+    log_odds = math.log(prior / (1.0 - prior)) + np.cumsum(np.log(arr))
+    return 1.0 / (1.0 + np.exp(-np.clip(log_odds, -500.0, 500.0)))
+
+def erlang_c_wq_min(lam: float, mu: float, c: int) -> float:
+    """Overflow-safe M/M/c waiting time W_q (min) via log-space lgamma."""
+    if lam <= 0.0 or mu <= 0.0 or c < 1:
+        raise ValueError("Require lam > 0, mu > 0, and c >= 1.")
+    rho = lam / (c * mu)
+    if rho >= 0.999:
+        return math.nan
+    log_a = math.log(lam / mu)
+    lt = np.array([k * log_a - math.lgamma(k + 1) for k in range(c)])
+    ll = c * log_a - math.lgamma(c + 1) - math.log1p(-rho)
+    m = max(float(lt.max()), ll)
+    p_wait = math.exp(ll - m) / (float(np.exp(lt - m).sum()) + math.exp(ll - m))
+    return (p_wait / (c * mu - lam)) * 60.0

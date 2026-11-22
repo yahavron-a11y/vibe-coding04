@@ -17,8 +17,8 @@
 1. **אינטגרציה אקדמית בין תקשורת, מדעי המדינה ומשפט חוקתי:** עיגון הארכיטקטורה הטכנולוגית בתיאוריות מבוססות כגון קביעת סדר היום (*Agenda Setting*), מסגור (*Framing*), ספירלת השתיקה (*Spiral of Silence*), תיבות תהודה (*Echo Chambers*), תיאוריית החיסון (*Inoculation Theory*), דמוקרטיה מתגוננת (*Defensive Democracy*), ורגולציה ישראלית ואירופית (`INCD`, תקנות הגנת הפרטיות התשע"ז–2017, `DSA`).
 2. **עמידה מלאה בדרישות מטלה 2 (דוח מכין):**
    - **היקף המסמך:** 37–45 עמודים (יעד אופטימלי: 40 עמודים) מעוצבים בסגנון ספר/דוח הנדסי-אקדמי.
-   - **ארכיטקטורת LaTeX מודולרית (בתיקיית `agents/master/`):** מחלקת מסמך ייעודית ומקורית (`agents/master/civicshield.cls`), קובץ ראשי (`agents/master/main.tex`), מאגר ביבליוגרפיה (`agents/master/references.bib`), והפרדה לקובץ `.tex` נפרד עבור כל אחד מ-5 פרקי הדוח בתיקיית `agents/master/chapters/`.
-   - **גרפים מתמטיים מבוססי Python:** 5 גרפים מדעיים מקוריים הנוצרים דטרמיניסטית על ידי `agents/master/scripts/generate_figures.py` באמצעות `numpy` ו-`matplotlib`, מוטמעים וקטורית כ-PDF בדוח וכ-PNG ב-`README.md` (`agents/master/figures/fig4_1..fig4_5`).
+   - **ארכיטקטורת LaTeX מודולרית (בתיקיית `agents/master/`):** מחלקת מסמך ייעודית ומקורית (`agents/master/civicshield.cls`) עם **מספור עמודים ערבי רציף** (דף שער לא ממוספר, ללא ספרות רומיות ב-Front Matter), קובץ ראשי (`agents/master/main.tex`), סקריפט בנייה וסנכרון אוטומטי (`agents/master/build.ps1`, `.latexmkrc`), מאגר ביבליוגרפיה (`agents/master/references.bib`), והפרדה לקובץ `.tex` נפרד עבור כל אחד מ-5 פרקי הדוח בתיקיית `agents/master/chapters/`.
+   - **מנוע סימולציות Python ברמת Production ומימוש ייחוס בפרק 4:** 5 גרפים מדעיים מקוריים הנוצרים דטרמיניסטית על ידי מנוע סימולציות מוקשח (`agents/master/scripts/generate_figures.py` עם type hints קשיחים, ולידציה, טיפול בשגיאות ו-`numpy`/`matplotlib`), מוטמעים וקטורית כ-PDF בדוח וכ-PNG ב-`README.md` (`agents/master/figures/fig4_1..fig4_5`), לצד מימוש ייחוס הנדסי ב-Python המשולב ישירות בפרק 4 (`chapters/ch04_simulations.tex`).
    - **איורים וקטוריים בקוד TikZ בלבד:** אפס תמונות חיצוניות מהאינטרנט; כל תרשימי הארכיטקטורה, הזרימה ורכזת הסוכנים כתובים בקוד TikZ מקורי בתוך קובצי ה-LaTeX.
    - **עיצוב וויזואליזציה מקוריים:** פלטת צבעים ממלכתית-הנדסית (`CSNavy`, `CSTeal`, `CSGold`, `CSAlert`), כותרות פרקים ועמודים מותאמות, ותיבות תוכן ממוסגרות (`tcolorbox`).
 3. **תזמור צוות סוכנים (Multi-Agent Orchestration — Lecture 4):** יישום מתודולוגיית ועדת מומחים של 5 סוכנים (`master`, `theory`, `architect`, `simulator`, `redteam`) עם תיקיות עבודה נפרדות תחת `agents/`, פרוטוקול `team.json`, ו-**Dual RedTeam → ReAct Audit Loop** לבדיקת חוקתיות, אנטי-צנזורה, עקביות מספרית ואיכות BiDi.
@@ -46,8 +46,8 @@
 ---
 
 ### 4. מדדי קבלה ואימות (Acceptance Criteria)
-1. קובץ ה-PDF הסופי (`agents/master/CivicShield_AI_Preliminary_Report.pdf`) מתקמפל ללא שגיאות ב-`lualatex` + `bibtex` (`LATEX_ERRORS_COUNT: 0`, `RMFAMILY_MATH_ERRORS_COUNT: 0`, `UNDEF_REFS: 0`, `UNDEF_CITES: 0`).
-2. אורך המסמך עומד בטווח **37–45 עמודים** (תוצר מאומת: **37 עמודים**, `874,740 bytes`).
-3. כל 5 הגרפים מיוצרים על ידי `agents/master/scripts/generate_figures.py` ללא שגיאות ונכללים בדוח וב-`README.md`.
+1. קובץ ה-PDF הסופי בשורש הפרויקט (`CivicShield_AI_Preliminary_Report.pdf`) מתקמפל ומסונכרן אוטומטית מ-`agents/master/main.pdf` בכל הרצת `agents/master/build.ps1` או `latexmk` ללא שגיאות (`LATEX_ERRORS_COUNT: 0`, `RMFAMILY_MATH_ERRORS_COUNT: 0`, `UNDEF_REFS: 0`, `UNDEF_CITES: 0`) ועם מספור עמודים ערבי רציף (אפס ספרות רומיות).
+2. אורך המסמך עומד בטווח **37–45 עמודים** מעוצבים ברמת מכרז ממשלתי.
+3. כל 5 הגרפים מיוצרים על ידי מנוע ה-Python המחוזק `agents/master/scripts/generate_figures.py` ללא שגיאות ונכללים בדוח וב-`README.md`, ופרק 4 כולל מימוש ייחוס ב-Python ברמת Production.
 4. כל האיורים ההנדסיים מבוססי TikZ בלבד ועוברים אימות אוטומטי באמצעות `py agents/master/scripts/verify_report.py`.
-5. קיום תיעוד פרויקט מלא בשורש המאגר כולל `README.md`, `PRD.md`, `PLAN.md`, `TODO.md`, `team.json` ותיקיות הסוכנים תחת `agents/`.
+5. קיום תיעוד פרויקט מלא ומעודכן בשורש המאגר כולל `README.md`, `PRD.md`, `PLAN.md`, `TODO.md`, `team.json` ותיקיות הסוכנים תחת `agents/` — מעודכן בכל `git push`.

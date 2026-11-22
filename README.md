@@ -3,7 +3,7 @@
 # 🛡️ CivicShield AI — מגן התודעה הלאומי
 ### דוח מכין אקדמי והנדסי (Preliminary Design Report) — מטלה 2
 
-[![PDF Report](https://img.shields.io/badge/PDF_Report-37_Pages_(Zero_Errors)-0B2545?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](./agents/master/CivicShield_AI_Preliminary_Report.pdf)
+[![PDF Report](https://img.shields.io/badge/PDF_Report-Arabic_Numbering_(Zero_Errors)-0B2545?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](./CivicShield_AI_Preliminary_Report.pdf)
 [![Engine](https://img.shields.io/badge/LuaLaTeX-BiDi_Hebrew_%2B_TikZ-1D5B9B?style=for-the-badge&logo=latex&logoColor=white)](./agents/master/main.tex)
 [![Simulations](https://img.shields.io/badge/Python_Simulations-NumPy_%2B_Matplotlib-0E7C7B?style=for-the-badge&logo=python&logoColor=white)](./agents/master/scripts/generate_figures.py)
 [![Methodology](https://img.shields.io/badge/Lecture_04-Multi--Agent_Committee-D97706?style=for-the-badge)](./team.json)
@@ -67,8 +67,8 @@ uv run agymesh --team "{PATH TO JSON}\vibe-coding04\team.json" up --with-master
 
 **CivicShield AI ("מגן התודעה הלאומי")** הוא מפרט הנדסי-אקדמי ברמת מכרז ממשלתי לפלטפורמה לאומית ריבונית ורב-סוכנית לחוסן תודעתי, המחברת בין **תיאוריות ליבה בתקשורת פוליטית, מדעי המדינה והמשפט החוקתי (הישראלי והאירופי)** לבין **ארכיטקטורה מבוזרת ב-5 שכבות, 5 מודלים מתמטיים-כמותיים ב-Python ומנגנוני בלימה חוקתיים קשיחים** — מבלי לאפשר לצנזורה אלגוריתמית אוטומטית להתקיים לעולם.
 
-📄 **לצפייה בתוצר הסופי המלא (37 עמודים, מקומפל ב-LuaLaTeX ללא שגיאות):**  
-👉 **[`agents/master/CivicShield_AI_Preliminary_Report.pdf`](./agents/master/CivicShield_AI_Preliminary_Report.pdf)**
+📄 **לצפייה בתוצר הסופי המלא (מקומפל ב-LuaLaTeX ללא שגיאות, עם מספור עמודים ערבי רציף וסנכרון אוטומטי לשורש הפרויקט):**  
+👉 **[`CivicShield_AI_Preliminary_Report.pdf`](./CivicShield_AI_Preliminary_Report.pdf)**
 
 ---
 
@@ -78,7 +78,7 @@ uv run agymesh --team "{PATH TO JSON}\vibe-coding04\team.json" up --with-master
 
 | מסמך | תפקיד במערכת | בעלים בוועדה |
 | :--- | :--- | :--- |
-| **[`agents/master/CivicShield_AI_Preliminary_Report.pdf`](./agents/master/CivicShield_AI_Preliminary_Report.pdf)** | הדוח המכין הסופי (37 עמודים, BiDi RTL, 5 גרפי Python, איורי TikZ טהורים וביבליוגרפיה מלאה) | `master` + אינטגרציה |
+| **[`CivicShield_AI_Preliminary_Report.pdf`](./CivicShield_AI_Preliminary_Report.pdf)** | הדוח המכין הסופי בשורש הפרויקט (BiDi RTL, מספור עמודים ערבי רציף, 5 גרפי Python, מימוש ייחוס ב-Python בפרק 4, איורי TikZ וביבליוגרפיה מלאה) | `master` + אינטגרציה |
 | **[`PRD.md`](./PRD.md)** | מסמך דרישות המוצר: מפרט פונקציונלי, עקרונות ברזל חוקתיים וקריטריוני הצלחה | `master` |
 | **[`PLAN.md`](./PLAN.md)** | תוכנית האדריכלות, שלבי הביצוע ההנדסיים ומיפוי המודלים | `master` |
 | **[`TODO.md`](./TODO.md)** | לוח המשימות המשותף (*Shared TODO Board*) ומעקב השלמה | `master` |
@@ -207,16 +207,20 @@ cd agents/master
 py scripts/generate_figures.py
 ```
 
-### 2. קומפילציה של הדוח המלא ב-LuaLaTeX + BibTeX
+### 2. קומפילציה של הדוח המלא ב-LuaLaTeX + BibTeX וסנכרון אוטומטי לשורש הפרויקט
+הבנייה הסטנדרטית מתבצעת באמצעות [`agents/master/build.ps1`](./agents/master/build.ps1) (או `latexmk` המוגדר ב-[`agents/master/.latexmkrc`](./agents/master/.latexmkrc)), אשר מריצים `lualatex` + `bibtex` ומעתיקים אוטומטית את `main.pdf` לקובץ [`CivicShield_AI_Preliminary_Report.pdf`](./CivicShield_AI_Preliminary_Report.pdf) בשורש הפרויקט עם אימות SHA-256:
 ```powershell
-lualatex -interaction=nonstopmode main.tex
-bibtex main
-lualatex -interaction=nonstopmode main.tex
-lualatex -interaction=nonstopmode main.tex
-Copy-Item main.pdf CivicShield_AI_Preliminary_Report.pdf -Force
+.\build.ps1
+# או לבנייה מהירה (2 מעברי LuaLaTeX ללא BibTeX):
+.\build.ps1 -Fast
 ```
 
-### 3. הרצת חבילת האימות האוטומטית (`verify_report.py`)
+### 3. שדרוגים הנדסיים אחרונים (Latest Engineering Updates)
+- **מספור עמודים תקני לדוח (Arabic Page Numbering):** הוסר מספור הספרות הרומיות (`\frontmatter`) ב-`civicshield.cls`; דף השער אינו ממוספר, ותוכן הדוח ממוספר ברצף מלא במספרים ערביים (`1..N`) תואם `LastPage`.
+- **סנכרון PDF אוטומטי בכל בנייה:** נוספו `agents/master/build.ps1` ו-`agents/master/.latexmkrc` המעדכנים אוטומטית את `CivicShield_AI_Preliminary_Report.pdf` בשורש הפרויקט בכל קומפילציה.
+- **מנוע סימולציות Python מחוזק (`generate_figures.py`) ומימוש ייחוס בפרק 4:** קוד הסימולציות שודרג לרמת Production (טיפוסי נתונים קשיחים, ולידציה, טיפול בשגיאות וארכיטקטורה מודולרית), ונוסף קטע קוד ייחוס מוקשח ב-Python בתוך `chapters/ch04_simulations.tex`.
+
+### 4. הרצת חבילת האימות האוטומטית (`verify_report.py`)
 ```powershell
 py scripts/verify_report.py
 ```
