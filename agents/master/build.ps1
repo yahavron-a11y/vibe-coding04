@@ -19,15 +19,13 @@ try {
     lualatex -interaction=nonstopmode main.tex > lualatex_pass1.log 2>&1
     if ($LASTEXITCODE -ne 0) { throw "LuaLaTeX pass 1 failed. See lualatex_pass1.log" }
 
-    if (-not $Fast -and (Test-Path "references.bib")) {
-        Write-Host "[2/4] Running BibTeX..."
-        bibtex main > bibtex.log 2>&1
-        Write-Host "[3/4] Running LuaLaTeX (pass 2)..."
+    if (-not $Fast) {
+        Write-Host "[2/3] Running LuaLaTeX (pass 2)..."
         lualatex -interaction=nonstopmode main.tex > lualatex_pass2.log 2>&1
         if ($LASTEXITCODE -ne 0) { throw "LuaLaTeX pass 2 failed. See lualatex_pass2.log" }
     }
 
-    Write-Host "[4/4] Running LuaLaTeX (final pass)..."
+    Write-Host "[3/3] Running LuaLaTeX (final pass)..."
     lualatex -interaction=nonstopmode main.tex > lualatex_final.log 2>&1
     if ($LASTEXITCODE -ne 0) { throw "LuaLaTeX final pass failed. See lualatex_final.log" }
 
@@ -36,8 +34,9 @@ try {
     }
 
     Copy-Item -Path $SourcePdf -Destination $TargetPdf -Force
-    $srcHash = (Get-FileHash $SourcePdf -Algorithm SHA256).Hash
-    $dstHash = (Get-FileHash $TargetPdf -Algorithm SHA256).Hash
+    $sha = [System.Security.Cryptography.SHA256]::Create()
+    $srcHash = [BitConverter]::ToString($sha.ComputeHash([System.IO.File]::ReadAllBytes($SourcePdf))).Replace("-","")
+    $dstHash = [BitConverter]::ToString($sha.ComputeHash([System.IO.File]::ReadAllBytes($TargetPdf))).Replace("-","")
     if ($srcHash -ne $dstHash) {
         throw "SHA-256 mismatch after copying PDF to $TargetPdf"
     }

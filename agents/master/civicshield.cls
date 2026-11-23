@@ -124,6 +124,79 @@
   labelsep=quad,
   skip=8pt
 ]{caption}
+\RequirePackage{url}
+\urlstyle{same}
+\appto\UrlBreaks{\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z\do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\-\do\_\do\/}
+
+% --- APA 7th Edition Citation & LTR Hanging-Indent Bibliography Engine --------
+\newcommand{\defineapacite}[2]{\@namedef{cs@apacite@#1}{#2}}
+\newcommand{\cs@renderonecite}[1]{%
+  \ifcsdef{cs@apacite@#1}{%
+    \hyperlink{ref:#1}{\csname cs@apacite@#1\endcsname}%
+  }{%
+    \textbf{?#1?}%
+  }%
+}
+\newif\ifcs@firstcite
+\renewcommand{\cite}[1]{%
+  \foreignlanguage{english}{%
+    (\cs@firstcitetrue
+    \renewcommand*{\do}[1]{%
+      \ifcs@firstcite\cs@firstcitefalse\else; \fi
+      \cs@renderonecite{##1}%
+    }%
+    \docsvlist{#1})%
+  }%
+}
+
+\newenvironment{apabibliography}{%
+  \begin{otherlanguage}{english}%
+  \pardir TLT\textdir TLT%
+  \begin{list}{}{%
+    \setlength{\leftmargin}{0.5in}%
+    \setlength{\itemindent}{-0.5in}%
+    \setlength{\listparindent}{0pt}%
+    \setlength{\itemsep}{6.5pt}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\topsep}{0pt}%
+    \setlength{\partopsep}{0pt}%
+  }%
+  \raggedright
+  \emergencystretch=1.5em
+}{%
+  \end{list}%
+  \end{otherlanguage}%
+}
+\newcommand{\apaentry}[2]{%
+  \item\hypertarget{ref:#1}{}#2%
+}
+
+% Register APA 7th in-text parenthetical labels for all 24 references
+\defineapacite{adalah2021cyber}{\textit{Adalah v. Cyber Unit}, 2021}
+\defineapacite{barak2012proportionality}{Barak, 2012}
+\defineapacite{basiclaw1992}{Basic Law: Human Dignity and Liberty, 1992}
+\defineapacite{benkler2018network}{Benkler et al., 2018}
+\defineapacite{bennett2018disinformation}{Bennett \& Livingston, 2018}
+\defineapacite{cec_transparency2019}{Central Elections Committee for the 21st Knesset, 2019}
+\defineapacite{chesney2019deep}{Chesney \& Citron, 2019}
+\defineapacite{elections_propaganda1959}{Elections Law (Propaganda Methods), 1959}
+\defineapacite{eu_dsa2022}{European Parliament and Council of the European Union, 2022}
+\defineapacite{eu_aiact2024}{European Parliament and Council of the European Union, 2024}
+\defineapacite{goldstein2023generative}{Goldstein et al., 2023}
+\defineapacite{habermas1989structural}{Habermas, 1989}
+\defineapacite{iyengar2019origins}{Iyengar et al., 2019}
+\defineapacite{kolhaam1953}{\textit{Kol Ha'am v. Minister of the Interior}, 1953}
+\defineapacite{lewandowsky2021countering}{Lewandowsky \& van der Linden, 2021}
+\defineapacite{merkel2021resilience}{Merkel \& L{\"u}hrmann, 2021}
+\defineapacite{nimmo2020breakout}{Nimmo, 2020}
+\defineapacite{privacy_law1981}{Protection of Privacy Law, 1981/2024}
+\defineapacite{rid2020active}{Rid, 2020}
+\defineapacite{roozenbeek2022psychological}{Roozenbeek et al., 2022}
+\defineapacite{sunstein2017republic}{Sunstein, 2017}
+\defineapacite{tucker2018social}{Tucker et al., 2018}
+\defineapacite{vosoughi2018spread}{Vosoughi et al., 2018}
+\defineapacite{wardle2017information}{Wardle \& Derakhshan, 2017}
+
 \RequirePackage[
   colorlinks=true,
   linkcolor=CSSlate,
