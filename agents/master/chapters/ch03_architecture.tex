@@ -299,6 +299,45 @@
 \label{fig:latency-budget}
 \end{figure}
 
+\subsection{פריסה ריבונית, התאוששות מאסון (\en{DRP}) ורוטציית מפתחות}
+\label{sec:sovereign-drp}
+
+מערכות ביטחון אזרחיות ומוניציפליות נדרשות לפעול ברציפות תפקודית מלאה גם תחת תרחישי קיצון של ניתוק תקשורת, מתקפות סייבר או כשל אזורי בתשתיות הענן. הארכיטקטורה של \en{CivicShield AI} תוכננה מראש במודל \en{Sovereign-First}, המאפשר פריסה היברידית או מבודדת לחלוטין (\en{Air-Gapped}) תוך שמירה על ריבונות הנתונים, עמידה ברגולציית פרטיות מקומית וביצוע שדרוגים ללא השבתה (\en{Zero-Downtime Hot-Reload}).
+
+\subsubsection{טופולוגיית \en{Active-Active Nimbus} מול מעבר לכשל (\en{Air-Gapped On-Premise})}
+שכבת התשתית תומכת בשני מצבי הפעלה משלימים:
+\begin{enumerate}[leftmargin=1.8em]
+  \item \textbf{תצורת \en{Active-Active} בענן הריבוני (\en{Nimbus}):} שני אזורי זמינות (\en{Availability Zones}) נפרדים גיאוגרפית משרתים תעבורה במקביל באמצעות איזון עומסים מבוסס \en{Anycast} ו-\en{DNS Health Checks}. שכבת הנתונים מבצעת רפליקציה סינכרונית של יומן האירועים (\en{WAL}) ושל מאגרי המידע הקריטיים, עם יעד התאוששות של \en{RPO} $= 0$ ו-\en{RTO} $< 15$ שניות.
+  \item \textbf{תצורת \en{Failover} מקומית מבודדת (\en{Air-Gapped On-Premise}):} בעת הכרזה על מצב חירום לאומי או ניתוק יזום מרשת האינטרנט, צומת מקומי מוקשח (\en{Edge/On-Premise Cluster}) לוקח פיקוד אוטונומי. סנכרון המדיניות והמודלים מתבצע טרם הניתוק באמצעות מדיה חתומה קריפטוגרפית (\en{Signed Bundle}), ומרגע הניתוק המערכת פועלת במצב \en{Island Mode} ללא תלות בשירותים חיצוניים.
+\end{enumerate}
+
+\begin{table}[htbp]
+\centering
+\caption{השוואת מדדי \en{DRP} בין פריסת \en{Active-Active Nimbus} לפריסת \en{Air-Gapped On-Premise}}
+\label{tab:drp-comparison}
+\begin{tabularx}{\textwidth}{@{} p{2.5cm} X X p{3.3cm} @{}}
+\toprule
+\rowcolor{CSNavy}
+\thead{מאפיין} & \thead{\en{Active-Active Nimbus}} & \thead{\en{Air-Gapped On-Premise}} & \thead{מנגנון אימות} \\
+\midrule
+יעד \en{RPO} & 0 שניות (סינכרוני) & 0 שניות מקומית; פער מבוקר מול ענן & בדיקת \en{SHA-256} על \en{WAL} \\
+יעד \en{RTO} & $< 15$ שניות & $< 45$ שניות (מעבר ל-\en{Island Mode}) & סימולציית כשל חודשית (\en{Chaos}) \\
+ניהול מפתחות & \en{Cloud KMS / HSM} מבוזר & \en{Hardware HSM} מקומי (\en{FIPS 140-3}) & ביקורת \en{Audit Log} חתומה \\
+עדכון מדיניות & \en{Hot-Reload} דרך \en{Control Plane} & חבילה חתומה (\en{Offline Signed Bundle}) & אימות חתימת \en{Ed25519} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{רוטציית מפתחות קריפטוגרפיים (\en{HSM/KMS}) ואימות \en{Hot-Reload}}
+כל סוד, אסימון גישה (\en{JWT}) ותעודת תקשורת (\en{mTLS}) מנוהלים באמצעות \en{HSM} ייעודי או \en{KMS} ריבוני בתקן \en{FIPS 140-3 Level 3}. רוטציית המפתחות מתבצעת אוטומטית כל 24 שעות עבור מפתחות יישום וכל 90 יום עבור מפתחות שורש (\en{KEK}), במודל \en{Dual-Key Overlap}: המפתח החדש מופץ ומופעל במקביל למפתח הישן למשך חלון חפיפה של 15 דקות, כך שבקשות פעילות אינן נקטעות.
+
+\begin{insightbox}[אימות \en{Zero-Downtime Hot-Reload} במעבר מפתחות ומדיניות]
+מנוע הטעינה החמה (\en{Hot-Reload}) מאמת כל שינוי תצורה או רוטציית מפתחות בשלושה שלבים אטומיים:
+(1) בדיקת תקינות סכמה וחתימה קריפטוגרפית בזיכרון צדדי (\en{Shadow Buffer});
+(2) החלפת מצביעים אטומית (\en{Atomic Pointer Swap}) ברמת ה-\en{Worker} ללא סגירת חיבורי \en{TCP/gRPC} קיימים;
+(3) ניקוז הדרגתי (\en{Graceful Drain}) של מפתחות קודמים ואימות מדד שגיאות $0.00\%$ ב-\en{Observability} טרם שחרור הזיכרון הישן.
+\end{insightbox}
+
 % ------------------------------------------------------------------------------
 \section{ניהול סיכונים ארכיטקטוניים ומוכנות לסקירת צוות אדום}
 \label{sec:arch-risks}
