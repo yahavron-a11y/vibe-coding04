@@ -477,7 +477,7 @@
 
     \vspace*{1.5cm}
     \noindent\begin{minipage}{11.2cm}
-      \raggedleft
+      \raggedright
       {\sffamily\bfseries\color{CSGoldLight}\large מערך הדיגיטל והבינה המלאכותית הממשלתי}\\[0.55cm]
       {\sffamily\bfseries\color{white}\fontsize{32}{38}\selectfont #1}\\[0.55cm]
       {\sffamily\color{CSIce}\Large #2}
@@ -511,10 +511,9 @@
     \end{otherlanguage}
 
     \vfill
-    \begin{flushright}
-      \sffamily\footnotesize\color{CSSteel}
-      הופק באמצעות ארכיטקטורת התיעוד ההנדסי של \en{CivicShield AI} --- כל הזכויות שמורות למדינת ישראל / צוות ההנדסה.
-    \end{flushright}
+    {\raggedright\sffamily\footnotesize\color{CSSteel}
+      הופק באמצעות ארכיטקטורת התיעוד ההנדסי של \en{CivicShield AI} --- כל הזכויות שמורות למדינת ישראל / צוות ההנדסה.\par}
+    \vspace*{4mm}
   \end{titlepage}
   \hypersetup{pageanchor=true}
   \setcounter{page}{1}
