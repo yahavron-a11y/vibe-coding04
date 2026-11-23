@@ -34,52 +34,55 @@
 \begin{figure}[htbp]
 \centering
 \begin{ltrblock}
+\resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[
   font=\sffamily\footnotesize,
   layer/.style={
     rectangle, draw=CSNavy, thick, rounded corners=2pt,
-    minimum width=10.2cm, minimum height=1.25cm,
-    align=center, drop shadow
+    minimum width=11.4cm, text width=11.0cm, minimum height=1.22cm,
+    inner sep=5pt, align=center, drop shadow,
+    execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}
   },
   pillar/.style={
     rectangle, draw=CSGold, thick, rounded corners=2pt,
-    fill=CSContractBg, minimum width=1.9cm, minimum height=7.65cm,
-    align=center, text width=1.7cm
+    fill=CSContractBg, minimum width=2.55cm, minimum height=8.15cm,
+    align=center, text width=2.3cm,
+    execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}
   },
   arr/.style={-{Stealth[length=2.5mm]}, thick, CSNavy}
 ]
   % 5 Horizontal Layers
-  \node[layer, fill=CSNavy!12] (L5) at (0, 6.4)
-    {\textbf{Layer 5: Gov-Portal UI, REST/gRPC Gateway \& SIEM}\\
-     Citizen/Officer Portal $\cdot$ OAuth2/OIDC $\cdot$ Rate Limiting $\cdot$ Executive Dashboards};
+  \node[layer, fill=CSNavy!12] (L5) at (0, 6.88)
+    {\textbf{Layer 5: Gov-Portal UI, REST/gRPC Gateway \& SIEM}\\[2pt]
+     {\scriptsize Citizen/Officer Portal $\cdot$ OAuth2/OIDC $\cdot$ Rate Limiting $\cdot$ Executive Dashboards}};
 
-  \node[layer, fill=CSRiskBg, draw=CSRiskRed] (L4) at (0, 4.8)
-    {\textbf{Layer 4: Zero-Trust Guardrails \& Policy Engine}\\
-     Prompt-Injection Firewall $\cdot$ PII Redaction $\cdot$ Grounding Verifier $\cdot$ HITL Gate};
+  \node[layer, fill=CSRiskBg, draw=CSRiskRed] (L4) at (0, 5.16)
+    {\textbf{Layer 4: Zero-Trust Guardrails \& Policy Engine}\\[2pt]
+     {\scriptsize Prompt-Injection Firewall $\cdot$ PII Redaction $\cdot$ Grounding Verifier $\cdot$ HITL Gate}};
 
-  \node[layer, fill=CSInsightBg, draw=CSInsightTeal] (L3) at (0, 3.2)
-    {\textbf{Layer 3: Multi-Agent Orchestration Hub}\\
-     Router $\cdot$ Policy Agent $\cdot$ RAG Agent $\cdot$ Risk Scorer $\cdot$ Critic Agent $\cdot$ State Machine};
+  \node[layer, fill=CSInsightBg, draw=CSInsightTeal] (L3) at (0, 3.44)
+    {\textbf{Layer 3: Multi-Agent Orchestration Hub}\\[2pt]
+     {\scriptsize Router $\cdot$ Policy Agent $\cdot$ RAG Agent $\cdot$ Risk Scorer $\cdot$ Critic Agent $\cdot$ State Machine}};
 
-  \node[layer, fill=CSIce, draw=CSSlate] (L2) at (0, 1.6)
-    {\textbf{Layer 2: Knowledge Graph, Vector Store \& Audit Ledger}\\
-     Hybrid Vector DB (HE/EN) $\cdot$ Legal Knowledge Graph $\cdot$ Immutable WORM Audit Log};
+  \node[layer, fill=CSIce, draw=CSSlate] (L2) at (0, 1.72)
+    {\textbf{Layer 2: Knowledge Graph, Vector Store \& Audit Ledger}\\[2pt]
+     {\scriptsize Hybrid Vector DB (HE/EN) $\cdot$ Legal Knowledge Graph $\cdot$ Immutable WORM Audit Log}};
 
   \node[layer, fill=CSNavy!8, draw=CSSteel] (L1) at (0, 0.0)
-    {\textbf{Layer 1: Ingestion \& Sovereign Data Connectors}\\
-     Gov ERP/CRM $\cdot$ Legal Gazettes $\cdot$ OCR/Chunking Pipeline $\cdot$ Classification Tagger};
+    {\textbf{Layer 1: Ingestion \& Sovereign Data Connectors}\\[2pt]
+     {\scriptsize Gov ERP/CRM $\cdot$ Legal Gazettes $\cdot$ OCR/Chunking Pipeline $\cdot$ Classification Tagger}};
 
   % Vertical Cross-Cutting Pillars
-  \node[pillar] (PL) at (-6.35, 3.2)
-    {\textbf{\color{CSNavy}Zero-Trust Security}\\[6pt]
+  \node[pillar] (PL) at (-7.35, 3.44)
+    {\textbf{\color{CSNavy}Zero-Trust\\Security}\\[6pt]
      mTLS 1.3\\[3pt]
      ABAC/RBAC\\[3pt]
      HSM/KMS\\[3pt]
      INCD Policy\\[3pt]
      Air-Gap Ready};
 
-  \node[pillar] (PR) at (6.35, 3.2)
-    {\textbf{\color{CSNavy}Observability \& Ops}\\[6pt]
+  \node[pillar] (PR) at (7.35, 3.44)
+    {\textbf{\color{CSNavy}Observability\\\& Ops}\\[6pt]
      OpenTelemetry\\[3pt]
      Audit Trail\\[3pt]
      Drift Alerts\\[3pt]
@@ -88,10 +91,11 @@
 
   % Inter-layer bidirectional arrows
   \foreach \a/\b in {L1/L2, L2/L3, L3/L4, L4/L5} {
-    \draw[arr] ([xshift=-1.5cm]\a.north) -- ([xshift=-1.5cm]\b.south);
-    \draw[arr] ([xshift=1.5cm]\b.south) -- ([xshift=1.5cm]\a.north);
+    \draw[arr] ([xshift=-1.6cm]\a.north) -- ([xshift=-1.6cm]\b.south);
+    \draw[arr] ([xshift=1.6cm]\b.south) -- ([xshift=1.6cm]\a.north);
   }
-\end{tikzpicture}
+\end{tikzpicture}%
+}
 \end{ltrblock}
 \caption{ארכיטקטורת חמש השכבות של מערכת \en{CivicShield AI} ועמודי התווך חוצי-השכבות}
 \label{fig:five-layer}
@@ -112,7 +116,7 @@
 \begin{tabularx}{\textwidth}{@{} l l X @{}}
 \toprule
 \rowcolor{CSNavy}
-\color{white}\textbf{מזהה סוכן} & \color{white}\textbf{תפקיד מערכתי} & \color{white}\textbf{אחריות ומגבלות גישה} \\
+\thead{מזהה סוכן} & \thead{תפקיד מערכתי} & \thead{אחריות ומגבלות גישה} \\
 \midrule
 \code{hub.router} & מנתב ומנהל זרימה & מפרק בקשות לתתי-משימות, מקצה תקציב זמן/טוקנים ומנהל \en{State}. \\
 \code{agent.rag} & סוכן שליפה וידע & גישת קריאה בלבד לשכבה 2; מחזיר קטעי מקור עם \en{DocID} וציון רלוונטיות. \\
@@ -204,12 +208,12 @@
 \label{tab:fr} \\
 \toprule
 \rowcolor{CSNavy}
-\color{white}\textbf{מזהה} & \color{white}\textbf{תחום} & \color{white}\textbf{תיאור הדרישה הפונקציונלית} & \color{white}\textbf{עדיפות} & \color{white}\textbf{אימות} \\
+\thead{מזהה} & \thead{תחום} & \thead{תיאור הדרישה הפונקציונלית} & \thead{עדיפות} & \thead{אימות} \\
 \midrule
 \endfirsthead
 \toprule
 \rowcolor{CSNavy}
-\color{white}\textbf{מזהה} & \color{white}\textbf{תחום} & \color{white}\textbf{תיאור הדרישה הפונקציונלית} & \color{white}\textbf{עדיפות} & \color{white}\textbf{אימות} \\
+\thead{מזהה} & \thead{תחום} & \thead{תיאור הדרישה הפונקציונלית} & \thead{עדיפות} & \thead{אימות} \\
 \midrule
 \endhead
 \code{FR-01} & קליטת מסמכים & קליטה אוטומטית של \en{PDF}, \en{DOCX}, \en{HTML} ו-\en{JSON} עם \en{OCR} בעברית, ערבית ואנגלית. & \en{Must} & בדיקה \\
@@ -231,17 +235,17 @@
 
 טבלה \ref{tab:nfr} מגדירה את מדדי האיכות, הביצועים, הזמינות והאבטחה המחייבים. איור \ref{fig:latency-budget} ממחיש את חלוקת תקציב ההשהיה (\en{Latency Budget}) מקצה לקצה.
 
-\begin{longtable}{@{} l p{2.8cm} p{7.1cm} l @{}}
+\begin{longtable}{@{} l >{\raggedleft\arraybackslash\hyphenpenalty=10000\exhyphenpenalty=10000}p{3.4cm} p{6.6cm} l @{}}
 \caption{מטריצת דרישות לא-פונקציונליות (\en{NFR-01} עד \en{NFR-10})}
 \label{tab:nfr} \\
 \toprule
 \rowcolor{CSNavy}
-\color{white}\textbf{מזהה} & \color{white}\textbf{קטגוריה} & \color{white}\textbf{מדד מחייב (\en{Target Metric})} & \color{white}\textbf{תקן / בסיס} \\
+\thead{מזהה} & \thead{קטגוריה} & \thead{מדד מחייב (\en{Target Metric})} & \thead{תקן / בסיס} \\
 \midrule
 \endfirsthead
 \toprule
 \rowcolor{CSNavy}
-\color{white}\textbf{מזהה} & \color{white}\textbf{קטגוריה} & \color{white}\textbf{מדד מחייב (\en{Target Metric})} & \color{white}\textbf{תקן / בסיס} \\
+\thead{מזהה} & \thead{קטגוריה} & \thead{מדד מחייב (\en{Target Metric})} & \thead{תקן / בסיס} \\
 \midrule
 \endhead
 \code{NFR-01} & השהיה (\en{Latency}) & זמן תגובה \en{P50} $\le 850\text{ms}$, \en{P95} $\le 1800\text{ms}$, \en{P99} $\le 2800\text{ms}$. & \en{Gov-SLA} \\

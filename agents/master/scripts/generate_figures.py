@@ -151,7 +151,7 @@ def generate_fig_siri() -> tuple[float, float, float]:
     ax1.annotate(
         f"Peak: {peak_base:.1f}%",
         xy=(t_pk_b, peak_base),
-        xytext=(t_pk_b + 10, peak_base + 7),
+        xytext=(t_pk_b + 4, peak_base + 20),
         arrowprops=dict(arrowstyle="->", color=CRIMSON),
         color=CRIMSON,
         fontweight="bold",

@@ -159,7 +159,7 @@ W_q = \frac{C(c, a)}{c\mu - \lambda}, \qquad C(c, a) = \frac{\frac{a^c}{c!(1-\rh
 \section{מימוש ייחוס בפייתון (\textenglish{Production-Grade Reference Implementation})}
 \label{sec:python_reference}
 
-להבטחת שחזוריות מלאה, יציבות נומרית ומוכנות הנדסית לביקורת, מנוע הסימולציה בסקריפט \code{scripts/generate\_figures.py} מומש בפייתון קשיח הכולל הקלדה סטטית מחמירה (\textenglish{Strict Type Hints}), מחלקות נתונים מאומתות (\textenglish{Frozen Dataclasses}), וקטוריזציה מלאה ב-\textenglish{NumPy}, חישוב הסתברויות במרחב \textenglish{Log-Odds} למניעת גלישה, ונוסחת \textenglish{Erlang-C} במרחב לוגריתמי (\textenglish{Log-Sum-Exp + lgamma}). להלן ליבת המנוע המרכזית:
+להבטחת שחזוריות מלאה, יציבות נומרית ומוכנות הנדסית לביקורת, מנוע הסימולציה בסקריפט \code{scripts/\allowbreak generate\_figures.py} מומש בפייתון קשיח הכולל הקלדה סטטית מחמירה (\textenglish{Strict Type Hints}), מחלקות נתונים מאומתות (\textenglish{Frozen Dataclasses}), וקטוריזציה מלאה ב-\textenglish{NumPy}, חישוב הסתברויות במרחב \textenglish{Log-Odds} למניעת גלישה, ונוסחת \textenglish{Erlang-C} במרחב לוגריתמי (\textenglish{Log-Sum-Exp + lgamma}). להלן ליבת המנוע המרכזית:
 
 \begin{ltrcode}[title={CivicShield AI -- Hardened Simulation Core (Python 3.11+ / NumPy)}]
 from __future__ import annotations

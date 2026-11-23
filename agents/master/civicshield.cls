@@ -111,6 +111,7 @@
   shadows.blur,
   decorations.pathreplacing
 }
+\RequirePackage{etoolbox}
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{needspace}
 \RequirePackage{titlesec}
@@ -137,6 +138,7 @@
 \providecommand{\LR}[1]{\foreignlanguage{english}{#1}}
 \providecommand{\texthebrew}[1]{\foreignlanguage{hebrew}{#1}}
 \newcommand{\code}[1]{\foreignlanguage{english}{\texttt{\small\color{CSSlate}#1}}}
+\newcommand{\thead}[1]{\leavevmode\color{white}\textbf{#1}}
 
 \newenvironment{ltrblock}{%
   \par\begin{otherlanguage}{english}%
@@ -161,20 +163,26 @@
     breaklines=true,
     columns=flexible
   },
-  before upper={\begin{otherlanguage}{english}},
-  after upper={\end{otherlanguage}},
   #1
 }
+\BeforeBeginEnvironment{ltrcode}{\par\vspace{8pt}\begin{otherlanguage}{english}}
+\AfterEndEnvironment{ltrcode}{\end{otherlanguage}\par\vspace{8pt}}
 
 % --- Upgraded Callout Boxes (Insight, Risk, Contract) -------------------------
 \tcbset{
   civicrtl/.style={
     enhanced,
-    before={\par\noindent\begingroup\pardir TLT\textdir TLT},
-    after={\endgroup\par},
+    before={\par\noindent},
+    after={\par},
+    before upper={\selectlanguage{hebrew}},
+    before lower={\selectlanguage{hebrew}},
+  },
+  civicchapter/.style={
+    enhanced,
+    code={\pardir TLT\textdir TLT},
+    before={\endgraf\noindent\pardir TLT\textdir TLT},
+    after={\endgraf},
     before upper={\pardir TRT\textdir TRT},
-    before lower={\pardir TRT\textdir TRT},
-    before title={\pardir TRT\textdir TRT},
   }
 }
 
@@ -184,7 +192,7 @@
   colframe=CSInsightTeal!85!black,
   coltitle=white,
   fonttitle=\sffamily\bfseries\small,
-  title={#1},
+  title={\foreignlanguage{hebrew}{#1}},
   attach boxed title to top right={xshift=-5mm,yshift=-3.2mm},
   boxed title style={
     colback=CSInsightTeal,
@@ -205,10 +213,10 @@
   top=5.5mm,
   bottom=4mm,
   left=5mm,
-  right=5mm,
-  before skip=12pt,
-  after skip=12pt
+  right=5mm
 }
+\BeforeBeginEnvironment{insightbox}{\par\vspace{10pt}\begin{otherlanguage}{english}}
+\AfterEndEnvironment{insightbox}{\end{otherlanguage}\par\vspace{10pt}}
 
 \newtcolorbox{riskbox}[1][סיכון קריטי ובקרת נגד]{
   civicrtl,
@@ -216,7 +224,7 @@
   colframe=CSRiskRed!85!black,
   coltitle=white,
   fonttitle=\sffamily\bfseries\small,
-  title={#1},
+  title={\foreignlanguage{hebrew}{#1}},
   attach boxed title to top right={xshift=-5mm,yshift=-3.2mm},
   boxed title style={
     colback=CSRiskRed,
@@ -237,10 +245,10 @@
   top=5.5mm,
   bottom=4mm,
   left=5mm,
-  right=5mm,
-  before skip=12pt,
-  after skip=12pt
+  right=5mm
 }
+\BeforeBeginEnvironment{riskbox}{\par\vspace{10pt}\begin{otherlanguage}{english}}
+\AfterEndEnvironment{riskbox}{\end{otherlanguage}\par\vspace{10pt}}
 
 \newtcolorbox{contractbox}[1][חוזה ממשק ו-SLA]{
   civicrtl,
@@ -248,7 +256,7 @@
   colframe=CSGold,
   coltitle=CSNavy,
   fonttitle=\sffamily\bfseries\small,
-  title={#1},
+  title={\foreignlanguage{hebrew}{#1}},
   attach boxed title to top right={xshift=-5mm,yshift=-3.2mm},
   boxed title style={
     colback=CSGold!28!white,
@@ -270,17 +278,17 @@
   top=5.5mm,
   bottom=4mm,
   left=5mm,
-  right=5mm,
-  before skip=12pt,
-  after skip=12pt
+  right=5mm
 }
+\BeforeBeginEnvironment{contractbox}{\par\vspace{10pt}\begin{otherlanguage}{english}}
+\AfterEndEnvironment{contractbox}{\end{otherlanguage}\par\vspace{10pt}}
 
 % --- Elevated Chapter & Section Headers (No Default LaTeX Styling) ------------
 \titleformat{\chapter}[display]
   {\normalfont\sffamily}
   {%
     \begin{tcolorbox}[
-      enhanced,
+      civicchapter,
       interior style={left color=CSNavyDeep, right color=CSSlate},
       colframe=CSNavy,
       arc=3pt,
@@ -306,7 +314,7 @@
   {-3pt}
   {%
     \begin{tcolorbox}[
-      enhanced,
+      civicchapter,
       colback=CSIce,
       colframe=CSBorder,
       arc=3pt,
@@ -323,7 +331,7 @@
 
 \titleformat{\section}
   {\needspace{5\baselineskip}\sffamily\Large\bfseries\color{CSNavy}}
-  {\tcbox[on line, arc=3pt, colback=CSSlate, colframe=CSSlate, colupper=white, boxrule=0pt, left=4pt, right=4pt, top=1.5pt, bottom=1.5pt]{\thesection}}
+  {\foreignlanguage{english}{\tcbox[on line, arc=3pt, colback=CSSlate, colframe=CSSlate, colupper=white, boxrule=0pt, left=4pt, right=4pt, top=1.5pt, bottom=1.5pt]{\thesection}}}
   {0.6em}
   {}
   [\vspace{2.5pt}{\color{CSGold}\titlerule[1.2pt]}]
@@ -344,18 +352,22 @@
 \newcommand{\CSDocCode}{CS-AI-PRELIM-2026-01}
 \newcommand{\CSClassification}{סיווג: שמור -- טיוטת מכרז ממשלתי}
 
-\newtcbox{\CSPagePill}{
-  on line,
-  arc=7pt,
-  colback=CSNavy,
-  colframe=CSNavy,
-  colupper=white,
-  boxrule=0pt,
-  left=6pt,
-  right=6pt,
-  top=2pt,
-  bottom=2pt,
-  fontupper=\sffamily\footnotesize\bfseries
+\newcommand{\CSPagePill}[1]{%
+  \foreignlanguage{english}{%
+    \tcbox[
+      on line,
+      arc=7pt,
+      colback=CSNavy,
+      colframe=CSNavy,
+      colupper=white,
+      boxrule=0pt,
+      left=6pt,
+      right=6pt,
+      top=2pt,
+      bottom=2pt,
+      fontupper=\sffamily\footnotesize\bfseries
+    ]{\foreignlanguage{hebrew}{#1}}%
+  }%
 }
 
 \fancypagestyle{mainstyle}{
@@ -363,7 +375,7 @@
   \fancyhead[R]{\sffamily\footnotesize\bfseries\color{CSNavy}\leftmark}
   \fancyhead[L]{\sffamily\footnotesize\color{CSSteel}\en{CivicShield AI} \;{\color{CSGold}|}\; \en{\CSDocCode}}
   \fancyfoot[R]{\sffamily\footnotesize\bfseries\color{CSRiskRed}\CSClassification}
-  \fancyfoot[L]{\CSPagePill{עמוד \thepage\ מתוך \pageref{LastPage}}}
+  \fancyfoot[L]{\CSPagePill{עמוד \thepage\ מתוך \pageref*{LastPage}}}
   \renewcommand{\headrulewidth}{1pt}
   \renewcommand{\headrule}{\hbox to\headwidth{\color{CSGold}\leaders\hrule height \headrulewidth\hfill}}
   \renewcommand{\footrulewidth}{0.5pt}
@@ -373,7 +385,7 @@
 \fancypagestyle{plain}{
   \fancyhf{}
   \fancyfoot[R]{\sffamily\footnotesize\bfseries\color{CSRiskRed}\CSClassification}
-  \fancyfoot[L]{\CSPagePill{עמוד \thepage\ מתוך \pageref{LastPage}}}
+  \fancyfoot[L]{\CSPagePill{עמוד \thepage\ מתוך \pageref*{LastPage}}}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0.5pt}
   \renewcommand{\footrule}{\hbox to\headwidth{\color{CSBorder}\leaders\hrule height \footrulewidth\hfill}}
@@ -464,17 +476,18 @@
     \endgroup
 
     \vspace*{1.5cm}
-    \noindent\begin{minipage}{11.5cm}
+    \noindent\begin{minipage}{11.2cm}
       \raggedleft
       {\sffamily\bfseries\color{CSGoldLight}\large מערך הדיגיטל והבינה המלאכותית הממשלתי}\\[0.55cm]
       {\sffamily\bfseries\color{white}\fontsize{32}{38}\selectfont #1}\\[0.55cm]
       {\sffamily\color{CSIce}\Large #2}
     \end{minipage}
 
-    \vspace{5.6cm}
+    \vspace{5.2cm}
 
+    \begin{otherlanguage}{english}
     \begin{tcolorbox}[
-      enhanced,
+      civicrtl,
       colback=white,
       colframe=CSNavy,
       leftrule=1pt,
@@ -495,6 +508,7 @@
       \textbf{\color{CSNavy}סטטוס:} דוח ראשוני להערכת היתכנות וארכיטקטורה (\en{Preliminary Design Report}) \\[5pt]
       \textbf{\color{CSNavy}סיווג ביטחוני:} {\color{CSRiskRed}\textbf{\CSClassification}}
     \end{tcolorbox}
+    \end{otherlanguage}
 
     \vfill
     \begin{flushright}
