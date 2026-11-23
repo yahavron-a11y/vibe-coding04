@@ -74,6 +74,9 @@
 \setlength{\parskip}{5.5pt}
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{1.5em}
+\raggedbottom
+\widowpenalty=10000
+\clubpenalty=10000
 
 % --- State-Engineering Color Palette ------------------------------------------
 \RequirePackage[table,svgnames]{xcolor}
@@ -109,6 +112,7 @@
   decorations.pathreplacing
 }
 \RequirePackage[most]{tcolorbox}
+\RequirePackage{needspace}
 \RequirePackage{titlesec}
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
@@ -165,7 +169,6 @@
 % --- Upgraded Callout Boxes (Insight, Risk, Contract) -------------------------
 \newtcolorbox{insightbox}[1][תובנה ארכיטקטונית]{
   enhanced,
-  breakable,
   colback=CSInsightBg,
   colframe=CSInsightTeal!85!black,
   coltitle=white,
@@ -198,7 +201,6 @@
 
 \newtcolorbox{riskbox}[1][סיכון קריטי ובקרת נגד]{
   enhanced,
-  breakable,
   colback=CSRiskBg,
   colframe=CSRiskRed!85!black,
   coltitle=white,
@@ -231,7 +233,6 @@
 
 \newtcolorbox{contractbox}[1][חוזה ממשק ו-SLA]{
   enhanced,
-  breakable,
   colback=CSContractBg,
   colframe=CSGold,
   coltitle=CSNavy,
@@ -310,20 +311,20 @@
 \titlespacing*{\chapter}{0pt}{-14pt}{18pt}
 
 \titleformat{\section}
-  {\sffamily\Large\bfseries\color{CSNavy}}
+  {\needspace{5\baselineskip}\sffamily\Large\bfseries\color{CSNavy}}
   {\tcbox[on line, arc=3pt, colback=CSSlate, colframe=CSSlate, colupper=white, boxrule=0pt, left=4pt, right=4pt, top=1.5pt, bottom=1.5pt]{\thesection}}
   {0.6em}
   {}
   [\vspace{2.5pt}{\color{CSGold}\titlerule[1.2pt]}]
 
 \titleformat{\subsection}
-  {\sffamily\large\bfseries\color{CSSlate}}
+  {\needspace{4\baselineskip}\sffamily\large\bfseries\color{CSSlate}}
   {\color{CSGold}\thesubsection}
   {0.6em}
   {}
 
 \titleformat{\subsubsection}
-  {\sffamily\normalsize\bfseries\color{CSSteel}}
+  {\needspace{3\baselineskip}\sffamily\normalsize\bfseries\color{CSSteel}}
   {\thesubsubsection}
   {0.5em}
   {}

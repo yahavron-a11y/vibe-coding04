@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.25.7 (MiKTeX 26.5) (format=lualatex 2026.11.19)  23 NOV 2026 09:26
+This is LuaHBTeX, Version 1.25.7 (MiKTeX 26.5) (format=lualatex 2026.11.19)  23 NOV 2026 09:33
  restricted system commands enabled.
 **main.tex
 (./main.tex
@@ -1049,7 +1049,11 @@ Library (tcolorbox): 'tcbvignette.code.tex' version '6.10.0'
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/tcolorbox/tcbposter.code.
 tex
 Library (tcolorbox): 'tcbposter.code.tex' version '6.10.0'
-)) (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/titlesec/titlesec.sty
+))
+(C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/needspace/needspace.sty
+Package: needspace 2026/10/13 v1.3f reserve vertical space
+)
+(C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \ttl@box=\box112
 \beforetitleunit=\skip64
@@ -1060,7 +1064,8 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \titlewidth=\dimen325
 \titlewidthlast=\dimen326
 \titlewidthfirst=\dimen327
-) (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/fancyhdr/fancyhdr.sty
+)
+(C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 
 \f@nch@headwidth=\skip66
@@ -1676,15 +1681,11 @@ vailable
 (./main.toc [3
 
 
-]
-Underfull \vbox (badness 1087) has occurred while \output is active []
-
- [4])
+] [4])
 \tf@toc=\write5
 
 \openout5 = main.toc
-
-[5] (./main.lof)
+ [5] (./main.lof)
 \tf@lof=\write6
 
 \openout6 = main.lof
@@ -1698,42 +1699,25 @@ Underfull \vbox (badness 1087) has occurred while \output is active []
  [7
 
 ]
-Underfull \hbox (badness 1231) in paragraph at lines 97--97
-[]|\TU/Arial(0)/m/n/10.95 התנהגות בלתי-אותנטית מתואמת 
-של רשתות
+Underfull \hbox (badness 5681) in paragraph at lines 99--99
+[]|\TU/Arial(0)/m/n/10 התנהגות בלתי-אותנטית מתואמת ש
+ל רשתות בוטים
  []
 
 
-Underfull \hbox (badness 1331) in paragraph at lines 97--97
-[]|\TU/Arial(0)/m/n/10.95 תור הודעות כושלות לניתוח והת
-אוששות ללא
+Underfull \hbox (badness 10000) in paragraph at lines 99--101
+
  []
 
-
-Underfull \hbox (badness 1127) in paragraph at lines 97--97
-[]|\TU/Arial(0)/m/n/10.95 דרישות פונקציונליות ולא-פונ
-קציונליות מחייבות
- []
+[8
 
 
-Underfull \hbox (badness 4366) in paragraph at lines 97--97
-[]|\TU/Arial(0)/m/n/10.95 מודל אפידמיולוגי להתפשטות ד
-יסאינפורמציה
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [8
-
-
-]
-[9] (./chapters/ch01_vision.tex
+] (./chapters/ch01_vision.tex
 \bbl@ensure@hebrew {פרק} 1.
 LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <28> not available
 (Font)              Font shape `TU/Arial(1)/b/n' tried instead on input line 1.
 
-[10
+[9
 
 
 ]
@@ -1756,11 +1740,11 @@ Overfull \hbox (2.57309pt too wide) in paragraph at lines 48--48
 \TU/Arial(0)/m/n/10.95 (בבחירות/חירום)| 
  []
 
-[11]
+[10]
 LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <14.4> not available
 (Font)              Font shape `TU/Arial(2)/b/n' tried instead on input line 63
 .
- [12]
+ [11]
 LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <12> not available
 (Font)              Font shape `TU/Arial(2)/b/n' tried instead on input line 91
 .
@@ -1786,11 +1770,11 @@ Underfull \hbox (badness 5622) in paragraph at lines 111--111
 ן בטעות
  []
 
-) (./chapters/ch02_theory_law.tex [13]
+) (./chapters/ch02_theory_law.tex [12]
 \bbl@ensure@hebrew {פרק} 2.
-[14
+[13
 
-] [15] [16]
+] [14] [15]
 Overfull \hbox (0.86717pt too wide) in paragraph at lines 96--97
 []\TU/Arial(0)/m/n/10.95 טבלה [][]2.1[][] מסכמת את מיפוי הד
 רישות המשפטיות אל מול המנגנונים הטכנולוגי
@@ -1826,9 +1810,9 @@ Underfull \hbox (badness 7613) in paragraph at lines 114--114
 []|\TU/Arial(0)/m/n/10.95 חוק הבחירות (דרכי
  []
 
-[17]) (./chapters/ch03_architecture.tex [18]
+[16]) (./chapters/ch03_architecture.tex [17]
 \bbl@ensure@hebrew {פרק} 3.
-[19
+[18
 
 ]
 LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <9> not available
@@ -1842,11 +1826,7 @@ Overfull \hbox (3.64409pt too wide) in paragraph at lines 76--76
 LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <10> not available
 (Font)              Font shape `TU/Arial(2)/b/n' tried instead on input line 10
 0.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [20]
-[21]
+[19] [20]
 Underfull \hbox (badness 1735) in paragraph at lines 217--217
 []|\TU/Arial(0)/m/n/10.95 ניתוב דינמי בין לפחות 6 סוכני
 ם מתמחים
@@ -1870,15 +1850,16 @@ Underfull \hbox (badness 1852) in paragraph at lines 224--224
 זמן אמת
  []
 
-[22]
+[21]
 Underfull \hbox (badness 1009) in paragraph at lines 248--248
 []|\TU/Arial(0)/m/n/10.95 תפוקה (\TU/TimesNewRoman(0)/m/n/10.95 Through-
  []
 
+[22]
 LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <8> not available
 (Font)              Font shape `TU/Arial(2)/b/n' tried instead on input line 27
 2.
-[23]) (./chapters/ch04_simulations.tex [24]
+) (./chapters/ch04_simulations.tex [23]
 \bbl@ensure@hebrew {פרק} 4.
 
 Overfull \hbox (1.68396pt too wide) in paragraph at lines 6--7
@@ -1887,46 +1868,42 @@ Overfull \hbox (1.68396pt too wide) in paragraph at lines 6--7
 CourierNew(1)/m/n/10 scripts/generate_figures.py[]\TU/Arial(0)/m/n/10.95 ,
  []
 
-
-Underfull \vbox (badness 1975) has occurred while \output is active []
-
- [25
+[24
 
 ]
-<figures/fig4_1_siri_ode.pdf, id=663, 822.94197pt x 327.4261pt>
+<figures/fig4_1_siri_ode.pdf, id=657, 822.94197pt x 327.4261pt>
 File: figures/fig4_1_siri_ode.pdf Graphic file (type pdf)
 <use figures/fig4_1_siri_ode.pdf>
 Package luatex.def Info: figures/fig4_1_siri_ode.pdf  used on input line 52.
 (luatex.def)             Requested size: 448.69853pt x 178.52112pt.
-
-[26<./figures/fig4_1_siri_ode.pdf>]
-<figures/fig4_2_hk_opinion.pdf, id=798, 829.20543pt x 327.73796pt>
+ [25<./figures/fig4_1_siri_ode.pdf>]
+<figures/fig4_2_hk_opinion.pdf, id=792, 829.20543pt x 327.73796pt>
 File: figures/fig4_2_hk_opinion.pdf Graphic file (type pdf)
 <use figures/fig4_2_hk_opinion.pdf>
 Package luatex.def Info: figures/fig4_2_hk_opinion.pdf  used on input line 75.
 (luatex.def)             Requested size: 448.69853pt x 177.34592pt.
- [27<./figures/fig4_2_hk_opinion.pdf>]
-<figures/fig4_3_bayesian_fusion.pdf, id=928, 822.94197pt x 327.4261pt>
+ [26<./figures/fig4_2_hk_opinion.pdf>]
+<figures/fig4_3_bayesian_fusion.pdf, id=922, 822.94197pt x 327.4261pt>
 File: figures/fig4_3_bayesian_fusion.pdf Graphic file (type pdf)
 <use figures/fig4_3_bayesian_fusion.pdf>
 Package luatex.def Info: figures/fig4_3_bayesian_fusion.pdf  used on input line
  97.
 (luatex.def)             Requested size: 448.69853pt x 178.52112pt.
-<figures/fig4_4_mmc_queueing.pdf, id=930, 823.61075pt x 327.25864pt>
+<figures/fig4_4_mmc_queueing.pdf, id=924, 823.61075pt x 327.25864pt>
 File: figures/fig4_4_mmc_queueing.pdf Graphic file (type pdf)
 <use figures/fig4_4_mmc_queueing.pdf>
 Package luatex.def Info: figures/fig4_4_mmc_queueing.pdf  used on input line 11
 6.
 (luatex.def)             Requested size: 448.69853pt x 178.29pt.
 
-[28<./figures/fig4_3_bayesian_fusion.pdf>]
-<figures/fig4_5_roi_5yr.pdf, id=1061, 820.5444pt x 327.41924pt>
+[27<./figures/fig4_3_bayesian_fusion.pdf>]
+<figures/fig4_5_roi_5yr.pdf, id=1055, 820.5444pt x 327.41924pt>
 File: figures/fig4_5_roi_5yr.pdf Graphic file (type pdf)
 <use figures/fig4_5_roi_5yr.pdf>
 Package luatex.def Info: figures/fig4_5_roi_5yr.pdf  used on input line 150.
 (luatex.def)             Requested size: 448.69853pt x 179.04196pt.
-
-Overfull \hbox (74.45512pt too wide) in paragraph at lines 161--162
+ [28<./figures/fig4_4_mmc_queueing.pdf>] [29<./figures/fig4_5_roi_5yr.pdf>]
+Overfull \hbox (74.45512pt too wide) in paragraph at lines 162--163
 \TU/Arial(0)/m/n/10.95 להבטחת שחזוריות מלאה, יציבות נ
 ומרית ומוכנות הנדסית לביקורת, מנוע הסימולצ
 יה בסקריפט []\TU/CourierNew(1)/m/n/10 scripts/generate_figures.py[]
@@ -1935,12 +1912,9 @@ Overfull \hbox (74.45512pt too wide) in paragraph at lines 161--162
 \g__tcobox_out_iow=\write8
 
 \openout8 = main.listing
-(./main.listing) [29<./figures/fig4_4_mmc_queueing.pdf>] [30<./figures/fig4_5_ro
-i_5yr.pdf>]) (./chapters/ch05_safeguards_audit.tex
-Underfull \vbox (badness 1014) has occurred while \output is active []
+(./main.listing) [30
 
- [31]
-[32]
+]) (./chapters/ch05_safeguards_audit.tex [31]
 \bbl@ensure@hebrew {פרק} 5.
 
 Underfull \hbox (badness 1014) in paragraph at lines 13--15
@@ -1949,9 +1923,9 @@ Underfull \hbox (badness 1014) in paragraph at lines 13--15
 במנגנוני הממשל
  []
 
-[33
+[32
 
-]
+] [33]
 Underfull \hbox (badness 10000) in paragraph at lines 65--65
 []|\TU/Arial(0)/b/n/10 זכות יסוד
  []
@@ -2097,17 +2071,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 38710 strings out of 475522
- 745207,1648299 words of node,token memory allocated
- 13038 words of node memory still in use:
-   31 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 4490 attribute, 64 glue_
-spec, 1502 attribute_list, 2 write, 24 pdf_literal, 5 pdf_action, 24 pdf_colorst
+ 38731 strings out of 475522
+ 745205,1648299 words of node,token memory allocated
+ 13030 words of node memory still in use:
+   31 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 4487 attribute, 64 glue_
+spec, 1501 attribute_list, 2 write, 24 pdf_literal, 5 pdf_action, 24 pdf_colorst
 ack nodes
-   avail lists: 1:3,2:72433,3:1760,4:286,5:17396,6:123,7:15531,8:82,9:34048,10:7
-1,11:1796
- 60481 multiletter control sequences out of 65536+600000
- 166 fonts using 85718935 bytes
- 117i,16n,114p,1111b,1734s stack positions out of 10000i,1000n,20000p,200000b,200000s
+   avail lists: 1:1,2:62841,3:2355,4:310,5:19529,6:131,7:16979,8:82,9:38146,10:7
+1,11:2018
+ 60497 multiletter control sequences out of 65536+600000
+ 164 fonts using 83201799 bytes
+ 117i,16n,114p,1111b,1728s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/WINDOWS/Fonts/arialni.ttf><c:/users/ron/appdata/local/programs/miktex/fonts/
 opentype/public/lm/lmromandemi10-regular.otf><c:/users/ron/appdata/local/program
 s/miktex/fonts/opentype/public/lm/lmroman7-regular.otf><C:/WINDOWS/Fonts/cour.tt
@@ -2129,7 +2103,7 @@ fb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 sy7.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
 cm/cmsy8.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmsy9.pfb>
-Output written on main.pdf (39 pages, 934966 bytes).
+Output written on main.pdf (39 pages, 935647 bytes).
 
 PDF statistics: 1613 PDF objects out of 1728 (max. 8388607)
  255 named destinations out of 1000 (max. 1048576)

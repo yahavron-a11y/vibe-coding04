@@ -69,8 +69,10 @@
 % --- Page 5: Glossary & Acronyms ----------------------------------------------
 \clearpage
 \chapter*{מילון מונחים וראשי תיבות}
+\markboth{מילון מונחים וראשי תיבות}{מילון מונחים וראשי תיבות}
 \addcontentsline{toc}{chapter}{מילון מונחים וראשי תיבות}
 
+{\small\renewcommand{\arraystretch}{1.08}
 \begin{tabularx}{\textwidth}{@{} l l X @{}}
 \toprule
 \rowcolor{CSNavy}
@@ -95,6 +97,7 @@
 \en{Zero-Trust} & \en{Zero-Trust Architecture} & מודל אבטחה ללא אמון מובנה: אימות והרשאה בכל קריאה \\
 \bottomrule
 \end{tabularx}
+}
 
 % ==============================================================================
 % MAIN MATTER (~35 Pages across modular chapters)

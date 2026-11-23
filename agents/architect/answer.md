@@ -1,16 +1,28 @@
-# README, PRD Updated & Git Push Completed
+# דוח תיקון פריסת עמודים — CivicShield AI Preliminary Report
 
-## Documentation Updated
-- **`README.md`:**
-  - Updated PDF links and badges to point to the auto-synced root `CivicShield_AI_Preliminary_Report.pdf`.
-  - Updated the Reproduction Guide to use `agents/master/build.ps1` (and `.latexmkrc`).
-  - Added a "Latest Engineering Updates" section documenting continuous Arabic page numbering (no Roman numerals), automatic root PDF sync on every build, the strengthened production-grade Python simulation engine (`generate_figures.py`), and the Python reference implementation in Chapter 4.
-- **`PRD.md`:**
-  - Updated Section 2 (Core Objectives) and Section 4 (Acceptance Criteria) to reflect continuous Arabic page numbering, automated root PDF sync via `build.ps1` / `.latexmkrc`, the strengthened Python simulation engine, the Chapter 4 Python reference implementation, and keeping `README.md` and `PRD.md` updated on every `git push`.
+## 1. אבחון הבעיות בפריסה המקורית
+בבדיקה עמוד-אחר-עמוד של `CivicShield_AI_Preliminary_Report.pdf` (39 עמודי PDF / 38 עמודים ממוספרים) זוהו הפגמים הבאים:
+1. **פיצול חריג בעמודים 8–9 (מילון מונחים וראשי תיבות):** טבלת ה-`tabularx` של מילון המונחים חרגה בגובהה מהמקום שנותר מתחת לכותרת הפרק, ולכן נדחפה במלואה לעמוד 9. בגלל מצב `\flushbottom` של מחלקת `book (twoside)`, עמוד 8 נותר ריק לחלוטין מלבד כותרת הפרק שנדחפה לתחתיתו, ובנוסף כותרת הריצה בעמוד 9 המשיכה להציג "רשימת הטבלאות".
+2. **כותרות סעיפים יתומות בתחתית עמודים:** בגלל הגדרת `\titleformat{\section}` ללא שמירת מרחב מינימלי (`needspace`), שלוש כותרות סעיפים הופיעו לבדן בתחתית העמוד בעוד גוף הסעיף החל בעמוד הבא:
+   - סעיף `2.6` (מודל הממשל והפיקוח הדמוקרטי) — בתחתית עמוד 17.
+   - סעיף `3.5` (ניהול סיכונים ארכיטקטוניים) — בתחתית עמוד 23.
+   - סעיף `4.2` (מודל Hegselmann-Krause) — בתחתית עמוד 26.
+3. **פיצול תיבות הדגשה (`contractbox`, `riskbox`, `insightbox`):** הגדרת `breakable` על תיבות קצרות גרמה לפיצול של תיבת חוזה הממשק בפרק 3 בין עמודים 21–22.
+4. **זנב יתום בסוף פרק 4:** עמוד 32 הכיל 3 שורות בלבד בסיום פרק 4.
 
-## Git Commit & Push
-- **Branch:** `main`
-- **Commit Hash:** `7565e1d`
-- **Commit Message:** `Update README and PRD; include strengthened Python simulation engine, Ch. 4 reference code, and synced PDF`
-- **Push Result:** `0d415c2..7565e1d  main -> main` (`https://github.com/yahavron-a11y/vibe-coding04.git`)
-- **Files Committed (12):** `README.md`, `PRD.md`, `CivicShield_AI_Preliminary_Report.pdf`, `agents/master/chapters/ch04_simulations.tex`, `agents/master/scripts/generate_figures.py`, `agents/master/main.pdf`, and LaTeX build artifacts (`main.toc`, `main.aux`, `main.lof`, `main.lot`, `main.out`, `main.listing`).
+## 2. התיקונים שבוצעו בקובצי ה-LaTeX
+- **`agents/master/civicshield.cls`:**
+  - הוספת `\raggedbottom`, `\widowpenalty=10000`, `\clubpenalty=10000` למניעת מתיחה אנכית חריגה ושורות יתומות.
+  - טעינת חבילת `needspace` והוספת `\needspace{5\baselineskip}` ל-`\section`, `\needspace{4\baselineskip}` ל-`\subsection` ו-`\needspace{3\baselineskip}` ל-`\subsubsection` — כך שאף כותרת אינה נותרת יתומה בתחתית עמוד.
+  - הסרת `breakable` מתיבות `insightbox`, `riskbox` ו-`contractbox` כדי שכל תיבת הדגשה תישמר כיחידה ויזואלית שלמה בעמוד אחד.
+- **`agents/master/main.tex`:**
+  - הוספת `\markboth{מילון מונחים וראשי תיבות}{מילון מונחים וראשי תיבות}` לאחר `\chapter*{מילון מונחים וראשי תיבות}`.
+  - התאמת טבלת מילון המונחים (`\small` ו-`\renewcommand{\arraystretch}{1.08}`) כך שכל 17 השורות יושבות בצורה מאוזנת ונקייה באותו עמוד (עמוד 8) מיד מתחת לכותרת הפרק, ללא פיצול וללא עמוד ריק.
+- **`agents/master/chapters/ch04_simulations.tex`:**
+  - הוספת `\clearpage` נקי לפני סעיף `4.6` (מימוש ייחוס בפייתון), מה שמסדר את קטע הקוד ואת סעיף הסיכום ללא עמוד זנב של 3 שורות.
+
+## 3. אימות ובנייה מחדש (`build.ps1`)
+- הורץ `agents/master/build.ps1` (LuaLaTeX + BibTeX + 2 מעברים נוספים + סנכרון אוטומטי לשורש הפרויקט).
+- **תוצאה:** `SUCCESS: Built and synced CivicShield_AI_Preliminary_Report.pdf` (`935,647` bytes, `SHA256=EAF020129D372285877F35AFA00884EE5F93E383291870FF04867FF7320A09C9`).
+- **שגיאות LaTeX:** `0` (`LATEX_ERRORS: 0`).
+- **אימות ויזואלי וטקסטואלי:** עמוד 8 (מילון המונחים) אומת כתמונת PNG — הכותרת וכל הטבלה מופיעות יחד בעמוד אחד באופן נקי ומאוזן. כל 39 עמודי ה-PDF נבדקו — אין כותרות יתומות, אין תיבות מפוצלות ואין עמודי מעבר ריקים.

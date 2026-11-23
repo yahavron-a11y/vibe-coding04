@@ -4,21 +4,21 @@
 \addvspace {10\p@ }
 \babel@toc {english}{}\relax 
 \babel@toc {hebrew}{}\relax 
-\contentsline {figure}{\numberline {3.1}{\ignorespaces ארכיטקטורת חמש השכבות של מערכת \foreignlanguage {english}{CivicShield AI} ועמודי התווך חוצי-השכבות}}{20}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces ארכיטקטורת חמש השכבות של מערכת \foreignlanguage {english}{CivicShield AI} ועמודי התווך חוצי-השכבות}}{19}{figure.caption.9}%
 \babel@toc {english}{}\relax 
 \babel@toc {hebrew}{}\relax 
-\contentsline {figure}{\numberline {3.2}{\ignorespaces טופולוגיית \foreignlanguage {english}{Hub-and-Spoke} של רכזת הסוכנים ולולאת האימות ההכרחית}}{21}{figure.caption.10}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces טופולוגיית \foreignlanguage {english}{Hub-and-Spoke} של רכזת הסוכנים ולולאת האימות ההכרחית}}{20}{figure.caption.10}%
 \babel@toc {english}{}\relax 
 \babel@toc {hebrew}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {hebrew}{}\relax 
 \contentsline {figure}{\numberline {3.3}{\ignorespaces תקציב השהיה מקצה לקצה (\foreignlanguage {english}{P95 Latency Budget}) לאורך צינור העיבוד}}{23}{figure.caption.11}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces השוואת התפשטות דיסאינפורמציה במודל \foreignlanguage {english}{SIRI ODE} לאורך 72 שעות: תרחיש בסיס ללא התערבות (שמאל) לעומת הפעלת \foreignlanguage {english}{CivicShield AI} (ימין). המערכת מורידה את $R_{\mathrm {eff}}$ מתחת ל-1 ומונעת התפרצות ויראלית.}}{26}{figure.caption.13}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces סימולציית \foreignlanguage {english}{Hegselmann-Krause} ($N=160$ סוכנים, 30 צעדי אינטראקציה). משמאל: התקבעות קיטוב חריף לשני קטבים מנותקים ($\sigma =0.273$). מימין: התכנסות לקונצנזוס עובדתי תחת התערבות \foreignlanguage {english}{CivicShield AI} ($\sigma <0.001$).}}{27}{figure.caption.14}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces התכנסות הסתברות פוסטריורית במנוע ההיתוך הבייסיאני (שמאל) ועקומת \foreignlanguage {english}{ROC} המשווה מודאליות בודדות להיתוך מלא (ימין, $\text {AUC}=0.964$).}}{28}{figure.caption.15}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces זמן המתנה ממוצע $W_q$ לפי נוסחת \foreignlanguage {english}{Erlang-C} (שמאל) ושיעור ניצולת אנליסטים בעומס שיא $\lambda =85/\text {hr}$ (ימין). סינון אוטומטי של $78\%$ באמצעות \foreignlanguage {english}{CivicShield AI} מאפשר עמידה ב-\foreignlanguage {english}{SLA} של מתחת ל-5 דקות עם 6 אנליסטים בלבד.}}{29}{figure.caption.16}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces ניתוח פיננסי ל-5 שנים (מיליוני ש"ח): השוואת עלות כוללת מול תועלות שנתיות (שמאל) ומסלול הערך הנוכחי הנקי המצטבר (\foreignlanguage {english}{NPV}, ימין). נקודת האיזון מושגת בתחילת שנה 2, עם \foreignlanguage {english}{ROI} כולל של $205\%$.}}{30}{figure.caption.18}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces השוואת התפשטות דיסאינפורמציה במודל \foreignlanguage {english}{SIRI ODE} לאורך 72 שעות: תרחיש בסיס ללא התערבות (שמאל) לעומת הפעלת \foreignlanguage {english}{CivicShield AI} (ימין). המערכת מורידה את $R_{\mathrm {eff}}$ מתחת ל-1 ומונעת התפרצות ויראלית.}}{25}{figure.caption.13}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces סימולציית \foreignlanguage {english}{Hegselmann-Krause} ($N=160$ סוכנים, 30 צעדי אינטראקציה). משמאל: התקבעות קיטוב חריף לשני קטבים מנותקים ($\sigma =0.273$). מימין: התכנסות לקונצנזוס עובדתי תחת התערבות \foreignlanguage {english}{CivicShield AI} ($\sigma <0.001$).}}{26}{figure.caption.14}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces התכנסות הסתברות פוסטריורית במנוע ההיתוך הבייסיאני (שמאל) ועקומת \foreignlanguage {english}{ROC} המשווה מודאליות בודדות להיתוך מלא (ימין, $\text {AUC}=0.964$).}}{27}{figure.caption.15}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces זמן המתנה ממוצע $W_q$ לפי נוסחת \foreignlanguage {english}{Erlang-C} (שמאל) ושיעור ניצולת אנליסטים בעומס שיא $\lambda =85/\text {hr}$ (ימין). סינון אוטומטי של $78\%$ באמצעות \foreignlanguage {english}{CivicShield AI} מאפשר עמידה ב-\foreignlanguage {english}{SLA} של מתחת ל-5 דקות עם 6 אנליסטים בלבד.}}{28}{figure.caption.16}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces ניתוח פיננסי ל-5 שנים (מיליוני ש"ח): השוואת עלות כוללת מול תועלות שנתיות (שמאל) ומסלול הערך הנוכחי הנקי המצטבר (\foreignlanguage {english}{NPV}, ימין). נקודת האיזון מושגת בתחילת שנה 2, עם \foreignlanguage {english}{ROI} כולל של $205\%$.}}{29}{figure.caption.18}%
 \babel@toc {english}{}\relax 
 \babel@toc {hebrew}{}\relax 
 \addvspace {10\p@ }
