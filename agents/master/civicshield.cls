@@ -73,6 +73,7 @@
 \onehalfspacing
 \setlength{\parskip}{5.5pt}
 \setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{1.5em}
 
 % --- State-Engineering Color Palette ------------------------------------------
 \RequirePackage[table,svgnames]{xcolor}

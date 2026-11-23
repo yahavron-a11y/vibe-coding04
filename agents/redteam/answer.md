@@ -1,1 +1,43 @@
-Confirmed: Replaced all 3 inline math `\textenglish{...}` calls (`$< \textenglish{2\%}$`, `$\le \textenglish{30}$`, `$< \textenglish{3\%}$`) with pure math mode (`$< 2\%$`, `$\le 30$`, `$< 3\%$`) in `Table tab:safeguards_matrix` in both `master/chapters/ch05_safeguards_audit.tex` and `redteam/chapters/ch05_safeguards_audit.tex`. Ready for LuaLaTeX recompilation.
+# דוח ביקורת איכות, חוקתיות, אנטי-צנזורה ו-LuaLaTeX BiDi QA — CivicShield AI
+
+**מבקר:** סוכן `redteam` (Constitutional Safeguards Audit, Anti-Censorship Review & LuaLaTeX BiDi QA)  
+**תוצר נבדק:** `CivicShield_AI_Preliminary_Report.pdf` (`agents/master/main.tex` + `civicshield.cls` + פרקים 1–5 + `references.bib`)  
+**סטטוס סופי לאחר תיקונים:** **עובר בהצטיינות (PASS — Government-Tender Ready)**
+
+---
+
+## 1. הערכה כוללת (Executive Verdict)
+העבודה עומדת ברף הגבוה ביותר של דוח מכין למכרז ממשלתי ודוח אקדמי-הנדסי:
+- **היקף ומבנה:** 38 עמודים (בתוך טווח היעד 37–45 עמודים), מספור עמודים ערבי רציף (ללא ספרות רומיות ב-Front Matter), ארכיטקטורת LaTeX מודולרית מלאה (`civicshield.cls`, `main.tex`, 5 פרקים נפרדים, `references.bib`, `build.ps1`).
+- **תקינות קומפילציה ואימות:** `LATEX_ERRORS_COUNT: 0`, `RMFAMILY_MATH_ERRORS_COUNT: 0`, `UNDEF_REFS: 0`, `UNDEF_CITES: 0`.
+- **איכות אקדמית ורב-תחומית:** שילוב עמוק בין תקשורת פוליטית, מדעי המדינה, משפט חוקתי ישראלי ואירופי (24 מקורות אקדמיים ורגולטוריים ב-`references.bib`), ארכיטקטורת 5 שכבות ב-TikZ מקורי בלבד, ו-5 סימולציות מתמטיות דטרמיניסטיות בפייתון עם מימוש ייחוס בפרק 4.
+- **ביקורת חוקתית ואנטי-צנזורה:** אכיפה מבנית של `Behavior Not Speech`, מודל `Read-Only Advisory` (אפס הסרה אוטומטית), `HITL`, בדיקות ניטרליות השקפתית (`< 2%`), הוגנות רב-לשונית (`FPR gap < 3%`), ומודל ממשל ארבע-שכבתי.
+
+---
+
+## 2. ממצאי הביקורת והתיקונים שבוצעו ישירות
+
+במהלך הסקירה המעמיקה אותרו מספר פערים טיפוגרפיים, אקדמיים וטרמינולוגיים — וכולם תוקנו ישירות בקובצי המקור של `agents/master/` וקומפלו מחדש בהצלחה:
+
+### א. תיקוני LuaLaTeX BiDi וטיפוגרפיה (`Overfull \hbox` ובידוד LTR)
+1. **גלישת שוליים בטבלת `SIRI ODE` (`ch04_simulations.tex`):** טבלת `tab:siri_params` חרגה ב-`25.3pt` מהשוליים. הומרה ל-`tabularx` ברוחב `\textwidth` עם `\small` — הגלישה נעלמה לחלוטין.
+2. **בידוד BiDi של נתיבי קבצים (`ch04_simulations.tex`):** שימוש ב-`\texttt{scripts/generate\_figures.py}` ללא עטיפת שפה גרם לחריגות BiDi וגלישת שורה (`17.1pt`). הוחלף למאקרו `\code{...}` המבודד LTR כתקן.
+3. **שיפור יישור דו-לשוני גלובלי (`civicshield.cls`):** נוסף `\setlength{\emergencystretch}{1.5em}` למניעת גלישות שוליים קלות בפיסקאות עבריות עתירות מונחים באנגלית.
+4. **תוצאה מדידה:** מספר אזהרות ה-`Overfull \hbox` ב-`main.log` ירד מ-**11** ל-**5 בלבד** (4 מהן זניחות מתחת ל-`3.7pt` ואינן נראות לעין).
+
+### ב. שדרוג איכות אקדמית, חוקתית וטרמינולוגית (`ch05_safeguards_audit.tex`)
+1. **עיגון ביבליוגרפי חסר בפרק 5:** בפרק 5 לא הופיעו כלל הפניות `\cite{...}` אף שהוא נשען על חוקי יסוד ופסיקה. נוספו הפניות מדויקות למקורות קיימים ב-`references.bib`:
+   - חוק יסוד: כבוד האדם וחירותו (`\cite{basiclaw1992}`), הלכת קול העם (`\cite{kolhaam1953}`), מידתיות (`\cite{barak2012proportionality}`), בג"ץ עדאלה נ' יחידת הסייבר (`\cite{adalah2021cyber}`), חוק הגנת הפרטיות (`\cite{privacy_law1981}`), ו-EU AI Act (`\cite{eu_aiact2024}`).
+2. **אחידות טרמינולוגית (`ABAC/RBAC`):** טבלת הערובות החוקתיות בפרק 5 ציינה `RBAC` בלבד, בניגוד ל-`ABAC` במילון המונחים ובפרק 3. עודכן ל-`ABAC/RBAC` לשמירה על עקביות מלאה.
+3. **תיקון מירכאות ותקן עיצוב טבלאות:** הוחלפו מירכאות לא-תקניות (`,,האמת''`, `,,קופסה שחורה''`) במירכאות תקניות, וטבלה `tab:safeguards_matrix` שודרגה ל-`tabularx` עם כותרת `CSNavy` תואמת לשאר המסמך.
+
+### ג. השלמת מילון המונחים (`main.tex`)
+נוספו 7 מונחי ליבה שהופיעו לאורך הדוח אך חסרו במילון המונחים בפתיח: `CIB`, `DSA`, `FIMI`, `FPR`, `OSINT`, `SIRI`, `SOC`.
+
+---
+
+## 3. אימות בנייה סופית (Post-Fix Verification)
+הורץ `agents/master/build.ps1` במלואו (LuaLaTeX × 3 + BibTeX):
+- **קובץ סופי מסונכרן:** `CivicShield_AI_Preliminary_Report.pdf` (`934,966` bytes, `SHA256=4ECFD30D579B7E0E5C6D93DE79E9E6E25EAD08D065E4364CC1F46371E7EDF53A`)
+- **עמודים:** `38`
+- **שגיאות LaTeX / הפניות / ציטוטים חסרים:** `0 / 0 / 0`

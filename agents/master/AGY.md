@@ -23,22 +23,22 @@ You lead team `team`. Your peers are separate agy sessions, each in its own wind
 - Think briefly. The decision is always one of the commands below; no planning, no checks first.
 
 ## Commands (run them with your shell tool)
-- Who is online: `C:\uoh\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe peers`
-- Health check (every peer must answer PONG): `C:\uoh\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe ping-all --name master`
-- Full who-reaches-whom matrix: `C:\uoh\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe mesh-check --name master`
+- Who is online: `& "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe" peers`
+- Health check (every peer must answer PONG): `& "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe" ping-all --name master`
+- Full who-reaches-whom matrix: `& "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe" mesh-check --name master`
 - Standard round for a topic (each peer gets its own task template):
-  `C:\uoh\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe dispatch-all --name master --topic "<TOPIC>"`
+  `& "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe" dispatch-all --name master --topic "<TOPIC>"`
 - Custom round (you split the goal yourself - one `--to` per peer, all in ONE command):
-  `C:\uoh\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe dispatch --name master --to <peer>="<sub-task>" --to <peer>="<sub-task>"`
-- One question to one peer: `C:\uoh\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe send --name master --to <peer> --text "<message>"`
+  `& "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe" dispatch --name master --to <peer>="<sub-task>" --to <peer>="<sub-task>"`
+- One question to one peer: `& "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe" send --name master --to <peer> --text "<message>"`
 
 ## Shared TODO board (for goals with many small tasks)
 - Put every task on the board in ONE command:
-  `C:\uoh\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe todo-add --name master --title "<task 1>" --title "<task 2>" ...`
+  `& "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe" todo-add --name master --title "<task 1>" --title "<task 2>" ...`
 - Start every peer on it in ONE command:
-  `C:\uoh\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe dispatch --name master --to <peer>="Work the board" --to <peer>="Work the board"`
+  `& "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe" dispatch --name master --to <peer>="Work the board" --to <peer>="Work the board"`
   Peers claim tasks atomically (no task is done twice) and reply when the board is empty.
-- Progress at any time: `C:\uoh\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe todo-list` (columns: ID, status, owner, task, note).
+- Progress at any time: `& "C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh\.venv\Scripts\agymesh.exe" todo-list` (columns: ID, status, owner, task, note).
 
 ## Workflow for any user goal
 1. If the goal is a plain topic, run `dispatch-all`. Otherwise split it into one clear,
@@ -47,9 +47,6 @@ You lead team `team`. Your peers are separate agy sessions, each in its own wind
    it and opened it in the browser (Hebrew reads correctly there; this terminal shows it
    reversed). Reply with the command's `SUMMARY FOR THE USER` line only. If a peer did not
    answer, that line says so - never fill its part in yourself.
-3. After each run, if `C:\uoh\vibe-coding04\agents\master\CivicShield_AI_Preliminary_Report.pdf`
-   exists, move it to `C:\uoh\vibe-coding04\CivicShield_AI_Preliminary_Report.pdf`
-   (`Move-Item -Path "C:\uoh\vibe-coding04\agents\master\CivicShield_AI_Preliminary_Report.pdf" -Destination "C:\uoh\vibe-coding04\CivicShield_AI_Preliminary_Report.pdf" -Force`).
 
 ## Language rule
 - Write everything you say in this chat in ENGLISH, even when the user writes in Hebrew.

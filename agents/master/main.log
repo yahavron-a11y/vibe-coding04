@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.25.7 (MiKTeX 26.5) (format=lualatex 2026.11.19)  20 NOV 2026 12:38
+This is LuaHBTeX, Version 1.25.7 (MiKTeX 26.5) (format=lualatex 2026.11.19)  23 NOV 2026 09:26
  restricted system commands enabled.
 **main.tex
 (./main.tex
@@ -244,10 +244,10 @@ Language: nil 2026/11/10 v26.16 Nil language
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/generic/babel/locale/he/babel-h
 ebrew.tex)
 Package babel Info: Importing data for 'hebrew'
-(babel)             from babel-he.ini. Reported on input line 19.
+(babel)             from babel-he.ini. Reported on input line 30.
 \bbl@readsubstream=\read3
 Package babel Info: Hyphen rules for 'hebrew' set to \l@nil
-(babel)             (\language80). Reported on input line 19.
+(babel)             (\language80). Reported on input line 30.
 
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/generic/babel/locale/he/babel-h
 ebrew.tex)
@@ -264,7 +264,7 @@ ex
 (C:/Users/ron/AppData/Local/Programs/MiKTeX/tex/generic/babel/locale/en/babel-e
 nglish.tex)
 Package babel Info: Importing data for 'english'
-(babel)             from babel-en.ini. Reported on input line 20.
+(babel)             from babel-en.ini. Reported on input line 31.
 luaotfload | cache : Lookup cache loaded from C:/Users/ron/AppData/Local/MiKTeX/
 luatex-cache/generic/names/luaotfload-lookup-cache.luc.
 luaotfload | db : Reload initiated (formats: otf,ttf,ttc); reason: Font "David C
@@ -1617,6 +1617,7 @@ Package hyperref Info: Link coloring ON on input line 7.
 
 \openout4 = main.out
 Package babel Info: Main language set to 'hebrew'.
+Package hyperref Info: Option `pageanchor' set `false' on input line 19.
 LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <10.95> not available
 
 (Font)              Font shape `TU/Arial(1)/b/n' tried instead on input line 19
@@ -1647,6 +1648,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 {C:/Users/ron/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+Package hyperref Info: Option `pageanchor' set `true' on input line 19.
 LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <14.4> not available
 (Font)              Font shape `TU/Arial(1)/b/n' tried instead on input line 23
 .
@@ -1656,7 +1658,7 @@ LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <10> not available
 LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <9> not available
 (Font)              Font shape `TU/Arial(1)/b/n' tried instead on input line 46
 .
- [2
+ [1
 
 ]
 LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <17.28> not available
@@ -1667,66 +1669,72 @@ LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/bx/n' in size <10.95> not a
 vailable
 (Font)              Font shape `TU/TimesNewRoman(0)/b/n' tried instead on input
  line 55.
- [3
+ [2
 
 
 ]
-(./main.toc [4
+(./main.toc [3
 
 
 ]
 Underfull \vbox (badness 1087) has occurred while \output is active []
 
- [5])
+ [4])
 \tf@toc=\write5
 
 \openout5 = main.toc
 
-[6] (./main.lof
-Overfull \hbox (1.87016pt too wide) in paragraph at lines 17--17
- [][] [][][]\TU/Arial(0)/m/n/10.95 השוואת התפשטות דיסאינפ
-ורמציה במודל \TU/TimesNewRoman(0)/m/n/10.95 SIRI ODE \TU/Arial(0)/m/
-n/10.95 לאורך 72 שעות: תרחיש בסיס ללא התערבות 
- []
-
-
-Overfull \hbox (0.28983pt too wide) in paragraph at lines 18--18
- \TU/Arial(0)/m/n/10.95 קיטוב חריף לשני קטבים מנותקים 
-($\OML/cmm/m/it/10.95  \OT1/cmr/m/n/10.95 = 0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n
-/10.95 273$\TU/Arial(0)/m/n/10.95 ). מימין: התכנסות לקונצנז
-וס עובדתי תחת התערבות 
- []
-
-)
+[5] (./main.lof)
 \tf@lof=\write6
 
 \openout6 = main.lof
- [7
+ [6
 
 
 ] (./main.lot)
 \tf@lot=\write7
 
 \openout7 = main.lot
- [8
+ [7
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 90--90
-[]|\TU/Arial(0)/m/n/10.95 מערך הסייבר הלאומי -- מקור דר
-ישות האבטחה
+Underfull \hbox (badness 1231) in paragraph at lines 97--97
+[]|\TU/Arial(0)/m/n/10.95 התנהגות בלתי-אותנטית מתואמת 
+של רשתות
  []
 
-[9
+
+Underfull \hbox (badness 1331) in paragraph at lines 97--97
+[]|\TU/Arial(0)/m/n/10.95 תור הודעות כושלות לניתוח והת
+אוששות ללא
+ []
 
 
-] [10
+Underfull \hbox (badness 1127) in paragraph at lines 97--97
+[]|\TU/Arial(0)/m/n/10.95 דרישות פונקציונליות ולא-פונ
+קציונליות מחייבות
+ []
 
-] (./chapters/ch01_vision.tex
+
+Underfull \hbox (badness 4366) in paragraph at lines 97--97
+[]|\TU/Arial(0)/m/n/10.95 מודל אפידמיולוגי להתפשטות ד
+יסאינפורמציה
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8
+
+
+]
+[9] (./chapters/ch01_vision.tex
 \bbl@ensure@hebrew {פרק} 1.
 LaTeX Font Info:    Font shape `TU/Arial(1)/bx/n' in size <28> not available
 (Font)              Font shape `TU/Arial(1)/b/n' tried instead on input line 1.
 
-[1
+[10
+
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 48--48
@@ -1748,11 +1756,11 @@ Overfull \hbox (2.57309pt too wide) in paragraph at lines 48--48
 \TU/Arial(0)/m/n/10.95 (בבחירות/חירום)| 
  []
 
-[2]
+[11]
 LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <14.4> not available
 (Font)              Font shape `TU/Arial(2)/b/n' tried instead on input line 63
 .
- [3]
+ [12]
 LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <12> not available
 (Font)              Font shape `TU/Arial(2)/b/n' tried instead on input line 91
 .
@@ -1778,19 +1786,11 @@ Underfull \hbox (badness 5622) in paragraph at lines 111--111
 ן בטעות
  []
 
-) (./chapters/ch02_theory_law.tex [4]
+) (./chapters/ch02_theory_law.tex [13]
 \bbl@ensure@hebrew {פרק} 2.
-[5
+[14
 
-] [6] [7]
-Overfull \hbox (13.10251pt too wide) in paragraph at lines 88--89
-\TU/Arial(0)/m/n/10.95 כדי להבטיח תאימות בינלאומית ו
-אימוץ מיטב הפרקטיקות הדמוקרטיות, \TU/TimesNewRoman(
-0)/m/n/10.95 Civic-Shield AI \TU/Arial(0)/m/n/10.95 מותאמת למסגרו
-ת הרגולטוריות
- []
-
-
+] [15] [16]
 Overfull \hbox (0.86717pt too wide) in paragraph at lines 96--97
 []\TU/Arial(0)/m/n/10.95 טבלה [][]2.1[][] מסכמת את מיפוי הד
 רישות המשפטיות אל מול המנגנונים הטכנולוגי
@@ -1826,16 +1826,9 @@ Underfull \hbox (badness 7613) in paragraph at lines 114--114
 []|\TU/Arial(0)/m/n/10.95 חוק הבחירות (דרכי
  []
 
-[8]) (./chapters/ch03_architecture.tex
-Overfull \hbox (3.8953pt too wide) in paragraph at lines 132--4
-\TU/Arial(0)/m/n/10.95 מחייבת ויתור על ערכים דמוקרטי
-ים --- להפך, היא נשענת עליהם. באמצעות התמקדות 
-בדפוסי מניפולציה התנהגותיים
- []
-
-[9]
+[17]) (./chapters/ch03_architecture.tex [18]
 \bbl@ensure@hebrew {פרק} 3.
-[10
+[19
 
 ]
 LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <9> not available
@@ -1850,19 +1843,10 @@ LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <10> not available
 (Font)              Font shape `TU/Arial(2)/b/n' tried instead on input line 10
 0.
 
-Overfull \hbox (13.25908pt too wide) in paragraph at lines 108--109
-\TU/Arial(0)/m/n/10.95 רכזת הסוכנים (\TU/TimesNewRoman(0)/m/n/10.95 
-Multi-Agent Hub\TU/Arial(0)/m/n/10.95 ) מממשת ארכיטקטורת \TU/Tim
-esNewRoman(0)/m/n/10.95 Hub-and-Spoke \TU/Arial(0)/m/n/10.95 מונחית-אי
-רועים (\TU/TimesNewRoman(0)/m/n/10.95 Event-Driven\TU/Arial(0)/m/n/10.95 ) 
-המבוססת
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11]
-[12]
+ [20]
+[21]
 Underfull \hbox (badness 1735) in paragraph at lines 217--217
 []|\TU/Arial(0)/m/n/10.95 ניתוב דינמי בין לפחות 6 סוכני
 ם מתמחים
@@ -1886,7 +1870,7 @@ Underfull \hbox (badness 1852) in paragraph at lines 224--224
 זמן אמת
  []
 
-[13]
+[22]
 Underfull \hbox (badness 1009) in paragraph at lines 248--248
 []|\TU/Arial(0)/m/n/10.95 תפוקה (\TU/TimesNewRoman(0)/m/n/10.95 Through-
  []
@@ -1894,209 +1878,214 @@ Underfull \hbox (badness 1009) in paragraph at lines 248--248
 LaTeX Font Info:    Font shape `TU/Arial(2)/bx/n' in size <8> not available
 (Font)              Font shape `TU/Arial(2)/b/n' tried instead on input line 27
 2.
-[14]) (./chapters/ch04_simulations.tex [15]
+[23]) (./chapters/ch04_simulations.tex [24]
 \bbl@ensure@hebrew {פרק} 4.
 
-Overfull \hbox (17.07622pt too wide) in paragraph at lines 6--7
+Overfull \hbox (1.68396pt too wide) in paragraph at lines 6--7
 []\TU/Arial(0)/m/n/10.95 כל הסימולציות הופקו באופן דט
-רמיניסטי ושחזורי באמצעות סקריפט החישוב \TU/Co
-urierNew(0)/m/n/10.95 scripts/generate_figures.py\TU/Arial(0)/m/n/10.95 ,
+רמיניסטי ושחזורי באמצעות סקריפט החישוב []\TU/
+CourierNew(1)/m/n/10 scripts/generate_figures.py[]\TU/Arial(0)/m/n/10.95 ,
  []
 
 
 Underfull \vbox (badness 1975) has occurred while \output is active []
 
- [16
+ [25
 
 ]
-Overfull \hbox (25.32312pt too wide) in paragraph at lines 34--47
- [][] 
- []
-
-<figures/fig4_1_siri_ode.pdf, id=660, 822.94197pt x 327.4261pt>
+<figures/fig4_1_siri_ode.pdf, id=663, 822.94197pt x 327.4261pt>
 File: figures/fig4_1_siri_ode.pdf Graphic file (type pdf)
 <use figures/fig4_1_siri_ode.pdf>
-Package luatex.def Info: figures/fig4_1_siri_ode.pdf  used on input line 51.
+Package luatex.def Info: figures/fig4_1_siri_ode.pdf  used on input line 52.
 (luatex.def)             Requested size: 448.69853pt x 178.52112pt.
-[17<./figures/fig4_1_siri_ode.pdf>]
-<figures/fig4_2_hk_opinion.pdf, id=793, 829.20543pt x 327.73796pt>
+
+[26<./figures/fig4_1_siri_ode.pdf>]
+<figures/fig4_2_hk_opinion.pdf, id=798, 829.20543pt x 327.73796pt>
 File: figures/fig4_2_hk_opinion.pdf Graphic file (type pdf)
 <use figures/fig4_2_hk_opinion.pdf>
-Package luatex.def Info: figures/fig4_2_hk_opinion.pdf  used on input line 74.
+Package luatex.def Info: figures/fig4_2_hk_opinion.pdf  used on input line 75.
 (luatex.def)             Requested size: 448.69853pt x 177.34592pt.
- [18<./figures/fig4_2_hk_opinion.pdf>]
-<figures/fig4_3_bayesian_fusion.pdf, id=922, 822.94197pt x 327.4261pt>
+ [27<./figures/fig4_2_hk_opinion.pdf>]
+<figures/fig4_3_bayesian_fusion.pdf, id=928, 822.94197pt x 327.4261pt>
 File: figures/fig4_3_bayesian_fusion.pdf Graphic file (type pdf)
 <use figures/fig4_3_bayesian_fusion.pdf>
 Package luatex.def Info: figures/fig4_3_bayesian_fusion.pdf  used on input line
- 96.
+ 97.
 (luatex.def)             Requested size: 448.69853pt x 178.52112pt.
-<figures/fig4_4_mmc_queueing.pdf, id=924, 823.61075pt x 327.25864pt>
+<figures/fig4_4_mmc_queueing.pdf, id=930, 823.61075pt x 327.25864pt>
 File: figures/fig4_4_mmc_queueing.pdf Graphic file (type pdf)
 <use figures/fig4_4_mmc_queueing.pdf>
 Package luatex.def Info: figures/fig4_4_mmc_queueing.pdf  used on input line 11
-5.
+6.
 (luatex.def)             Requested size: 448.69853pt x 178.29pt.
 
-[19<./figures/fig4_3_bayesian_fusion.pdf>]
-<figures/fig4_5_roi_5yr.pdf, id=1055, 820.5444pt x 327.41924pt>
+[28<./figures/fig4_3_bayesian_fusion.pdf>]
+<figures/fig4_5_roi_5yr.pdf, id=1061, 820.5444pt x 327.41924pt>
 File: figures/fig4_5_roi_5yr.pdf Graphic file (type pdf)
 <use figures/fig4_5_roi_5yr.pdf>
-Package luatex.def Info: figures/fig4_5_roi_5yr.pdf  used on input line 149.
+Package luatex.def Info: figures/fig4_5_roi_5yr.pdf  used on input line 150.
 (luatex.def)             Requested size: 448.69853pt x 179.04196pt.
-)
-(./chapters/ch05_safeguards_audit.tex [20<./figures/fig4_4_mmc_queueing.pdf>]
-[21<./figures/fig4_5_roi_5yr.pdf>]
+
+Overfull \hbox (74.45512pt too wide) in paragraph at lines 161--162
+\TU/Arial(0)/m/n/10.95 להבטחת שחזוריות מלאה, יציבות נ
+ומרית ומוכנות הנדסית לביקורת, מנוע הסימולצ
+יה בסקריפט []\TU/CourierNew(1)/m/n/10 scripts/generate_figures.py[]
+ []
+
+\g__tcobox_out_iow=\write8
+
+\openout8 = main.listing
+(./main.listing) [29<./figures/fig4_4_mmc_queueing.pdf>] [30<./figures/fig4_5_ro
+i_5yr.pdf>]) (./chapters/ch05_safeguards_audit.tex
+Underfull \vbox (badness 1014) has occurred while \output is active []
+
+ [31]
+[32]
 \bbl@ensure@hebrew {פרק} 5.
 
-Overfull \hbox (14.80205pt too wide) in paragraph at lines 13--15
-\TU/Arial(0)/b/n/10.95 הבטחות מדיניות בלבד, אלא חייבת 
-להיות מוטמעת בארכיטקטורה הטכנולוגית ובמנג
-נוני הממשל (\TU/TimesNewRoman(0)/b/n/10.95 Constitutional-
+Underfull \hbox (badness 1014) in paragraph at lines 13--15
+\TU/Arial(0)/b/n/10.95 על הבטחות מדיניות בלבד, אלא חי
+יבת להיות מוטמעת בארכיטקטורה הטכנולוגית ו
+במנגנוני הממשל
  []
 
-[22
+[33
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 55--55
-[]|\TU/Arial(0)/b/n/10.95 זכות יסוד
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/Arial(0)/b/n/10 זכות יסוד
  []
 
 
-Underfull \hbox (badness 1028) in paragraph at lines 57--57
-[]|\TU/Arial(0)/m/n/10.95 צנזורה עקיפה או
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 צנזורה עקיפה או
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--57
-[]|\TU/Arial(0)/m/n/10.95 חופש הביטוי
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 חופש הביטוי
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--57
-[]|\TU/Arial(0)/m/n/10.95 ארכיטקטורת \TU/TimesNewRoman(0)/m/n/10.95 Re
-ad-Only\TU/Arial(0)/m/n/10.95 ;
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 ארכיטקטורת \TU/TimesNewRoman(0)/m/n/10 Read-Onl
+y\TU/Arial(0)/m/n/10 ; איסור הסרה
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--58
-[]|\TU/TimesNewRoman(0)/m/n/10.95 0 \TU/Arial(0)/m/n/10.95 פעולות חסי
-מה
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/TimesNewRoman(0)/m/n/10 0 \TU/Arial(0)/m/n/10 פעולות חסימה
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--58
-\TU/Arial(0)/m/n/10.95 אוטומטיות; פערי
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 פרופיילינג ומעקב
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--58
-\TU/Arial(0)/m/n/10.95 הטיה השקפתית
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+\TU/Arial(0)/m/n/10 אחר אזרחים
  []
 
 
-Underfull \hbox (badness 3780) in paragraph at lines 58--58
-[]|\TU/Arial(0)/m/n/10.95 פרופיילינג ומעקב
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 הזכות לפרטיות
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-\TU/Arial(0)/m/n/10.95 אחר אזרחים
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+\TU/Arial(0)/m/n/10 צמצום מידע; \TU/TimesNewRoman(0)/m/n/10 TTL
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
-[]|\TU/Arial(0)/m/n/10.95 הזכות לפרטיות
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+\TU/Arial(0)/m/n/10 מחיקה $\OMS/cmsy/m/n/10  \OT1/cmr/m/n/10 30$ \TU/Aria
+l(0)/m/n/10 יום
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
-[]|\TU/TimesNewRoman(0)/m/n/10.95 100% \TU/Arial(0)/m/n/10.95 תאימות
+Underfull \hbox (badness 6608) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 אפליה שפתית או
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--59
-[]|\TU/Arial(0)/m/n/10.95 מבחני הוגנות רב-לשוניים
+Underfull \hbox (badness 7291) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 פער \TU/TimesNewRoman(0)/m/n/10 FPR \TU/Arial(0)/m/n/
+10 בין שפות
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--59
-\TU/Arial(0)/m/n/10.95 (עברית, ערבית, רוסית,
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 שימוש לרעה
  []
 
 
-Underfull \hbox (badness 2460) in paragraph at lines 59--60
-[]|\TU/Arial(0)/m/n/10.95 פער \TU/TimesNewRoman(0)/m/n/10.95 FPR \TU/Arial(0
-)/m/n/10.95 בין שפות
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+\TU/Arial(0)/m/n/10 במערכת לצרכים
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--60
-[]|\TU/Arial(0)/m/n/10.95 שימוש לרעה
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 טוהר המידות
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--60
-\TU/Arial(0)/m/n/10.95 במערכת לצרכים
+Underfull \hbox (badness 1603) in paragraph at lines 65--65
+\TU/Arial(0)/m/n/10 וניטרליות השירות
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--60
-[]|\TU/Arial(0)/m/n/10.95 טוהר המידות
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 בקרת גישה מבוססת מאפיינים ותפ
+קידים
  []
 
 
-Underfull \hbox (badness 1577) in paragraph at lines 60--60
-\TU/Arial(0)/m/n/10.95 (\TU/TimesNewRoman(0)/m/n/10.95 RBAC\TU/Arial(0)/m/n/10.
-95 ), אישור כפול (\TU/TimesNewRoman(0)/m/n/10.95 Two-
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+\TU/Arial(0)/m/n/10 (\TU/TimesNewRoman(0)/m/n/10 ABAC/RBAC\TU/Arial(0)/m/n/10 ),
+ אישור כפול (\TU/TimesNewRoman(0)/m/n/10 Two-Person
  []
 
 
-Underfull \hbox (badness 1112) in paragraph at lines 60--60
-\TU/TimesNewRoman(0)/m/n/10.95 Person Rule\TU/Arial(0)/m/n/10.95 ) ויומן 
-בלתי-ניתן
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/TimesNewRoman(0)/m/n/10 100% \TU/Arial(0)/m/n/10 שאילתות
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--61
-[]|\TU/TimesNewRoman(0)/m/n/10.95 100% \TU/Arial(0)/m/n/10.95 שאילתות
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+\TU/Arial(0)/m/n/10 מתועדות בחתימה
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--61
-\TU/Arial(0)/m/n/10.95 מתועדות בחתימה
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+\TU/Arial(0)/m/n/10 קריפטוגרפית (\TU/TimesNewRoman(0)/m/n/10 Hash-
  []
 
 
-Underfull \hbox (badness 5985) in paragraph at lines 60--61
-\TU/Arial(0)/m/n/10.95 קריפטוגרפית (\TU/TimesNewRoman(0)/m/n/10.95 Ha
-sh-
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 החלטות ”קופסה
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--61
-[]|\TU/Arial(0)/m/n/10.95 החלטות ,,קופסה
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
+[]|\TU/Arial(0)/m/n/10 הגינות מנהלית
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--61
-[]|\TU/Arial(0)/m/n/10.95 הגינות מנהלית
+Underfull \hbox (badness 5771) in paragraph at lines 65--65
+\TU/Arial(0)/m/n/10 תעודת מקור (\TU/TimesNewRoman(0)/m/n/10 Prove-
  []
 
-[23]
-Underfull \vbox (badness 2469) has occurred while \output is active []
-
- [24]
-[25]) [26] (./main.bbl
+[34] [35]) [36] (./main.bbl
 Underfull \hbox (badness 1642) in paragraph at lines 42--47
 \TU/Arial(0)/m/n/10.95 Katerina Sedova.  Generative language models and automate
 d influence operations:
  []
 
-[27
+[37
 
 
-]) [28] 
+]) [38] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
@@ -2104,42 +2093,45 @@ LaTeX2e <2026-11-01>
 L3 programming layer <2026-09-09>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B8A63C5FB2523A64656131EA5365A700;23039.
+(rerunfilecheck)             Checksum: 8B3CCDAAEE02289EE1AA09368ACCE1B6;23481.
 )
 
 Here is how much of LuaTeX's memory you used:
- 38609 strings out of 475522
- 125002,1648299 words of node,token memory allocated
- 11390 words of node memory still in use:
-   31 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 3872 attribute, 64 glue_
-spec, 1296 attribute_list, 2 write, 24 pdf_literal, 5 pdf_action, 24 pdf_colorst
+ 38710 strings out of 475522
+ 745207,1648299 words of node,token memory allocated
+ 13038 words of node memory still in use:
+   31 hlist, 2 vlist, 14 rule, 2 glue, 4 kern, 1 glyph, 4490 attribute, 64 glue_
+spec, 1502 attribute_list, 2 write, 24 pdf_literal, 5 pdf_action, 24 pdf_colorst
 ack nodes
-   avail lists: 2:18812,3:1760,4:286,5:916,6:101,7:6882,8:82,9:989,10:61,11:191
- 60460 multiletter control sequences out of 65536+600000
- 160 fonts using 79151847 bytes
- 117i,16n,114p,1111b,1702s stack positions out of 10000i,1000n,20000p,200000b,200000s
+   avail lists: 1:3,2:72433,3:1760,4:286,5:17396,6:123,7:15531,8:82,9:34048,10:7
+1,11:1796
+ 60481 multiletter control sequences out of 65536+600000
+ 166 fonts using 85718935 bytes
+ 117i,16n,114p,1111b,1734s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/WINDOWS/Fonts/arialni.ttf><c:/users/ron/appdata/local/programs/miktex/fonts/
 opentype/public/lm/lmromandemi10-regular.otf><c:/users/ron/appdata/local/program
 s/miktex/fonts/opentype/public/lm/lmroman7-regular.otf><C:/WINDOWS/Fonts/cour.tt
-f><C:/WINDOWS/Fonts/cour.ttf><c:/users/ron/appdata/local/programs/miktex/fonts/o
-pentype/public/lm/lmroman10-regular.otf><c:/users/ron/appdata/local/programs/mik
-tex/fonts/opentype/public/lm/lmroman8-regular.otf><C:/WINDOWS/Fonts/timesbd.ttf>
-<C:/WINDOWS/Fonts/times.ttf><C:/WINDOWS/Fonts/arial.ttf><C:/WINDOWS/Fonts/arial.
-ttf><C:/WINDOWS/Fonts/arialbd.ttf><C:/WINDOWS/Fonts/arialbd.ttf><C:/Users/ron/Ap
-pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/
-ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/
-Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb
-><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi
-7.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmmi8.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmr8.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmsy10.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmsy8.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmsy9.pfb>
-Output written on main.pdf (38 pages, 910800 bytes).
+f><c:/users/ron/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman10
+-regular.otf><c:/users/ron/appdata/local/programs/miktex/fonts/opentype/public/l
+m/lmroman8-regular.otf><C:/WINDOWS/Fonts/timesbd.ttf><C:/WINDOWS/Fonts/times.ttf
+><C:/WINDOWS/Fonts/arial.ttf><C:/WINDOWS/Fonts/arial.ttf><C:/WINDOWS/Fonts/arial
+bd.ttf><C:/WINDOWS/Fonts/arialbd.ttf><C:/Users/ron/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/ron/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/ron/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/ron/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/ron/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/ron/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/r
+on/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Use
+rs/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:
+/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+sy7.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmsy8.pfb><C:/Users/ron/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmsy9.pfb>
+Output written on main.pdf (39 pages, 934966 bytes).
 
-PDF statistics: 1512 PDF objects out of 1728 (max. 8388607)
- 182 named destinations out of 1000 (max. 1048576)
- 790 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1613 PDF objects out of 1728 (max. 8388607)
+ 255 named destinations out of 1000 (max. 1048576)
+ 798 words of extra memory for PDF output out of 10000 (max. 100000000)
 

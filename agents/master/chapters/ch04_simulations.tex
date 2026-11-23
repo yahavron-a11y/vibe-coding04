@@ -3,7 +3,7 @@
 
 פרק זה מציג את התשתית הכמותית והחישובית המבססת את ההיתכנות המבצעית והכלכלית של מערכת \textenglish{CivicShield AI}. בניגוד להערכות איכותניות כלליות, בחינת המערכת בוצעה באמצעות חמישה מודלים מתמטיים משלימים: (1) מערכת משוואות דיפרנציאליות רגילות (\textenglish{SIRI ODEs}) לדינמיקת התפשטות דיסאינפורמציה וחיסון מוקדם; (2) מודל \textenglish{Hegselmann-Krause} לדינמיקת דעות וקיטוב חברתי; (3) מנוע היתוך בייסיאני רב-מודאלי (\textenglish{Multi-Modal Bayesian Fusion}) להערכת הסתברות איום; (4) תורת התורים (\textenglish{M/M/c Erlang-C}) לניתוח עומסים במרכז הבקרה האנושי (\textenglish{HITL SOC}); ו-(5) מודל פיננסי רב-שנתי (\textenglish{TCO / NPV / ROI}) לאופק של חמש שנים.
 
-כל הסימולציות הופקו באופן דטרמיניסטי ושחזורי באמצעות סקריפט החישוב \texttt{scripts/generate\_figures.py}, והנתונים המוצגים בפרק זה משקפים את תוצאות הריצה המלאות בתנאי משבר לאומי.
+כל הסימולציות הופקו באופן דטרמיניסטי ושחזורי באמצעות סקריפט החישוב \code{scripts/generate\_figures.py}, והנתונים המוצגים בפרק זה משקפים את תוצאות הריצה המלאות בתנאי משבר לאומי.
 
 % ============================================================================
 \section{מודל \textenglish{SIRI ODE} להתפשטות דיסאינפורמציה והתערבות מוקדמת}
@@ -29,9 +29,10 @@
 
 \begin{table}[htbp]
 \centering
+\small
 \caption{פרמטרים ותוצאות סימולציית \textenglish{SIRI ODE} (חלון משבר של 72 שעות, $I(0)=0.8\%$)}
 \label{tab:siri_params}
-\begin{tabular}{lccc}
+\begin{tabularx}{\textwidth}{Xccc}
 \toprule
 \textbf{פרמטר / מדד ביצוע} & \textbf{תרחיש בסיס (ללא מערכת)} & \textbf{עם \textenglish{CivicShield AI}} & \textbf{שינוי יחסי} \\
 \midrule
@@ -43,7 +44,7 @@
 \midrule
 \textbf{שיא אוכלוסייה נדבקת $\max I(t)$} & \textbf{$38.5\%$} & \textbf{$0.8\%$} & \textbf{הפחתה של $97.9\%$} \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 \begin{figure}[htbp]
@@ -157,7 +158,7 @@ W_q = \frac{C(c, a)}{c\mu - \lambda}, \qquad C(c, a) = \frac{\frac{a^c}{c!(1-\rh
 \section{מימוש ייחוס בפייתון (\textenglish{Production-Grade Reference Implementation})}
 \label{sec:python_reference}
 
-להבטחת שחזוריות מלאה, יציבות נומרית ומוכנות הנדסית לביקורת, מנוע הסימולציה בסקריפט \texttt{scripts/generate\_figures.py} מומש בפייתון קשיח הכולל הקלדה סטטית מחמירה (\textenglish{Strict Type Hints}), מחלקות נתונים מאומתות (\textenglish{Frozen Dataclasses}), וקטוריזציה מלאה ב-\textenglish{NumPy}, חישוב הסתברויות במרחב \textenglish{Log-Odds} למניעת גלישה, ונוסחת \textenglish{Erlang-C} במרחב לוגריתמי (\textenglish{Log-Sum-Exp + lgamma}). להלן ליבת המנוע המרכזית:
+להבטחת שחזוריות מלאה, יציבות נומרית ומוכנות הנדסית לביקורת, מנוע הסימולציה בסקריפט \code{scripts/generate\_figures.py} מומש בפייתון קשיח הכולל הקלדה סטטית מחמירה (\textenglish{Strict Type Hints}), מחלקות נתונים מאומתות (\textenglish{Frozen Dataclasses}), וקטוריזציה מלאה ב-\textenglish{NumPy}, חישוב הסתברויות במרחב \textenglish{Log-Odds} למניעת גלישה, ונוסחת \textenglish{Erlang-C} במרחב לוגריתמי (\textenglish{Log-Sum-Exp + lgamma}). להלן ליבת המנוע המרכזית:
 
 \begin{ltrcode}[title={CivicShield AI -- Hardened Simulation Core (Python 3.11+ / NumPy)}]
 from __future__ import annotations
