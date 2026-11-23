@@ -380,6 +380,7 @@
   \begin{titlepage}
     \hypersetup{pageanchor=false}
     \thispagestyle{empty}
+    \begingroup\pardir TLT\textdir TLT
     \begin{tikzpicture}[remember picture,overlay]
       % Layered Navy/Slate Gradient Banner
       \shade[top color=CSNavyDeep, bottom color=CSSlate, middle color=CSNavy]
@@ -454,6 +455,7 @@
         align=right,
         inner sep=0pt
       ] at (current page.north east) {%
+        \pardir TRT\textdir TRT
         {\sffamily\bfseries\color{CSGoldLight}\large מערך הדיגיטל והבינה המלאכותית הממשלתי}\\[0.55cm]
         {\sffamily\bfseries\color{white}\fontsize{32}{38}\selectfont #1}\\[0.55cm]
         {\sffamily\color{CSIce}\Large #2}%
@@ -463,6 +465,7 @@
       \fill[CSIce] (current page.south west) rectangle ([yshift=2.6cm]current page.south east);
       \draw[CSGold, line width=1pt] ([yshift=2.6cm]current page.south west) -- ([yshift=2.6cm]current page.south east);
     \end{tikzpicture}
+    \endgroup
 
     \vspace*{9.5cm}
 
