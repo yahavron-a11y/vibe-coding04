@@ -8,4 +8,6 @@
 - [x] **[redteam]** Write Chapter 5 (`chapters/ch05_safeguards_audit.tex`, ~4 pages): Constitutional Safeguards Audit, Anti-Censorship Review, and Implementation Governance.
 - [x] **[redteam]** Conduct Dual RedTeam -> ReAct Audit: (a) Content & Constitutionality (RFP compliance, safeguards, anti-censorship, cross-chapter numerical consistency, academic quality); (b) Technical & Visual QA (`py scripts/verify_report.py`, `lualatex` check, 37–45 page count, BiDi errors, Overfull hbox, page-by-page PDF visual inspection).
 - [x] **[master]** Route any RedTeam Rejection Loop defects as ReAct Revision tasks to responsible peers until full approval.
-- [x] **[master]** Final `lualatex` compilation (with bibliography & TOC) of `CivicShield_AI_Preliminary_Report.pdf`, update `README.md` at milestones, and deliver final summary report.
+- [x] **[architect]** Fix page layout & Glossary split (unified Glossary on page 8 with no pages 8–9 split, eliminated orphaned section headings via `needspace` + `\raggedbottom`, kept callout boxes intact, added clean `\clearpage` before Ch. 4.6) and rebuild via `build.ps1`.
+- [x] **[architect]** Update `README.md`, `PRD.md`, `PLAN.md`, `TODO.md`, and `agents/master/README.md` to reflect the final verified state.
+- [x] **[master]** Final verified build & root sync of `CivicShield_AI_Preliminary_Report.pdf` (**39 PDF pages / 38 numbered**, `935,647` bytes, **0 LaTeX errors**, SHA-256 verified) and final summary report delivery.
