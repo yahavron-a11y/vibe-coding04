@@ -33,6 +33,7 @@
 
 ## Current Milestone Status
 - [x] Phase 1: Parallel drafting by `theory`, `architect`, `simulator`, `redteam`
-- [x] Phase 2: Initial LuaLaTeX assembly (`CivicShield_AI_Preliminary_Report.pdf` generated, 37 pages)
-- [x] Phase 3: RedTeam -> ReAct Dual Audit & QA verification (`verify_report.py`: 0 LaTeX errors, 0 undefined refs/cites, 37 pages)
-- [x] Phase 4: Final polish & delivery (`CivicShield_AI_Preliminary_Report.pdf`, 874,740 bytes)
+- [x] Phase 2: Initial LuaLaTeX assembly (`CivicShield_AI_Preliminary_Report.pdf` generated)
+- [x] Phase 3: RedTeam -> ReAct Dual Audit & BiDi QA (`verify_report.py`: 0 LaTeX errors, 0 undefined refs/cites)
+- [x] Phase 4: Page layout & Glossary fixes (no pages 8-9 split, no orphaned headings via `needspace`/`\raggedbottom`, intact callout boxes)
+- [x] Phase 5: Final build via `build.ps1` & root sync (`CivicShield_AI_Preliminary_Report.pdf`, 39 PDF pages / 38 numbered pages, 935,647 bytes, 0 LaTeX errors)

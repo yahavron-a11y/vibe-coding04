@@ -3,7 +3,7 @@
 # 🛡️ CivicShield AI — מגן התודעה הלאומי
 ### דוח מכין אקדמי והנדסי (Preliminary Design Report) — מטלה 2
 
-[![PDF Report](https://img.shields.io/badge/PDF_Report-Arabic_Numbering_(Zero_Errors)-0B2545?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](./CivicShield_AI_Preliminary_Report.pdf)
+[![PDF Report](https://img.shields.io/badge/PDF_Report-39_Pages_(Zero_Errors)-0B2545?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](./CivicShield_AI_Preliminary_Report.pdf)
 [![Engine](https://img.shields.io/badge/LuaLaTeX-BiDi_Hebrew_%2B_TikZ-1D5B9B?style=for-the-badge&logo=latex&logoColor=white)](./agents/master/main.tex)
 [![Simulations](https://img.shields.io/badge/Python_Simulations-NumPy_%2B_Matplotlib-0E7C7B?style=for-the-badge&logo=python&logoColor=white)](./agents/master/scripts/generate_figures.py)
 [![Methodology](https://img.shields.io/badge/Lecture_04-Multi--Agent_Committee-D97706?style=for-the-badge)](./team.json)
@@ -102,7 +102,7 @@ flowchart TB
     Simulator --> Gate
 
     Gate -->|"Rejection / Fix Loop\n(Dual RedTeam -> ReAct)"| Master
-    Gate -->|"0 Errors • 37 Pages\n• Constitutional Audit Passed"| PDF(["📄 CivicShield_AI_Preliminary_Report.pdf"])
+    Gate -->|"0 Errors • 39 Pages\n• BiDi & Layout QA Passed"| PDF(["📄 CivicShield_AI_Preliminary_Report.pdf"])
 ```
 
 ---
@@ -162,6 +162,7 @@ flowchart TB
 
 ```text
 vibe-coding04/
+├── CivicShield_AI_Preliminary_Report.pdf            # 📄 הדוח המכין הסופי (39 עמודי PDF / 38 ממוספרים, 935,647 bytes)
 ├── PRD.md                                           # 📋 מסמך דרישות המוצר
 ├── PLAN.md                                          # 🛠️ תוכנית עבודה וארכיטקטורה
 ├── TODO.md                                          # ☑️ לוח משימות ומעקב ביצוע
@@ -171,7 +172,8 @@ vibe-coding04/
 │   └── multi-agent-mesh.jpg                         # 🖼️ צילום מסך של 5 חלונות Antigravity CLI פועלים במקביל
 └── agents/                                          # 🤖 סביבות העבודה של 5 הסוכנים (Lecture 4)
     ├── master/                                      # 🧠 סביבת האינטגרציה וההרכבה הסופית
-    │   ├── CivicShield_AI_Preliminary_Report.pdf    # 📄 הדוח המכין הסופי (37 עמודים, 874,740 bytes)
+    │   ├── main.pdf                                 # 📄 פלט LuaLaTeX המסונכרן אוטומטית לשורש (39 עמודים, 935,647 bytes)
+    │   ├── build.ps1                                # ⚙️ סקריפט בנייה (LuaLaTeX + BibTeX) וסנכרון SHA-256 לשורש
     │   ├── civicshield.cls                          # 🎨 מחלקת LaTeX מותאמת (BiDi RTL, tcolorbox, TikZ)
     │   ├── main.tex                                 # 📘 קובץ ראשי, דף שער ומבנה המסמך
     │   ├── references.bib                           # 📚 מאגר מקורות ביבליוגרפיים (BibTeX)
@@ -215,19 +217,24 @@ py scripts/generate_figures.py
 .\build.ps1 -Fast
 ```
 
-### 3. שדרוגים הנדסיים אחרונים (Latest Engineering Updates)
-- **מספור עמודים תקני לדוח (Arabic Page Numbering):** הוסר מספור הספרות הרומיות (`\frontmatter`) ב-`civicshield.cls`; דף השער אינו ממוספר, ותוכן הדוח ממוספר ברצף מלא במספרים ערביים (`1..N`) תואם `LastPage`.
-- **סנכרון PDF אוטומטי בכל בנייה:** נוספו `agents/master/build.ps1` ו-`agents/master/.latexmkrc` המעדכנים אוטומטית את `CivicShield_AI_Preliminary_Report.pdf` בשורש הפרויקט בכל קומפילציה.
+### 3. שדרוגים הנדסיים אחרונים ותיקוני איכות (Latest Engineering, BiDi & Layout QA)
+- **מספור עמודים תקני לדוח (Arabic Page Numbering):** הוסר מספור הספרות הרומיות (`\frontmatter`) ב-`civicshield.cls`; דף השער אינו ממוספר, ותוכן הדוח ממוספר ברצף מלא במספרים ערביים (`1..38`, סה"כ 39 עמודי PDF) תואם `LastPage`.
+- **סנכרון PDF אוטומטי בכל בנייה:** נוספו `agents/master/build.ps1` ו-`agents/master/.latexmkrc` המעדכנים אוטומטית את `CivicShield_AI_Preliminary_Report.pdf` בשורש הפרויקט בכל קומפילציה עם אימות SHA-256.
 - **מנוע סימולציות Python מחוזק (`generate_figures.py`) ומימוש ייחוס בפרק 4:** קוד הסימולציות שודרג לרמת Production (טיפוסי נתונים קשיחים, ולידציה, טיפול בשגיאות וארכיטקטורה מודולרית), ונוסף קטע קוד ייחוס מוקשח ב-Python בתוך `chapters/ch04_simulations.tex`.
+- **תיקוני איכות ו-BiDi QA של צוות `redteam`:** ביקורת לעומתית מלאה (Dual RedTeam → ReAct), אימות עקביות מספרית וחוקתית, בידוד RTL/LTR תקני ואימות אפס שגיאות ב-`verify_report.py`.
+- **תיקוני פריסת עמודים ומילון מונחים (`architect`):**
+  - בוטל הפיצול בעמודים 8–9: כותרת "מילון מונחים וראשי תיבות" וכל 17 שורות הטבלה מוצגות כעת יחד בעמוד אחד נקי ומאוזן עם כותרת ריצה מדויקת (`\markboth`).
+  - בוטלו כותרות יתומות בתחתית עמודים (סעיפים `2.6`, `3.5`, `4.2`) באמצעות `\raggedbottom`, `\widowpenalty=10000`, `\clubpenalty=10000` ושמירת מרחב (`needspace`) ב-`civicshield.cls`.
+  - תיבות הדגשה (`insightbox`, `riskbox`, `contractbox`) נשמרות שלמות בעמוד אחד ללא פיצול, ונוסף מעבר עמוד נקי לפני סעיף `4.6` למניעת עמוד זנב יתום בסוף פרק 4.
 
 ### 4. הרצת חבילת האימות האוטומטית (`verify_report.py`)
 ```powershell
 py scripts/verify_report.py
 ```
-**פלט צפוי:**
+**פלט צפוי (סטטוס סופי — מוכן להגשה):**
 ```text
-PDF_EXISTS: True | PAGES_EST: 37 | Size=874740 bytes
-LOG_EXISTS: True | LOG_OUTPUT_PAGES: 37
+PDF_EXISTS: True | PAGES_EST: 39 | Size=935647 bytes
+LOG_EXISTS: True | LOG_OUTPUT_PAGES: 39
 LATEX_ERRORS_COUNT: 0
 RMFAMILY_MATH_ERRORS_COUNT: 0
 UNDEF_REFS: 0 | UNDEF_CITES: 0
