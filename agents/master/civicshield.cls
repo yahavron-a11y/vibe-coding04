@@ -446,28 +446,21 @@
         \draw[white, line width=0.8pt] (N0) circle (5.2pt);
       \end{scope}
 
-      % Right-Side Cover Title & Subtitle (anchored to east, clear of left emblem & page edge)
-      \node[
-        anchor=north east,
-        xshift=-1.8cm,
-        yshift=-2.2cm,
-        text width=11.5cm,
-        align=right,
-        inner sep=0pt
-      ] at (current page.north east) {%
-        \pardir TRT\textdir TRT
-        {\sffamily\bfseries\color{CSGoldLight}\large מערך הדיגיטל והבינה המלאכותית הממשלתי}\\[0.55cm]
-        {\sffamily\bfseries\color{white}\fontsize{32}{38}\selectfont #1}\\[0.55cm]
-        {\sffamily\color{CSIce}\Large #2}%
-      };
-
       % Bottom Executive Footer Bar
       \fill[CSIce] (current page.south west) rectangle ([yshift=2.6cm]current page.south east);
       \draw[CSGold, line width=1pt] ([yshift=2.6cm]current page.south west) -- ([yshift=2.6cm]current page.south east);
     \end{tikzpicture}
     \endgroup
 
-    \vspace*{9.5cm}
+    \vspace*{1.5cm}
+    \noindent\begin{minipage}{11.5cm}
+      \raggedleft
+      {\sffamily\bfseries\color{CSGoldLight}\large מערך הדיגיטל והבינה המלאכותית הממשלתי}\\[0.55cm]
+      {\sffamily\bfseries\color{white}\fontsize{32}{38}\selectfont #1}\\[0.55cm]
+      {\sffamily\color{CSIce}\Large #2}
+    \end{minipage}
+
+    \vspace{5.6cm}
 
     \begin{tcolorbox}[
       enhanced,
