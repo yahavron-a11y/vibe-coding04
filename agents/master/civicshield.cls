@@ -167,8 +167,19 @@
 }
 
 % --- Upgraded Callout Boxes (Insight, Risk, Contract) -------------------------
+\tcbset{
+  civicrtl/.style={
+    enhanced,
+    before={\par\noindent\begingroup\pardir TLT\textdir TLT},
+    after={\endgroup\par},
+    before upper={\pardir TRT\textdir TRT},
+    before lower={\pardir TRT\textdir TRT},
+    before title={\pardir TRT\textdir TRT},
+  }
+}
+
 \newtcolorbox{insightbox}[1][תובנה ארכיטקטונית]{
-  enhanced,
+  civicrtl,
   colback=CSInsightBg,
   colframe=CSInsightTeal!85!black,
   coltitle=white,
@@ -200,7 +211,7 @@
 }
 
 \newtcolorbox{riskbox}[1][סיכון קריטי ובקרת נגד]{
-  enhanced,
+  civicrtl,
   colback=CSRiskBg,
   colframe=CSRiskRed!85!black,
   coltitle=white,
@@ -232,7 +243,7 @@
 }
 
 \newtcolorbox{contractbox}[1][חוזה ממשק ו-SLA]{
-  enhanced,
+  civicrtl,
   colback=CSContractBg,
   colframe=CSGold,
   coltitle=CSNavy,
