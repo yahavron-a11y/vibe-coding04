@@ -1,20 +1,31 @@
-import os
+from __future__ import annotations
+
+import hashlib
 import re
 import sys
 from pathlib import Path
 
-MASTER_DIR = Path(r"C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\vibe-coding04\agents\master")
-PDF_PATH = MASTER_DIR / "CivicShield_AI_Preliminary_Report.pdf"
-LOG_PATH = MASTER_DIR / "lualatex_3.log"
+MASTER_DIR = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = MASTER_DIR.parent.parent
+ROOT_PDF_PATH = PROJECT_ROOT / "CivicShield_AI_Preliminary_Report.pdf"
+MASTER_PDF_PATH = MASTER_DIR / "main.pdf"
+LOG_PATH = MASTER_DIR / "lualatex_final.log"
 CHAPTERS_DIR = MASTER_DIR / "chapters"
 
-def check_pdf_pages(pdf_path: Path):
+
+def sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest().upper()
+
+
+def check_pdf_pages(pdf_path: Path) -> tuple[bool, int, str]:
     if not pdf_path.exists():
         return False, 0, "PDF not found"
     data = pdf_path.read_bytes()
-    # Count /Type /Page (not /Pages)
     pages = len(re.findall(rb"/Type\s*/Page\b", data))
-    # Also try pypdf if available
     try:
         import pypdf
         reader = pypdf.PdfReader(str(pdf_path))
@@ -23,7 +34,8 @@ def check_pdf_pages(pdf_path: Path):
         pass
     return True, pages, f"Size={pdf_path.stat().st_size} bytes"
 
-def check_log(log_path: Path):
+
+def check_log(log_path: Path) -> dict:
     if not log_path.exists():
         return {"exists": False}
     raw = log_path.read_bytes()
@@ -38,7 +50,7 @@ def check_log(log_path: Path):
     output_pages = None
     for i, line in enumerate(lines, 1):
         if line.startswith("! "):
-            ctx = " | ".join(lines[i-1:min(len(lines), i+4)])
+            ctx = " | ".join(lines[i - 1 : min(len(lines), i + 4)])
             errors.append((i, ctx))
             if "rmfamily" in line or (i < len(lines) and "rmfamily" in lines[i]):
                 rmfamily_errors.append((i, ctx))
@@ -62,30 +74,35 @@ def check_log(log_path: Path):
         "undef_cites": undef_cites,
     }
 
-def check_tex_files(chapters_dir: Path):
+
+def check_tex_files(chapters_dir: Path) -> dict:
     results = {}
     for tex in sorted(chapters_dir.glob("*.tex")):
         content = tex.read_text(encoding="utf-8", errors="replace")
-        # Check for \textenglish inside math mode ($...$)
         math_textenglish = re.findall(r"\$[^$]*\\textenglish\{[^}]*\}[^$]*\$", content)
-        # Check for figures / tikz
+        hebrew_italic = re.findall(r"\\textit\{[^}]*[\u0590-\u05FF][^}]*\}", content)
         figs = len(re.findall(r"\\includegraphics", content))
         tikz = len(re.findall(r"\\begin\{tikzpicture\}", content))
         tables = len(re.findall(r"\\begin\{table", content))
-        # Check for raw English acronyms not wrapped (heuristic: 3+ uppercase letters outside commands/math)
-        # Simple check for anti-censorship red flags
         results[tex.name] = {
             "lines": len(content.splitlines()),
             "math_textenglish": math_textenglish,
+            "hebrew_italic": hebrew_italic,
             "includegraphics": figs,
             "tikzpicture": tikz,
             "tables": tables,
         }
     return results
 
-def main():
-    exists, pages, info = check_pdf_pages(PDF_PATH)
-    print(f"PDF_EXISTS: {exists} | PAGES_EST: {pages} | {info}")
+
+def main() -> int:
+    exists, pages, info = check_pdf_pages(ROOT_PDF_PATH)
+    sync_ok = (
+        ROOT_PDF_PATH.exists()
+        and MASTER_PDF_PATH.exists()
+        and sha256_file(ROOT_PDF_PATH) == sha256_file(MASTER_PDF_PATH)
+    )
+    print(f"PDF_EXISTS: {exists} | PAGES_EST: {pages} | {info} | ROOT_SYNC_SHA256_OK: {sync_ok}")
     log = check_log(LOG_PATH)
     print(f"LOG_EXISTS: {log.get('exists')} | LOG_OUTPUT_PAGES: {log.get('output_pages')}")
     print(f"LATEX_ERRORS_COUNT: {len(log.get('errors', []))}")
@@ -98,10 +115,25 @@ def main():
     print(f"UNDEF_REFS: {len(log.get('undef_refs', []))} | UNDEF_CITES: {len(log.get('undef_cites', []))}")
     tex_stats = check_tex_files(CHAPTERS_DIR)
     print("CHAPTER_STATS:")
+    hebrew_italic_total = 0
     for name, st in tex_stats.items():
-        print(f"  {name}: lines={st['lines']} figs={st['includegraphics']} tikz={st['tikzpicture']} tables={st['tables']} math_textenglish={len(st['math_textenglish'])}")
-        for m in st["math_textenglish"]:
-            print(f"    MATH_TEXTENGLISH: {m}")
+        hebrew_italic_total += len(st["hebrew_italic"])
+        print(
+            f"  {name}: lines={st['lines']} figs={st['includegraphics']} "
+            f"tikz={st['tikzpicture']} tables={st['tables']} "
+            f"math_textenglish={len(st['math_textenglish'])} hebrew_italic={len(st['hebrew_italic'])}"
+        )
+    failed = (
+        not exists
+        or not sync_ok
+        or len(log.get("errors", [])) > 0
+        or len(log.get("undef_refs", [])) > 0
+        or len(log.get("undef_cites", [])) > 0
+        or hebrew_italic_total > 0
+    )
+    print(f"OVERALL_QA_PASS: {not failed}")
+    return 1 if failed else 0
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

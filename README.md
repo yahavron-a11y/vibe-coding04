@@ -3,16 +3,30 @@
 # 🛡️ CivicShield AI — מגן התודעה הלאומי
 ### דוח מכין אקדמי והנדסי (Preliminary Design Report) — מטלה 2
 
-[![PDF Report](https://img.shields.io/badge/PDF_Report-39_Pages_(Zero_Errors)-0B2545?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](./CivicShield_AI_Preliminary_Report.pdf)
-[![Engine](https://img.shields.io/badge/LuaLaTeX-BiDi_Hebrew_%2B_TikZ-1D5B9B?style=for-the-badge&logo=latex&logoColor=white)](./agents/master/main.tex)
+[![PDF Report](https://img.shields.io/badge/PDF_Report-43_Pages_(40_Content_%2B_Cover_%2B_APA7)-0B2545?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](./CivicShield_AI_Preliminary_Report.pdf)
+[![Engine](https://img.shields.io/badge/LuaLaTeX-BiDi_Hebrew_%2B_TikZ_%2B_APA7-1D5B9B?style=for-the-badge&logo=latex&logoColor=white)](./agents/master/main.tex)
 [![Simulations](https://img.shields.io/badge/Python_Simulations-NumPy_%2B_Matplotlib-0E7C7B?style=for-the-badge&logo=python&logoColor=white)](./agents/master/scripts/generate_figures.py)
-[![Methodology](https://img.shields.io/badge/Lecture_04-Multi--Agent_Committee-D97706?style=for-the-badge)](./team.json)
+[![Methodology](https://img.shields.io/badge/Multi--Agent_Mesh-Skills_%2B_Detector%2FFixer_%2B_RedTeam-D97706?style=for-the-badge)](./team.json)
 
 **סינתזה בין-תחומית: תקשורת פוליטית • מדעי המדינה ודמוקרטיה מתגוננת • הנדסת מערכות רב-סוכניות (Multi-Agent AI)**
 
 </div>
 
-> 🎓 **הקשר אקדמי:** פרויקט זה נכתב והופק במסגרת **מטלה 2** בקורס *יישומי בינה מלאכותית ו-Vibe Coding* בהנחיית **ד"ר יורם סגל** (אוניברסיטת חיפה), תוך יישום ישיר של מתודולוגיית **שיעור 4: Multi-Agent Orchestration** (`Master Orchestrator`, `Communication Hub`, `Shared TODO Board`, `Agent Inboxes`, `ReAct Loops` וצוות אדום לעומתי).
+> 🎓 **הקשר אקדמי:** פרויקט זה נכתב והופק בזוג במסגרת **מטלה 2** בקורס *יישומי בינה מלאכותית ו-Vibe Coding* בהנחיית **ד"ר יורם סגל** (אוניברסיטת חיפה), תוך יישום ישיר של מתודולוגיית **Multi-Agent Orchestration** (`Master Orchestrator`, `Communication Hub`, `Shared TODO Board`, **Skills**, סוכני בקרת איכות **Detector / Fixer**, צוות אדום לעומתי וניתוח **Post-Mortem**).
+
+---
+
+## 🖼️ תצוגה מקדימה של עמודי הדוח המכין (Report Visual Showcase)
+
+הדוח הסופי ([`CivicShield_AI_Preliminary_Report.pdf`](./CivicShield_AI_Preliminary_Report.pdf)) כולל **43 עמודי PDF** (**דף שער 1 + בדיוק 40 עמודי תוכן ממוספרים `1–40` + 2 עמודי ביבליוגרפיה `41–42` בתקן APA 7th משמאל לימין**), בעיצוב ממלכתי-הנדסי מקורי (`CSNavy`, `CSGold`, `CSInsightTeal`, `CSRiskRed`), 0 שגיאות LuaLaTeX ו-0 תמונות מהאינטרנט:
+
+| דף שער (TikZ Shield + כותרת RTL) | תקציר מנהלים ותיבת `insightbox` | ארכיטקטורת 5 שכבות (TikZ מקורי) |
+| :---: | :---: | :---: |
+| ![Cover Page](./assets/report_p01_cover.png) | ![Executive Summary](./assets/report_p03_exec_summary.png) | ![5-Layer Architecture TikZ](./assets/report_p22_architecture_tikz.png) |
+
+| סימולציות Python + ניתוח רגישות (פרק 4) | מטריצת צוות אדום ושערי קבלה (עמוד 40) | ביבליוגרפיה LTR בתקן APA 7th |
+| :---: | :---: | :---: |
+| ![Chapter 4 Simulations & Sensitivity](./assets/report_p34_simulations.png) | ![Chapter 5 Red-Team Matrix](./assets/report_p41_redteam_matrix.png) | ![APA 7th LTR Bibliography](./assets/report_p42_apa7_bibliography.png) |
 
 ---
 
@@ -20,7 +34,7 @@
 
 פרויקט זה לא נבנה בשיחה אחת מול סוכן יחיד, אלא הופק באמצעות **מערכת מרובת-סוכנים חיה (Multi-Agent Mesh)** המריצה מספר חלונות אינטראקטיביים של **Antigravity CLI (`agy`)** במקביל באמצעות תשתית **[`agy-multi-agent-mesh`](https://github.com/rmisegal/agy-multi-agent-mesh)** (`agymesh`).
 
-בארכיטקטורה זו, כל סוכן רץ בסשן `agy` נפרד בתיקיית עבודה מבודדת משלו, וכל הסוכנים מתקשרים ביניהם דרך **רכזת תקשורת מקומית (Hub)** עם תיבות דואר נפרדות (`join` / `wait` / `reply` / `dispatch`) ולוח משימות משותף (*Shared TODO Board*). הסוכן המרכזי (**`master`**) מקבל את היעד, מפרק אותו לתתי-משימות ומנתב אותן במקביל ל-4 סוכנים מומחים (**`theory`**, **`architect`**, **`simulator`**, **`redteam`**), אשר עובדים במקביל ומחזירים תוצרים לאינטגרציה ולבקרת איכות.
+בארכיטקטורה זו, כל סוכן רץ בסשן `agy` נפרד בתיקיית עבודה מבודדת משלו, וכל הסוכנים מתקשרים ביניהם דרך **רכזת תקשורת מקומית (Hub)** עם תיבות דואר נפרדות (`join` / `wait` / `reply` / `dispatch`) ולוח משימות משותף (*Shared TODO Board*). הסוכן המרכזי (**`master`**) מקבל את היעד, מפרק אותו לתתי-משימות ומנתב אותן במקביל ל-4 סוכנים מומחים (**`theory`**, **`architect`**, **`simulator`**, **`redteam`**), כאשר כל תוצר עובר בלולאת בקרת איכות **Detector → Fixer → Red-Team**.
 
 ![מערכת הריבוי-סוכנים של Antigravity CLI פועלת במקביל עם master וארבעת הסוכנים המומחים](./assets/multi-agent-mesh.jpg)
 
@@ -28,132 +42,90 @@
 
 ### ⚙️ הפעלת Antigravity במצב Multi-Agent
 
-כדי להקים ולהריץ את מערך הסוכנים של פרויקט זה ב-Antigravity, מריצים את שתי הפקודות הבאות מתוך תיקיית הפרויקט `C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh`:
-
 ```powershell
-cd "{PATH TO MULTI AGENT TOOL}\agy-multi-agent-mesh"
+cd "<PATH_TO_AGY_MULTI_AGENT_MESH>"
 
 # 1. אתחול תיקיות הסוכנים ויצירת קובצי AGY.md מתוך קובץ ההגדרה team.json
-uv run agymesh --team "{PATH TO JSON}\vibe-coding04\team.json" init
+uv run agymesh --team "<PATH_TO_REPO>\team.json" init
 
 # 2. הפעלת רכזת התקשורת (Hub) ופתיחת חלונות Antigravity CLI לכל הסוכנים כולל ה-master
-uv run agymesh --team "{PATH TO JSON}\vibe-coding04\team.json" up --with-master
+uv run agymesh --team "<PATH_TO_REPO>\team.json" up --with-master
 ```
 
-* **פקודת `init`:** קוראת את קובץ [`team.json`](./team.json), יוצרת באופן אוטומטי את תיקיות הסוכנים תחת `agents/` (במידה ואינן קיימות) ומחוללת בתוך כל תיקייה קובץ הוראות ייעודי **`AGY.md`** המגדיר לכל סוכן את תפקידו, סמכויותיו ופקודות ההצטרפות וההאזנה לרשת.
-* **פקודת `up --with-master`:** מפעילה את רכזת התקשורת (`Hub`) ופותחת אוטומטית חלון **Antigravity CLI (`agy`)** נפרד לכל אחד מארבעת הסוכנים המומחים וכן לחלון ה-**`master`** (בזכות הדגל `--with-master`). כל סוכן עובד קורא את ה-`AGY.md` שלו, מצטרף לרשת (`join`) ונכנס ללולאת האזנה (`wait`), בעוד חלון ה-`master` מוכן לקבל את המשימה הראשית ולנהל את הצוות.
+### 🧩 ארכיטקטורת הסוכנים, ה-Skills ובעלות הקבצים
 
-### 🧩 תפקיד קובץ [`team.json`](./team.json) ביצירת תיקיות הסוכנים
+כל תפקיד בצוות הוגדר הן בקובץ **[`team.json`](./team.json)** והן כקובץ **Skill** מודולרי תחת תיקיית **[`skills/`](./skills/)**, לרבות הפרדה מפורשת בין סוכן זיהוי תקלות (**`qa-detector`**) לסוכן תיקון (**`qa-fixer`**):
 
-הקובץ **[`team.json`](./team.json)** משמש כ"תוכנית האב" (Declarative Blueprint) של צוות הסוכנים — הוא זה שמנחה את `agymesh init` אילו תיקיות ליצור, אילו סוכנים להקים ומה תחומי האחריות ובעלות הקבצים (*File Ownership*) של כל סוכן:
-
-* **הגדרת המתאם (`master`):** קובע את תיקיית `agents/master`, את תפקיד פירוק המשימות, ניהול לוח ה-TODO והרכבת ה-LaTeX הסופית, ואת הקבצים שבבעלותו (`PRD.md`, `PLAN.md`, `TODO.md`, `main.tex`, `README.md`).
-* **מערך הסוכנים (`agents`):** כל רשומה במערך מגדירה סוכן עצמאי (`id`, `name`, `folder`, `role`, `owned_files`). בעת הרצת `agymesh init`, המערכת יוצרת אוטומטית את התיקייה המוגדרת בשדה `folder` (באופן יחסי למיקום `team.json`) וכותבת לתוכה את קובץ `AGY.md` המתאים.
-* **פרוטוקול תקשורת ולולאת משוב (`communication_hub`):** מגדיר תקשורת מובנית (`Typed JSON Envelope`) ולולאת ביקורת לעומתית (`RedTeam Rejection Loop -> Master Dispatch -> ReAct Revision`) למניעת התנגשויות בין סוכנים ולאבטחת איכות.
-
-| סוכן ב-`team.json` | תיקייה שנוצרת ע"י `init` | תפקיד מרכזי בצוות |
+| סוכן / Skill | קובץ Skill | תפקיד מרכזי בצוות |
 | :--- | :--- | :--- |
-| **`master`** | [`agents/master`](./agents/master/) | מתאם ראשי — פירוק יעדים, ניהול `PRD`/`PLAN`/`TODO`, ניתוב משימות והרכבת הדוח הסופי |
-| **`theory`** | [`agents/theory`](./agents/theory/) | תקשורת פוליטית, מדעי המדינה, משפט חוקתי וניהול ביבליוגרפיה |
-| **`architect`** | [`agents/architect`](./agents/architect/) | ארכיטקטורה 5-שכבתית, מפרט רכזת הסוכנים, דרישות FR/NFR, מחלקת LaTeX ואיורי TikZ |
-| **`simulator`** | [`agents/simulator`](./agents/simulator/) | מודלים מתמטיים וסימולציות Python (`SIRI ODE`, `Hegselmann-Krause`, Bayes, `M/M/c`, ROI) |
-| **`redteam`** | [`agents/redteam`](./agents/redteam/) | צוות אדום — ביקורת הגנות חוקתיות, מניעת צנזורה ובדיקות אימות LuaLaTeX BiDi |
+| **`master`** | [`skills/master-orchestrator/SKILL.md`](./skills/master-orchestrator/SKILL.md) | מתאם ראשי — פירוק יעדים, ניהול `PRD`/`PLAN`/`TODO`, ניתוב משימות והרכבת הדוח הסופי |
+| **`theory`** | [`skills/theory-legal-researcher/SKILL.md`](./skills/theory-legal-researcher/SKILL.md) | תקשורת פוליטית, מדעי המדינה, משפט חוקתי וניהול ביבליוגרפיה APA 7th (פרקים 1–2) |
+| **`architect`** | [`skills/latex-system-architect/SKILL.md`](./skills/latex-system-architect/SKILL.md) | ארכיטקטורה 5-שכבתית, DRP ריבוני, דרישות FR/NFR, מחלקת `civicshield.cls` ואיורי TikZ (פרק 3) |
+| **`simulator`** | [`skills/quantitative-simulator/SKILL.md`](./skills/quantitative-simulator/SKILL.md) | סימולציות Python (`SIRI ODE`, `Hegselmann-Krause`, Bayes, `M/M/c`, ROI) וניתוח רגישות (פרק 4) |
+| **`redteam`** | [`skills/redteam-auditor/SKILL.md`](./skills/redteam-auditor/SKILL.md) | ביקורת הגנות חוקתיות, אנטי-צנזורה, מטריצת שערי הסמכה אדומים ואישור סופי (פרק 5) |
+| **`qa-detector`** *(Detector)* | [`skills/qa-detector/SKILL.md`](./skills/qa-detector/SKILL.md) | איתור תקלות בלבד — הרצת `verify_report.py`, רינדור עמודים ב-`pdftoppm` ומיפוי פגמי BiDi/פריסה |
+| **`qa-fixer`** *(Fixer)* | [`skills/qa-fixer/SKILL.md`](./skills/qa-fixer/SKILL.md) | תיקון שורש ממוקד של ממצאי ה-Detector, קימפול מחדש ותיעוד לקחים ב-`POSTMORTEM.md` |
+
+```mermaid
+flowchart TB
+    Master["🧠 Master Orchestrator\n(PRD, PLAN, TODO, Assembly)"] -->|"agymesh dispatch"| Theory["📚 theory\n(Ch. 1-2 & APA 7th)"]
+    Master -->|"agymesh dispatch"| Architect["🏗️ architect\n(civicshield.cls, Ch. 3 & TikZ)"]
+    Master -->|"agymesh dispatch"| Simulator["📈 simulator\n(Python Sims & Ch. 4)"]
+    Master -->|"agymesh dispatch"| RedTeam["⚖️ redteam\n(Ch. 5 & Acceptance Gates)"]
+
+    Theory & Architect & Simulator & RedTeam --> Detector{"🔎 qa-detector\n(verify_report.py + pdftoppm Visual QA)"}
+    Detector -->|"Defects Found"| Fixer["🔧 qa-fixer\n(Root-Cause Patch + POSTMORTEM.md)"]
+    Fixer -->|"Re-build & Re-verify"| Detector
+    Detector -->|"0 Errors • 40 Content Pages\n• Unanimous 4-Agent APPROVE"| PDF(["📄 CivicShield_AI_Preliminary_Report.pdf\n(43 PDF Pages: Cover + 40 Content + 2 APA7 Bib)"])
+```
+
+---
+
+## 📝 תיעוד הנדסת הפרומפטים וניתוחי Post-Mortem
+
+חלק מרכזי בתהליך ההנדסי מתועד בשתי סדרות מסמכים ייעודיות בשורש המאגר:
+
+1. **תיקיית הפרומפטים ([`prompts/`](./prompts/)):**
+   - [`01_expert_committee_and_prd.md`](./prompts/01_expert_committee_and_prd.md) — הקמת ועדת המומחים וגיבוש `PRD.md` / `team.json`.
+   - [`02_parallel_chapter_drafting.md`](./prompts/02_parallel_chapter_drafting.md) — כתיבה מקבילית של פרקים 1–5, `civicshield.cls`, TikZ וסימולציות Python.
+   - [`03_bidi_tcolorbox_layout_debugging.md`](./prompts/03_bidi_tcolorbox_layout_debugging.md) — לולאת Detector/Fixer ויזואלית לפתרון הזזות `tcolorbox` ב-RTL, יישור דף השער, חיתוך איור 3.1 ו-`Overfull \hbox`.
+   - [`04_apa7_ltr_bibliography.md`](./prompts/04_apa7_ltr_bibliography.md) — הסבת הביבליוגרפיה והציטוטים בגוף הטקסט לתקן **APA 7th** מלא משמאל לימין (LTR) עם תליית 0.5 אינץ'.
+   - [`05_40_page_expansion_and_final_qa.md`](./prompts/05_40_page_expansion_and_final_qa.md) — הרחבה מהותית בפרקים 1–5 להשגת בדיוק **40 עמודי תוכן** ואישור פה אחד של כלל הסוכנים.
+2. **ניתוח Post-Mortem הנדסי ([`POSTMORTEM.md`](./POSTMORTEM.md)):**
+   - מתעד 7 תקלות ייצור אמיתיות שאותרו לאורך העבודה (הזזת מסגרות `tcolorbox` ו-`boxed title` תחת `babel bidi=basic`, היפוך `\raggedleft`/`\raggedright` ב-`\pardir TRT`, חיתוך טקסט באיור 3.1, נפילת שורת כותרת בטבלאות `tabularx`, קיפאון MiKTeX בחבילת `logreq.sty` של `biblatex`, קריסת פונט עברי נטוי `arialni.ttf`, ובעיית `Get-FileHash`), מדוע הן חמקו מבדיקות לוג אוטומטיות, ואיזה פתרון שורש ובקרת מניעה הוטמעו.
+
+---
+
+## ⚡ ניהול משאבים, מודלים ותקלות (Resource Management)
+
+עבודה מרובת-סוכנים צורכת טוקנים, זיכרון ומכסות ריצה, ורגישה לתקלות תשתית. ניהלנו משאבים באופן יזום:
+- **חלוקת עומסים והתאמת מודל למשימה:** משימות תזמור מהירות, שאילתות סטטוס ודיספאצ'ים שגרתיים הופעלו על מודלים קלים/מהירים יותר, בעוד שדיבאג מעמיק של `LuaLaTeX BiDi` (`tcolorbox` / `pgfpicture`), תכנון מנוע APA 7th חסר-תלויות וביקורת ויזואלית הועברו למודל חשיבה גבוה (*High-Reasoning*).
+- **הפחתת טוקנים ובידוד הקשר:** כל סוכן ברשת (`theory`, `architect`, `simulator`, `redteam`) מחזיק הקשר ממוקד בתיקייתו בלבד במקום להעמיס פרומפט מונוליטי יחיד על כל 43 העמודים.
+- **עמידות לתקלות תשתית:** כאשר MiKTeX נתקע על תלות חסרה (`logreq.sty` ב-`biblatex`) ועל `Get-FileHash`, לא נתקענו בניסיונות עיוורים — עברנו לפתרון Native LuaLaTeX אפס-תלויות ולחישוב SHA-256 מובנה ב-`.NET`, המקצרים את זמן הקומפילציה לכ-~25 שניות.
 
 ---
 
 ## 📌 תקציר הפרויקט (Executive Summary)
 
-מערכות בחירות מודרניות ניצבות בפני מתקפות השפעה זרות מתואמות (**FIMI — Foreign Information Manipulation and Interference**), פעילות בלתי אותנטית מתואמת (**CIB — Coordinated Inauthentic Behavior**), נחילי בוטים אוטונומיים, זיופי מדיה (**Deepfakes**) ושימוש ב"עוצמה חדה" (**Sharp Power**) החודרת אל המרחב הציבורי במהירות החורגת מיכולת התגובה של בדיקת עובדות בדיעבד (*Reactive Fact-Checking*).
+**CivicShield AI ("מגן התודעה הלאומי")** הוא מפרט הנדסי-אקדמי ברמת מכרז ממשלתי לפלטפורמה לאומית ריבונית ורב-סוכנית לחוסן תודעתי בפני מבצעי השפעה זרים (**FIMI**), פעילות מתואמת בלתי אותנטית (**CIB**) וזיופי מדיה (**Deepfakes**). המערכת מחברת בין תיאוריות ליבה בתקשורת פוליטית, מדעי המדינה והמשפט החוקתי (הישראלי והאירופי) לבין ארכיטקטורה מבוזרת ב-5 שכבות, 5 מודלים מתמטיים-כמותיים ב-Python ומנגנוני בלימה חוקתיים קשיחים (*Behavior Not Speech* — אפס צנזורה אוטומטית).
 
-**CivicShield AI ("מגן התודעה הלאומי")** הוא מפרט הנדסי-אקדמי ברמת מכרז ממשלתי לפלטפורמה לאומית ריבונית ורב-סוכנית לחוסן תודעתי, המחברת בין **תיאוריות ליבה בתקשורת פוליטית, מדעי המדינה והמשפט החוקתי (הישראלי והאירופי)** לבין **ארכיטקטורה מבוזרת ב-5 שכבות, 5 מודלים מתמטיים-כמותיים ב-Python ומנגנוני בלימה חוקתיים קשיחים** — מבלי לאפשר לצנזורה אלגוריתמית אוטומטית להתקיים לעולם.
-
-📄 **לצפייה בתוצר הסופי המלא (מקומפל ב-LuaLaTeX ללא שגיאות, עם מספור עמודים ערבי רציף וסנכרון אוטומטי לשורש הפרויקט):**  
-👉 **[`CivicShield_AI_Preliminary_Report.pdf`](./CivicShield_AI_Preliminary_Report.pdf)**
-
----
-
-## 📚 מסמכי הפרויקט (Project Governance & Documentation)
-
-בהתאם למבנה ההנדסי ולמתודולוגיית הפעולה של הקורס, הפרויקט כולל תיעוד תכנון, ביצוע וביקורת מלא:
-
-| מסמך | תפקיד במערכת | בעלים בוועדה |
-| :--- | :--- | :--- |
-| **[`CivicShield_AI_Preliminary_Report.pdf`](./CivicShield_AI_Preliminary_Report.pdf)** | הדוח המכין הסופי בשורש הפרויקט (BiDi RTL, מספור עמודים ערבי רציף, 5 גרפי Python, מימוש ייחוס ב-Python בפרק 4, איורי TikZ וביבליוגרפיה מלאה) | `master` + אינטגרציה |
-| **[`PRD.md`](./PRD.md)** | מסמך דרישות המוצר: מפרט פונקציונלי, עקרונות ברזל חוקתיים וקריטריוני הצלחה | `master` |
-| **[`PLAN.md`](./PLAN.md)** | תוכנית האדריכלות, שלבי הביצוע ההנדסיים ומיפוי המודלים | `master` |
-| **[`TODO.md`](./TODO.md)** | לוח המשימות המשותף (*Shared TODO Board*) ומעקב השלמה | `master` |
-| **[`team.json`](./team.json)** | הגדרת ועדת 5 הסוכנים, בעלות הקבצים ופרוטוקול התקשורת (*Hub JSON Envelope*) | ועדת הסוכנים |
-| **[`agents/*/AGY.md`](./agents/)** | פרומפטים ייעודיים וכללי סמכות לכל אחד מ-5 הסוכנים (`master`, `theory`, `architect`, `simulator`, `redteam`) | כל סוכן בנפרד |
-
----
-
-## 🤖 ארכיטקטורת ועדת הסוכנים (Multi-Agent Committee — Lecture 4)
-
-במקום לנסות לייצר דוח מורכב בפרומפט מונוליטי יחיד (הסובל מזיהום הקשר, הזיות כמותיות וקונפליקט תפקידים), הפקת הדוח והמערכת עצמה תוכננו כ**ועדת מומחים מתואמת של 5 סוכנים**:
-
-```mermaid
-flowchart TB
-    Master["🧠 Master Orchestrator\n(PRD, PLAN, TODO, Assembly)"] -->|"Typed Hub Envelope\n+ Shared TODO Dispatch"| Theory["📚 Political & Comm Theory\n(Ch. 1, Ch. 2 & references.bib)"]
-    Master -->|"Typed Hub Envelope\n+ Shared TODO Dispatch"| Architect["🏗️ System & Security Architect\n(civicshield.cls, Front Matter, Ch. 3 & TikZ)"]
-    Master -->|"Typed Hub Envelope\n+ Shared TODO Dispatch"| Simulator["📈 Quantitative Simulator\n(Python ODEs/H-K/Bayes/M-M-c/ROI & Ch. 4)"]
-
-    Theory --> Gate{"⚖️ Red Team & BiDi Gate\n(Ch. 5, verify_report.py & ReAct Audit)"}
-    Architect --> Gate
-    Simulator --> Gate
-
-    Gate -->|"Rejection / Fix Loop\n(Dual RedTeam -> ReAct)"| Master
-    Gate -->|"0 Errors • 39 Pages\n• BiDi & Layout QA Passed"| PDF(["📄 CivicShield_AI_Preliminary_Report.pdf"])
-```
-
----
-
-## ⚖️ עקרונות הברזל החוקתיים
-
-1. **התנהגות ולא תוכן (*Behavior Not Speech* — Zero Auto-Censorship):** לבינה המלאכותית אין סמכות למחוק פוסט, לחסום משתמש או להסיר ערוץ. תפקידה מתוחם לגילוי פעילות מתואמת בלתי אותנטית (CIB/FIMI), חיזוי אפידמיולוגי והפקת הצעות ל**חיסון תודעתי ניטרלי (*Cognitive Prebunking*)**.
-2. **פיקוח אנושי ושימור פלורליזם (*Human-in-the-Loop*):** כל הסלמה או החלטה רגישה כפופה ללולאת בקרה (`Critic-in-the-Loop` + אישור אנושי ושיפוטי), תוך שימור פלורליזם דמוקרטי ומניעת קריסה מלאכותית של דעות.
-3. **פרטיות מובנית וריבונות נתונים (*Privacy by Design & Sovereign Cloud*):** עמידה מלאה בהנחיות מערך הסייבר הלאומי (`INCD`), תקנות הגנת הפרטיות (אבטחת מידע), התשע"ז–2017 ותקן `ISO/IEC 27001`, ללא הוצאת מידע מזהה אישית (`PII`) מחוץ לגבולות השיפוט של מדינת ישראל.
-
----
-
-## 🧠 סינתזה תיאורטית → רכיבי קוד ומודלים מתמטיים
-
-| תיאוריה במדעי המדינה, תקשורת ומשפט | תרגום אלגוריתמי ב-CivicShield AI | עוגן בדוח ובקוד |
-| :--- | :--- | :--- |
-| **תמונת איומי FIMI/CIB ו-CONOPS** | מיפוי וקטורי תקיפה, אסטרטגיית חוסן ומפת דרכים תלת-שלבית | פרק 1 (`ch01_vision.tex`) |
-| **תקשורת פוליטית, מסגור וספירלת השתיקה** | זיהוי מתקפות מתואמות, ניתוח זליגה וחיסון תודעתי מוקדם | פרק 2 (`ch02_theory_law.tex`) • `fig4_1`, `fig4_2` |
-| **דמוקרטיה מתגוננת ומשפט חוקתי (ישראל ו-EU)** | הפרדת רשויות בקוד, `Behavior Not Speech`, תאימות `INCD` ו-`DSA` | פרקים 2, 5 (`ch02_theory_law.tex`, `ch05_safeguards_audit.tex`) |
-| **ארכיטקטורה 5-שכבתית ורכזת סוכנים** | בידוד שכבות, `Multi-Agent Orchestration Hub`, `Zero-Trust` ו-`Grounded RAG` | פרק 3 (`ch03_architecture.tex`) • איורי TikZ |
-| **מידול מתמטי, קיבולת וכלכלה** | `SIRI ODE`, `Hegselmann-Krause`, איחוד בייסיאני, תורי `M/M/c` ו-`5-Year ROI` | פרק 4 (`ch04_simulations.tex`) • `fig4_1`–`fig4_5` |
+📄 **לצפייה בתוצר הסופי המלא:** 👉 **[`CivicShield_AI_Preliminary_Report.pdf`](./CivicShield_AI_Preliminary_Report.pdf)**
 
 ---
 
 ## 📊 גלריית הסימולציות הכמותיות (`agents/master/scripts/generate_figures.py`)
 
-כל חמשת הגרפים בדוח אינם איורים אילוסטרטיביים, אלא תוצר דטרמיניסטי של הרצת [`agents/master/scripts/generate_figures.py`](./agents/master/scripts/generate_figures.py):
+כל חמשת הגרפים בדוח מיוצרים דטרמיניסטית מקוד Python ב-[`agents/master/scripts/generate_figures.py`](./agents/master/scripts/generate_figures.py):
 
-### 1. דינמיקת הדבקה תודעתית וחיסון מוקדם (`SIRI ODE`)
-מידול משוואות דיפרנציאליות של התפשטות קמפיין השפעה והשפעת הפעלת **Prebunking** מוקדם על בלימת שיא ההדבקה והחשיפה המצטברת.
+| 1. מודל `SIRI ODE` (בלימת התפשטות וחיסון מוקדם) | 2. מודל `Hegselmann-Krause` (דינמיקת דעות וקיטוב) |
+| :---: | :---: |
+| ![SIRI ODE](./agents/master/figures/fig4_1_siri_ode.png) | ![Hegselmann-Krause](./agents/master/figures/fig4_2_hk_opinion.png) |
 
-![SIRI ODE Contagion Simulation](./agents/master/figures/fig4_1_siri_ode.png)
+| 3. היתוך ראיות בייסיאני ו-ROC (`AUC = 0.964`) | 4. תורת התורים `M/M/c Erlang-C` לעומסי שיא ב-SOC |
+| :---: | :---: |
+| ![Bayesian Fusion](./agents/master/figures/fig4_3_bayesian_fusion.png) | ![M/M/c Queueing](./agents/master/figures/fig4_4_mmc_queueing.png) |
 
-### 2. קיטוב תחומת-אמון וגישור פלורליסטי (`Hegselmann-Krause Opinion Dynamics`)
-סימולציית סוכנים של דינמיקת דעות וקיטוב חברתי במצב בסיס לעומת התערבות גישור פלורליסטית המשמרת מגוון דעות.
-
-![Hegselmann-Krause Opinion Dynamics](./agents/master/figures/fig4_2_hk_opinion.png)
-
-### 3. איחוד ראיות בייסיאני לזיהוי מניפולציה ו-Deepfakes (`Bayesian Evidence Fusion`)
-איחוד הסתברויות רב-ממדי על פני אותות בלתי תלויים להתגברות על בעיית שיעור הבסיס ושמירה על דיוק גבוה לפני הסלמה אנושית.
-
-![Bayesian Evidence Fusion](./agents/master/figures/fig4_3_bayesian_fusion.png)
-
-### 4. תכנון קיבולת והשהיה לליל הבחירות (`M/M/c Erlang-C Queueing`)
-ניתוח תורים וזמני השהיה תחת עומסי שיא של אירועים לשנייה להבטחת עמידה ב-SLA מחמיר בזמן אמת.
-
-![M/M/c Queueing and Latency](./agents/master/figures/fig4_4_mmc_queueing.png)
-
-### 5. מודל תקציב חמש-שנתי (`CAPEX/OPEX`) והחזר השקעה מוסדי (`5-Year ROI`)
-פריסת עלויות הקמה ותפעול על פני 5 שנים אל מול ערך החוסן הלאומי המצטבר ונקודת האיזון הכלכלית (*Break-Even*).
-
+### 5. מודל כלכלי חמש-שנתי (`CAPEX/OPEX`, `NPV = +42.6M ILS`, `ROI = 204.6%`)
 ![5-Year Budget & ROI Projection](./agents/master/figures/fig4_5_roi_5yr.png)
 
 ---
@@ -162,87 +134,63 @@ flowchart TB
 
 ```text
 vibe-coding04/
-├── CivicShield_AI_Preliminary_Report.pdf            # 📄 הדוח המכין הסופי (39 עמודי PDF / 38 ממוספרים, 935,647 bytes)
-├── PRD.md                                           # 📋 מסמך דרישות המוצר
-├── PLAN.md                                          # 🛠️ תוכנית עבודה וארכיטקטורה
-├── TODO.md                                          # ☑️ לוח משימות ומעקב ביצוע
-├── team.json                                        # 🔗 מטא-דאטה של ועדת הסוכנים ובעלות קבצים
-├── README.md                                        # 📖 מסמך תיעוד זה
-├── assets/
-│   └── multi-agent-mesh.jpg                         # 🖼️ צילום מסך של 5 חלונות Antigravity CLI פועלים במקביל
-└── agents/                                          # 🤖 סביבות העבודה של 5 הסוכנים (Lecture 4)
-    ├── master/                                      # 🧠 סביבת האינטגרציה וההרכבה הסופית
-    │   ├── main.pdf                                 # 📄 פלט LuaLaTeX המסונכרן אוטומטית לשורש (39 עמודים, 935,647 bytes)
-    │   ├── build.ps1                                # ⚙️ סקריפט בנייה (LuaLaTeX + BibTeX) וסנכרון SHA-256 לשורש
-    │   ├── civicshield.cls                          # 🎨 מחלקת LaTeX מותאמת (BiDi RTL, tcolorbox, TikZ)
-    │   ├── main.tex                                 # 📘 קובץ ראשי, דף שער ומבנה המסמך
-    │   ├── references.bib                           # 📚 מאגר מקורות ביבליוגרפיים (BibTeX)
-    │   ├── chapters/                                # 📑 5 פרקים מודולריים
-    │   │   ├── ch01_vision.tex                      # פרק 1: תמונת איומים, חזון אסטרטגי ומפת דרכים
-    │   │   ├── ch02_theory_law.tex                  # פרק 2: תשתית תיאורטית (תקשורת, מדעי המדינה ומשפט)
-    │   │   ├── ch03_architecture.tex                # פרק 3: ארכיטקטורה 5-שכבתית, איורי TikZ ו-FR/NFR
-    │   │   ├── ch04_simulations.tex                 # פרק 4: מידול מתמטי, סימולציות וניתוח ROI
-    │   │   └── ch05_safeguards_audit.tex            # פרק 5: הגנות חוקתיות, אנטי-צנזורה וביקורת צוות אדום
-    │   ├── figures/                                 # 📊 5 גרפים וקטוריים (.pdf) ו-5 תמונות (.png)
-    │   ├── scripts/
-    │   │   ├── generate_figures.py                  # 🐍 מחולל דטרמיניסטי של 5 גרפי PDF + PNG
-    │   │   └── verify_report.py                     # ✅ סקריפט QA אוטומטי (עמודים, לוג LuaLaTeX ו-BiDi)
-    │   └── AGY.md                                   # 🧭 הוראות תפקיד master
-    ├── theory/                                      # 📚 סביבת סוכן התיאוריה והמשפט (Ch. 1-2, references.bib)
-    ├── architect/                                   # 🏗️ סביבת סוכן הארכיטקטורה (civicshield.cls, Ch. 3, TikZ)
-    ├── simulator/                                   # 📈 סביבת סוכן הסימולציות (generate_figures.py, Ch. 4)
-    └── redteam/                                     # ⚖️ סביבת סוכן הצוות האדום והאימות (Ch. 5, verify_report.py)
+├── CivicShield_AI_Preliminary_Report.pdf  # 📄 הדוח הסופי (43 עמודי PDF: שער + 40 תוכן + 2 ביבליוגרפיה APA 7th)
+├── README.md                              # 📖 מסמך תיעוד זה (כולל צילומי מסך, גרפים ותהליך הנדסי)
+├── PRD.md                                 # 📋 מסמך דרישות המוצר (תוצר ועדת המומחים)
+├── PLAN.md                                # 🛠️ תוכנית עבודה, הקצאת פרקים ושלבי בקרת איכות
+├── TODO.md                                # ☑️ לוח משימות משותף (Shared TODO Board)
+├── POSTMORTEM.md                          # 🔍 ניתוח Post-Mortem של 7 תקלות ייצור ולקחים
+├── team.json                              # 🔗 הגדרת ועדת 5 הסוכנים ובעלות קבצים
+├── prompts/                               # 💬 תיקיית הנדסת הפרומפטים (01..05)
+├── skills/                                # 🧠 תיקיית ה-Skills (כולל qa-detector ו-qa-fixer)
+├── assets/                                # 🖼️ צילום מסך Multi-Agent Mesh + 6 עמודי דוח מרונדרים
+└── agents/                                # 🤖 סביבות העבודה של 5 הסוכנים
+    ├── master/                            # 🧠 פרויקט ה-LaTeX המודולרי והרכבה סופית
+    │   ├── main.tex                       # 📘 קובץ ראשי, דף שער, Front Matter וביבליוגרפיה
+    │   ├── civicshield.cls                # 🎨 מחלקת LaTeX מקורית (BiDi RTL, tcolorbox, TikZ, מנוע APA 7th)
+    │   ├── build.ps1                      # ⚙️ סקריפט בנייה 3-pass LuaLaTeX + אימות SHA-256
+    │   ├── references.bib                 # 📚 מאגר מקורות ביבליוגרפיים (APA 7th)
+    │   ├── chapters/                      # 📑 ch01..ch05 + references_apa7.tex
+    │   ├── figures/                       # 📊 5 גרפים וקטוריים (.pdf) ו-5 תמונות (.png)
+    │   └── scripts/
+    │       ├── generate_figures.py        # 🐍 מחולל דטרמיניסטי של 5 גרפי Python
+    │       └── verify_report.py           # ✅ סקריפט QA אוטומטי (Detector)
+    ├── theory/                            # 📚 סביבת סוכן התיאוריה והמשפט
+    ├── architect/                         # 🏗️ סביבת סוכן הארכיטקטורה
+    ├── simulator/                         # 📈 סביבת סוכן הסימולציות
+    └── redteam/                           # ⚖️ סביבת סוכן הצוות האדום
 ```
 
 ---
 
-## ⚙️ הרצה ושחזור מקומי (Reproduction Guide)
-
-ניתן לשחזר את כל הגרפים, לקמפל מחדש את הדוח ב-LuaLaTeX ולהריץ את בדיקות האימות המלאות מתוך תיקיית `agents/master`:
+## ⚙️ הרצה, בנייה ואימות מקומי (Reproduction Guide)
 
 ```powershell
 cd agents/master
+
+# 1. יצירת 5 הגרפים המדעיים ב-Python
+python scripts/generate_figures.py
+
+# 2. קומפילציה מלאה ב-LuaLaTeX (3 מעברים) וסנכרון אוטומטי לשורש עם אימות SHA-256
+powershell -ExecutionPolicy Bypass -File .\build.ps1
+
+# 3. הרצת סקריפט האימות האוטומטי (Detector QA)
+python scripts/verify_report.py
 ```
 
-### 1. יצירת הגרפים המדעיים ב-Python
-```powershell
-py scripts/generate_figures.py
-```
-
-### 2. קומפילציה של הדוח המלא ב-LuaLaTeX + BibTeX וסנכרון אוטומטי לשורש הפרויקט
-הבנייה הסטנדרטית מתבצעת באמצעות [`agents/master/build.ps1`](./agents/master/build.ps1) (או `latexmk` המוגדר ב-[`agents/master/.latexmkrc`](./agents/master/.latexmkrc)), אשר מריצים `lualatex` + `bibtex` ומעתיקים אוטומטית את `main.pdf` לקובץ [`CivicShield_AI_Preliminary_Report.pdf`](./CivicShield_AI_Preliminary_Report.pdf) בשורש הפרויקט עם אימות SHA-256:
-```powershell
-.\build.ps1
-# או לבנייה מהירה (2 מעברי LuaLaTeX ללא BibTeX):
-.\build.ps1 -Fast
-```
-
-### 3. שדרוגים הנדסיים אחרונים ותיקוני איכות (Latest Engineering, BiDi & Layout QA)
-- **מספור עמודים תקני לדוח (Arabic Page Numbering):** הוסר מספור הספרות הרומיות (`\frontmatter`) ב-`civicshield.cls`; דף השער אינו ממוספר, ותוכן הדוח ממוספר ברצף מלא במספרים ערביים (`1..38`, סה"כ 39 עמודי PDF) תואם `LastPage`.
-- **סנכרון PDF אוטומטי בכל בנייה:** נוספו `agents/master/build.ps1` ו-`agents/master/.latexmkrc` המעדכנים אוטומטית את `CivicShield_AI_Preliminary_Report.pdf` בשורש הפרויקט בכל קומפילציה עם אימות SHA-256.
-- **מנוע סימולציות Python מחוזק (`generate_figures.py`) ומימוש ייחוס בפרק 4:** קוד הסימולציות שודרג לרמת Production (טיפוסי נתונים קשיחים, ולידציה, טיפול בשגיאות וארכיטקטורה מודולרית), ונוסף קטע קוד ייחוס מוקשח ב-Python בתוך `chapters/ch04_simulations.tex`.
-- **תיקוני איכות ו-BiDi QA של צוות `redteam`:** ביקורת לעומתית מלאה (Dual RedTeam → ReAct), אימות עקביות מספרית וחוקתית, בידוד RTL/LTR תקני ואימות אפס שגיאות ב-`verify_report.py`.
-- **תיקוני פריסת עמודים ומילון מונחים (`architect`):**
-  - בוטל הפיצול בעמודים 8–9: כותרת "מילון מונחים וראשי תיבות" וכל 17 שורות הטבלה מוצגות כעת יחד בעמוד אחד נקי ומאוזן עם כותרת ריצה מדויקת (`\markboth`).
-  - בוטלו כותרות יתומות בתחתית עמודים (סעיפים `2.6`, `3.5`, `4.2`) באמצעות `\raggedbottom`, `\widowpenalty=10000`, `\clubpenalty=10000` ושמירת מרחב (`needspace`) ב-`civicshield.cls`.
-  - תיבות הדגשה (`insightbox`, `riskbox`, `contractbox`) נשמרות שלמות בעמוד אחד ללא פיצול, ונוסף מעבר עמוד נקי לפני סעיף `4.6` למניעת עמוד זנב יתום בסוף פרק 4.
-
-### 4. הרצת חבילת האימות האוטומטית (`verify_report.py`)
-```powershell
-py scripts/verify_report.py
-```
-**פלט צפוי (סטטוס סופי — מוכן להגשה):**
+**פלט אימות צפוי:**
 ```text
-PDF_EXISTS: True | PAGES_EST: 39 | Size=935647 bytes
-LOG_EXISTS: True | LOG_OUTPUT_PAGES: 39
+PDF_EXISTS: True | PAGES_EST: 43 | ROOT_SYNC_SHA256_OK: True
+LOG_EXISTS: True | LOG_OUTPUT_PAGES: 43
 LATEX_ERRORS_COUNT: 0
 RMFAMILY_MATH_ERRORS_COUNT: 0
 UNDEF_REFS: 0 | UNDEF_CITES: 0
+OVERALL_QA_PASS: True
 ```
 
 ---
 
-## ✍️ הקשר והגשה (Author & Course)
+## ✍️ הקשר אקדמי וגישת הגשה
 
 * **מוסד:** אוניברסיטת חיפה — קורס *יישומי בינה מלאכותית ו-Vibe Coding* (ד"ר יורם סגל)
-* **רישיון שימוש:** מוגש כעבודת מחקר ותכנון אקדמית-הנדסית במסגרת מטלה 2.
+* **הגשה:** מוגש בזוג במסגרת מטלה 2 במאגר GitHub ייעודי וציבורי (`public`, גישה מלאה למרצה).

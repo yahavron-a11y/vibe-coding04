@@ -2,8 +2,8 @@
 
 **Target Deliverable:** `CivicShield_AI_Preliminary_Report.pdf`
 **Format:** Professional LuaLaTeX Book (Hebrew RTL + English LTR BiDi, original `civicshield.cls` styling, TikZ diagrams only, Python-generated vector figures)
-**Target Length:** 40 pages (acceptable range: 37–45 pages)  
-**Final Verified Status:** ✅ **COMPLETED** — `CivicShield_AI_Preliminary_Report.pdf` (**39 PDF pages / 38 numbered pages**, continuous Arabic numbering, `935,647` bytes, `0` LaTeX errors, `0` undefined refs/cites)
+**Target Length:** 40 content pages (excluding cover page and bibliography)  
+**Final Verified Status:** ✅ **COMPLETED** — `CivicShield_AI_Preliminary_Report.pdf` (**43 physical PDF pages: 1 cover + 40 content pages `1–40` + 2 LTR APA 7th bibliography pages `41–42`**, `1,018,771` bytes, `0` LaTeX errors, `0` undefined refs/cites)
 
 ## Chapter Allocation & Page Targets
 
@@ -26,5 +26,5 @@
 3. **Phase 3 (Final Assembly, Layout Polish & Documentation — ✅ Completed):**
    - Completed `redteam` Dual RedTeam -> ReAct Audit & BiDi QA fixes (`verify_report.py`: 0 LaTeX errors, 0 BiDi/math errors, 0 undefined refs/cites).
    - Completed `architect` page layout & Glossary fixes: unified Glossary onto page 8 (eliminated pages 8–9 split), eliminated orphaned section headings (`2.6`, `3.5`, `4.2`) via `needspace` + `\raggedbottom` + widow/club penalties, kept callout boxes intact, and added clean `\clearpage` before section 4.6.
-   - Rebuilt and synced `CivicShield_AI_Preliminary_Report.pdf` via `agents/master/build.ps1` (**39 PDF pages / 38 numbered**, `935,647` bytes, SHA-256 verified, **0 LaTeX errors**).
-   - Updated `README.md`, `PRD.md`, `PLAN.md`, `TODO.md`, and `agents/master/README.md` to reflect the final verified state.
+   - Rebuilt and synced `CivicShield_AI_Preliminary_Report.pdf` via `agents/master/build.ps1` (**43 physical PDF pages: 1 cover + 40 content pages + 2 LTR APA 7th bibliography pages**, `1,018,771` bytes, SHA-256 verified, **0 LaTeX errors**).
+   - Documented engineering artifacts: `prompts/`, `skills/` (including `qa-detector` and `qa-fixer`), `POSTMORTEM.md`, and 6 rendered PDF page screenshots in `assets/` embedded in `README.md`.

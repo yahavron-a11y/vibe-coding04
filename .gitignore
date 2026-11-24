@@ -1,0 +1,22 @@
+# LaTeX temporary build logs and auxiliary files
+agents/master/lualatex_*.log
+agents/master/biber*.log
+agents/master/bibtex.log
+agents/master/*.aux
+agents/master/*.bcf
+agents/master/*.blg
+agents/master/*.fdb_latexmk
+agents/master/*.fls
+agents/master/*.listing
+agents/master/*.lof
+agents/master/*.log
+agents/master/*.lot
+agents/master/*.out
+agents/master/*.run.xml
+agents/master/*.toc
+agents/master/*.synctex.gz
+
+# Python caches
+**/__pycache__/
+*.pyc
+.venv/
