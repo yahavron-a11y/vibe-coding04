@@ -28,7 +28,7 @@
 
 ### ⚙️ הפעלת Antigravity במצב Multi-Agent
 
-כדי להקים ולהריץ את מערך הסוכנים של פרויקט זה ב-Antigravity, מריצים את שתי הפקודות הבאות מתוך תיקיית הפרויקט `C:\Users\ron\OneDrive - University of Haifa\SecondYear\MyProjects\agy-multi-agent-mesh`:
+כדי להקים ולהריץ את מערך הסוכנים של פרויקט זה ב-Antigravity, מריצים את שתי הפקודות הבאות מתוך תיקיית הפרויקט `{PATH TO MULTI AGENT TOOL}\agy-multi-agent-mesh`:
 
 ```powershell
 cd "{PATH TO MULTI AGENT TOOL}\agy-multi-agent-mesh"
